@@ -21,14 +21,17 @@ export default function ({ Colors, ...args }) {
         backgroundColor: Colors.transparent,
       },
       textInput: {
-        borderWidth: 1,
+        borderWidth: 0,
         borderColor: Colors.text,
         backgroundColor: Colors.inputBackground,
         color: Colors.text,
-        minHeight: 50,
-        textAlign: 'center',
+        minHeight: 58,
+        textAlign: 'left',
         marginTop: 10,
         marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 14,
+        borderRadius: 12
       },
     }),
   }

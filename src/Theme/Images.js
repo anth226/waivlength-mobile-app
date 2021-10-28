@@ -6,5 +6,6 @@
 export default function () {
   return {
     onBoarding: require('@/Assets/Images/on_boarding.png'),
+    logo: require('@/Assets/Icons/ic_logo.png'),
   }
 }
