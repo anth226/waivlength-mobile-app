@@ -1,99 +1,67 @@
-# Waivlength Mobile App
+#  templateAndross
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
+
+* Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
+
+## :arrow_up: How to Setup
+
+**Step 1:** git clone this repo:
+
+**Step 2:** cd to the cloned repo:
+
+**Step 3:** Install the Application with `yarn` or `npm i`
 
 
-## 📦 Getting started
+## :arrow_forward: How to Run App
 
-Installing Dependencies:
+1. cd to the repo
+2. Run Build for either OS
+  * for iOS
+    * run `npx react-native run-ios`
+  * for Android
+    * Run Genymotion
+    * run `npx react-native run-android`
 
-```bash
-$ yarn install
-$ yarn pod
-```
+## :no_entry_sign: Standard Compliant
 
-Running the app:
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+This project adheres to Standard.  Our CI enforces this, so we suggest you enable linting to keep your project compliant during development.
 
-```bash
-$ yarn start
-```
+**To Lint on Commit**
 
-For starting the app on a specific OS:
+This is implemented using [husky](https://github.com/typicode/husky). There is no additional setup needed.
 
-```bash
-$ yarn ios | yarn android
-```
+**Bypass Lint**
 
-<br />
+If you have to bypass lint for a special commit that you will come back and clean (pushing something to a branch etc.) then you can bypass git hooks with adding `--no-verify` to your commit command.
 
-## 👩🏾‍💻 Development
+**Understanding Linting Errors**
 
-### Navigation
+The linting rules are from JS Standard and React-Standard.  [Regular JS errors can be found with descriptions here](http://eslint.org/docs/rules/), while [React errors and descriptions can be found here](https://github.com/yannickcr/eslint-plugin-react).
 
-- https://reactnavigation.org/
+## :closed_lock_with_key: Secrets
 
-- Fully using [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated), [react-native-gesture-handler](https://github.com/software-mansion/react-native-gesture-handler), [react-native-screens](https://github.com/software-mansion/react-native-screens), [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context), [@react-native-community/masked-view](https://github.com/react-native-masked-view/masked-view#readme)
-
-- Optimize memory usage and performance by enable native screens
-
-<br/>
-
-### State Management using Context API & Hooks
-
-### SVG
-
-- https://github.com/react-native-community/react-native-svg
-- https://github.com/kristerkari/react-native-svg-transformer
-
-### i18n & l10n
-
-#### Setup:
-
-- https://react.i18next.com/
-- https://www.i18next.com/
-- https://github.com/zoontek/react-native-localize
-- https://github.com/react-native-async-storage/async-storage
-
-#### How to use:
-
-- Follow setup languages at `./app/utils/translations`
-- Using `./languages` by common localize, using anywhere in the project
-- If you need to create translations in specific folder, please import it into `./app/utils/translation/localization`
-- using hooks `useTranslation` from `react-i18next` like:
+This project uses [react-native-config](https://github.com/luggit/react-native-config) to expose config variables to your javascript code in React Native. You can store API keys
+and other sensitive information in a `.env` file:
 
 ```
-import React from 'react';
-import { View } from 'react-native';
-import { useTranslation } from 'react-i18next';
-
-export function MyComponent() {
- const { t, i18n } = useTranslation();
- // or const [t, i18n] = useTranslation();
-
- return <View>{t('my translated text')}</View>
-}
+API_URL=https://myapi.com
+GOOGLE_MAPS_API_KEY=abcdefgh
 ```
 
-### Animated
+and access them from React Native like so:
 
-- https://github.com/wcandillon/react-native-redash
-- https://github.com/software-mansion/react-native-reanimated
+```
+import Secrets from 'react-native-config'
 
-### BottomSheet
+Secrets.API_URL  // 'https://myapi.com'
+Secrets.GOOGLE_MAPS_API_KEY  // 'abcdefgh'
+```
 
-- A performant interactive bottom sheet with fully configurable options: [Gorhom React Native Bottom Sheet](https://gorhom.github.io/react-native-bottom-sheet/)
+The `.env` file is ignored by git keeping those secrets out of your repo.
 
-### UI Kit
-
-- [React Native Elements](https://reactnativeelements.com/docs)
-- [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
-- Please check custom theme at here: `./app/styles/theme`
-
-### Unit test
-
-- Write your own test suit by create a js file in `__test__` folder
-- Test suit must have postfix `.test.test`
-- Run all test suits with command `yarn test --verbose`
-- Run specific test case with command `yarn test -u -t="test-case-name"`
-- Get test coverage report with command `yarn run test-coverage`
-- Further reference:
-  - https://jestjs.io/docs/en/getting-started
-  - https://enzymejs.github.io/enzyme/docs/guides/react-native.html
+### Get started:
+1. Copy .env.example to .env
+2. Add your config variables
+3. Follow instructions at [https://github.com/luggit/react-native-config#setup](https://github.com/luggit/react-native-config#setup)
+4. Done!
