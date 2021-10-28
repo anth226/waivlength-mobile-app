@@ -58,6 +58,4 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-# Misc
-#
-.env
+template/plugins/typescript/template/tsconfig.json
