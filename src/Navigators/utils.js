@@ -17,6 +17,19 @@ export const navigate = (name, params) => {
   }
 }
 
+
+export const goBack = () => {
+  if (navigationRef.isReady()) {
+    navigationRef.goBack();
+  }
+}
+
+export const getRootState = () => {
+  if (navigationRef.isReady()) {
+    navigationRef.getRootState();
+  }
+}
+
 export const navigateAndReset = (routes = [], index = 0) => {
   if (navigationRef.isReady()) {
     navigationRef.dispatch(
@@ -38,3 +51,4 @@ export const navigateAndSimpleReset = (name, index = 0) => {
     )
   }
 }
+

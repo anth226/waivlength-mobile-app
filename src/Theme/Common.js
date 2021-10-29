@@ -31,7 +31,8 @@ export default function ({ Colors, ...args }) {
         marginBottom: 10,
         paddingHorizontal: 10,
         fontSize: 14,
-        borderRadius: 12
+        borderRadius: 12,
+        fontFamily: 'Poppins-Light'
       },
     }),
   }

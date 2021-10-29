@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { ItemOnBoarding } from '@/Components'
 import { useTheme } from '@/Hooks'
 import { useLazyFetchOneQuery } from '@/Services/modules/users'
 import { changeTheme } from '@/Store/Theme'
@@ -43,7 +42,6 @@ const ExampleContainer = () => {
       ]}
     >
       <View style={[[Layout.colCenter, Gutters.smallHPadding]]}>
-        <ItemOnBoarding />
         {(isLoading || isFetching) && <ActivityIndicator />}
         {!isSuccess ? (
           <Text style={Fonts.textRegular}>{error}</Text>

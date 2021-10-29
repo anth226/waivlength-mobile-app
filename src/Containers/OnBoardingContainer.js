@@ -13,12 +13,6 @@ const OnBoardingContainer = () => {
 
   const init = async () => {
     await setDefaultTheme({ theme: 'default', darkMode: null })
-    await new Promise(resolve =>
-      setTimeout(() => {
-        resolve(true)
-      }, 2000),
-    )
-    //navigateAndSimpleReset('Main')
   }
 
   useEffect(() => {
@@ -37,7 +31,7 @@ const OnBoardingContainer = () => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigateAndSimpleReset('Main')}>
-          <Text style={[Fonts.textCenter, { marginBottom: 35, marginTop: 10 }]}>Skip</Text>
+          <Text style={[Fonts.textCenter, styles.textSkip]}>Skip</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -54,7 +48,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     color: '#ffffff',
-    fontSize: 14
+    fontSize: 16,
+    fontFamily: 'Poppins-Regular'
   },
-
+  textSkip: {
+    marginBottom: 35,
+    marginTop: 10,
+    fontFamily: 'Poppins-Regular',
+    color: '#6E6E9F'
+  }
 });

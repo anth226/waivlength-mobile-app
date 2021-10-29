@@ -1,6 +1,13 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { LoginContainer } from '@/Containers'
+import {
+  LoginContainer,
+  SignUpContainer,
+  VerificationContainer,
+  ProffVerificationContainer,
+  UploadSelfieContainer,
+  UploadDocumentContainer
+} from '@/Containers'
 
 const Stack = createStackNavigator()
 
@@ -9,6 +16,11 @@ const AuthNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={LoginContainer} />
+      <Stack.Screen name="SignUp" component={SignUpContainer} />
+      <Stack.Screen name="Verification" component={VerificationContainer} />
+      <Stack.Screen name="ProffVerification" component={ProffVerificationContainer} />
+      <Stack.Screen name="UploadSelfie" component={UploadSelfieContainer} />
+      <Stack.Screen name="UploadDocument" component={UploadDocumentContainer} />
     </Stack.Navigator>
   )
 }

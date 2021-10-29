@@ -6,7 +6,7 @@ import { useTheme } from '@/Hooks'
 const { width } = Dimensions.get('window');
 
 const ItemOnBoarding = ({ flex, width, mode }) => {
-  const { Layout, Images } = useTheme()
+  const { Layout, Images, Fonts } = useTheme()
   const [sliderState, setSliderState] = useState({ currentPage: 0 });
 
 
@@ -36,40 +36,50 @@ const ItemOnBoarding = ({ flex, width, mode }) => {
           setSliderPage(event);
         }}
       >
-        <View style={{ width, height: width }}>
-          <Image style={Layout.fullSize} source={Images.onBoarding} resizeMode={mode} />
-          <View style={styles.textWrapper}>
-            <Text style={styles.header}>Join The daily chalanges</Text>
+        <View style={[Layout.fill, { width, alignItems: 'center' }]}>
+          <Image style={[Layout.fullWidth, { }]} source={Images.onBoarding} resizeMode={mode} />
+          <View style={Layout.fill}/>
+          <View style={[styles.textWrapper]}>
+            <Text style={[Fonts.textCenter, styles.header]}>Join The daily chalanges</Text>
             <Text style={styles.paragraph}>Our systems are built to send poor quality links and articles to the</Text>
           </View>
+          <View style={Layout.fill}/>
         </View>
-        <View style={{ width, height: width }}>
-          <Image style={Layout.fullSize} source={Images.onBoarding} resizeMode={mode} />
-          <View style={styles.textWrapper}>
-            <Text style={styles.header}>Join The daily chalanges</Text>
+        <View style={[Layout.fill, { width, alignItems: 'center' }]}>
+          <Image style={[Layout.fullWidth, { }]} source={Images.onBoarding2} resizeMode={mode} />
+          <View style={Layout.fill}/>
+          <View style={[styles.textWrapper]}>
+            <Text style={[Fonts.textCenter, styles.header]}>Opportunities to win rewards</Text>
             <Text style={styles.paragraph}>Our systems are built to send poor quality links and articles to the</Text>
           </View>
+          <View style={Layout.fill}/>
         </View>
-        <View style={{ width, height: width }}>
-          <Image style={Layout.fullSize} source={Images.onBoarding} resizeMode={mode} />
-          <View style={styles.textWrapper}>
-            <Text style={styles.header}>Join The daily chalanges</Text>
+        <View style={[Layout.fill, { width, alignItems: 'center' }]}>
+          <Image style={[Layout.fullWidth, { }]} source={Images.onBoarding3} resizeMode={mode} />
+          <View style={Layout.fill}/>
+          <View style={[styles.textWrapper]}>
+            <Text style={[Fonts.textCenter, styles.header]}>Statastics of your growth</Text>
             <Text style={styles.paragraph}>Our systems are built to send poor quality links and articles to the</Text>
           </View>
+          <View style={Layout.fill}/>
         </View>
-        <View style={{ width, height: width }}>
-          <Image style={Layout.fullSize} source={Images.onBoarding} resizeMode={mode} />
-          <View style={styles.textWrapper}>
-            <Text style={styles.header}>Join The daily chalanges</Text>
+        <View style={[Layout.fill, { width, alignItems: 'center' }]}>
+          <Image style={[Layout.fullWidth, { }]} source={Images.onBoarding4} resizeMode={mode} />
+          <View style={Layout.fill}/>
+          <View style={[styles.textWrapper]}>
+            <Text style={[Fonts.textCenter, styles.header]}>Verified Articles and videos</Text>
             <Text style={styles.paragraph}>Our systems are built to send poor quality links and articles to the</Text>
           </View>
+          <View style={Layout.fill}/>
         </View>
-        <View style={{ width, height: width }}>
-          <Image style={Layout.fullSize} source={Images.onBoarding} resizeMode={mode} />
-          <View style={styles.textWrapper}>
-            <Text style={styles.header}>Join The daily chalanges</Text>
+        <View style={[Layout.fill, { width, alignItems: 'center' }]}>
+          <Image style={[Layout.fullWidth, { }]} source={Images.onBoarding5} resizeMode={mode} />
+          <View style={Layout.fill}/>
+          <View style={[styles.textWrapper]}>
+            <Text style={[Fonts.textCenter, styles.header]}>Earned rewards and collectibles</Text>
             <Text style={styles.paragraph}>Our systems are built to send poor quality links and articles to the</Text>
           </View>
+          <View style={Layout.fill}/>
         </View>
       </ScrollView>
       <View style={styles.paginationWrapper}>
@@ -103,28 +113,28 @@ const styles = StyleSheet.create({
   textWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 50,
-    marginHorizontal: 50
+    marginHorizontal: 50, 
   },
   header: {
     fontSize: 24,
-    fontWeight: 'bold',
     marginBottom: 20,
+    fontFamily: 'Poppins-Medium'
   },
   paragraph: {
     fontSize: 16,
     textAlign: 'center',
+    fontFamily: 'Poppins-Regular'
   },
   paginationWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    marginBottom: 56
+    marginBottom: 45
   },
   paginationDots: {
-    height: 10,
-    width: 10,
-    borderRadius: 10 / 2,
+    height: 8,
+    width: 8,
+    borderRadius: 8 / 2,
     backgroundColor: '#5D5FEF',
     marginLeft: 8,
   },

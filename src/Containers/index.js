@@ -1,3 +1,9 @@
 export { default as ExampleContainer } from './ExampleContainer'
 export { default as OnBoardingContainer } from './OnBoardingContainer'
+
 export { default as LoginContainer } from './Auth/LoginContainer'
+export { default as SignUpContainer } from './Auth/SignUpContainer'
+export { default as VerificationContainer } from './Auth/VerificationContainer'
+export { default as ProffVerificationContainer } from './Auth/ProffVerificationContainer'
+export { default as UploadSelfieContainer } from './Auth/UploadSelfieContainer'
+export { default as UploadDocumentContainer } from './Auth/UploadDocumentContainer'

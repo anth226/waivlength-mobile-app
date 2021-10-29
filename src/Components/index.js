@@ -1,2 +1,7 @@
 export { default as ItemOnBoarding } from './ItemOnBoarding'
+export { default as CustomImage } from './CustomImage'
+export { default as ViewMoreText } from './ViewMoreText'
 export { default as Logo } from './Logo'
+export { default as Back } from './Back'
+export { default as CheckBox } from './CheckBox'
+export { default as RadioButton } from './RadioButton'
