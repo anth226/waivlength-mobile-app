@@ -19,7 +19,7 @@ const ProffVerificationContainer = () => {
   const { t } = useTranslation()
 
   const init = async () => {
-    await setDefaultTheme({ theme: 'default', darkMode: null })
+    await setDefaultTheme({ theme: 'default', darkMode: false })
     //navigateAndSimpleReset('Main')
   }
 
@@ -46,7 +46,10 @@ const ProffVerificationContainer = () => {
             <Back width={42} height={42} />
           </TouchableOpacity>
           <View style={Layout.fill} />
-          <Text style={styles.textAction}>Next</Text>
+          <TouchableOpacity
+            onPress={() => navigateAndSimpleReset('Main')}>
+            <Text style={styles.textAction}>Next</Text>
+          </TouchableOpacity>
         </View>
 
 
@@ -127,7 +130,7 @@ const ProffVerificationContainer = () => {
 
         <TouchableOpacity
           style={[Common.button.rounded, Gutters.largeTMargin, Gutters.regularBMargin, { width: '100%' }]}
-          onPress={() => navigateAndSimpleReset('ProffVerification')}
+          onPress={() => navigateAndSimpleReset('Main')}
         >
           <Text style={styles.textButton}>Next</Text>
         </TouchableOpacity>

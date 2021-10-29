@@ -17,7 +17,7 @@ const VerificationContainer = () => {
   const { t } = useTranslation()
 
   const init = async () => {
-    await setDefaultTheme({ theme: 'default', darkMode: null })
+    await setDefaultTheme({ theme: 'default', darkMode: false })
     //navigateAndSimpleReset('Main')
   }
 
@@ -55,30 +55,35 @@ const VerificationContainer = () => {
             <TextInput
               style={[Layout.fill, Fonts.textCenter, styles.textCode]}
               keyboardType={'decimal-pad'}
+              defaultValue={'1'}
               maxLength={1} />
           </View>
           <View style={[styles.textCodeWrapper]}>
             <TextInput
               style={[Layout.fill, Fonts.textCenter, styles.textCode]}
               keyboardType={'decimal-pad'}
+              defaultValue={'2'}
               maxLength={1} />
           </View>
           <View style={[styles.textCodeWrapper]}>
             <TextInput
               style={[Layout.fill, Fonts.textCenter, styles.textCode]}
               keyboardType={'decimal-pad'}
+              defaultValue={'3'}
               maxLength={1} />
           </View>
           <View style={[styles.textCodeWrapper]}>
             <TextInput
               style={[Layout.fill, Fonts.textCenter, styles.textCode]}
               keyboardType={'decimal-pad'}
+              defaultValue={'4'}
               maxLength={1} />
           </View>
           <View style={[styles.textCodeWrapper]}>
             <TextInput
               style={[Layout.fill, Fonts.textCenter, styles.textCode]}
               keyboardType={'decimal-pad'}
+              defaultValue={'5'}
               maxLength={1} />
           </View>
 

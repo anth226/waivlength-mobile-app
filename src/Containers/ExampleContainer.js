@@ -77,7 +77,7 @@ const ExampleContainer = () => {
 
       <TouchableOpacity
         style={[Common.button.rounded, Gutters.regularBMargin]}
-        onPress={() => onChangeTheme({ darkMode: null })}
+        onPress={() => onChangeTheme({ darkMode: false })}
       >
         <Text style={Fonts.textRegular}>Auto</Text>
       </TouchableOpacity>

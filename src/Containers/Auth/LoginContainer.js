@@ -20,7 +20,7 @@ const LoginContainer = () => {
   const { t } = useTranslation()
 
   const init = async () => {
-    await setDefaultTheme({ theme: 'default', darkMode: null })
+    await setDefaultTheme({ theme: 'default', darkMode: false })
     //navigateAndSimpleReset('Main')
   }
 
