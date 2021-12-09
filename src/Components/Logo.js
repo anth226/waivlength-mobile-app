@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { View, Image } from 'react-native'
 import { useTheme } from '@/Hooks'
 
-const Logo = ({ height, width, mode }) => {
+const Logo = ({ height, width, mode, style }) => {
   const { Layout, Images } = useTheme()
 
   return (
-    <View style={{ height, width }}>
+    <View style={[{ height, width }, style]}>
       <Image style={Layout.fullSize} source={Images.logo} resizeMode={mode} />
     </View>
   )

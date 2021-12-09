@@ -18,5 +18,11 @@ export default function () {
     exampleSelfie: require('@/Assets/Images/example_selfie.png'),
     icCheck: require('@/Assets/Icons/ic_check.png'),
     icClose: require('@/Assets/Icons/ic_close.png'),
+    bgShapeTopLeft: require('@/Assets/Images/bg_shape_top_left.png'),
+    bgShapeCenterRight: require('@/Assets/Images/bg_shape_center_right.png'),
+    bgShapeBottomRight: require('@/Assets/Images/bg_shape_bottom_right.png'),
+    bgShapeCenter: require('@/Assets/Images/bg_shape_center.png'),
+  
+    
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
-import { SafeAreaView, StatusBar } from 'react-native'
+import { StatusBar, View } from 'react-native'
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { OnBoardingContainer, LoginContainer } from '@/Containers'
@@ -16,11 +17,14 @@ const ApplicationNavigator = () => {
   const { colors } = NavigationTheme
 
   return (
-    <SafeAreaView style={[Layout.fill, { backgroundColor: colors.card }]}>
+    <SafeAreaProvider
+      initialMetrics={initialWindowMetrics}
+      style={[Layout.fill, { backgroundColor: colors.card }]}
+    >
       <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
-        <StatusBar barStyle={'light-content'} />
+        <StatusBar barStyle={'dark-content'} translucent backgroundColor="transparent"/>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="OnBoarding" component={OnBoardingContainer} />
+          {/* <Stack.Screen name="OnBoarding" component={OnBoardingContainer} /> */}
           <Stack.Screen
             name="Auth"
             component={AuthNavigator}
@@ -37,7 +41,7 @@ const ApplicationNavigator = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import {
+  StartContainer,
   LoginContainer,
   SignUpContainer,
   VerificationContainer,
@@ -14,7 +15,8 @@ const Stack = createStackNavigator()
 // @refresh reset
 const AuthNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Start" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Start" component={StartContainer} />
       <Stack.Screen name="Login" component={LoginContainer} />
       <Stack.Screen name="SignUp" component={SignUpContainer} />
       <Stack.Screen name="Verification" component={VerificationContainer} />
