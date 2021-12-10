@@ -5,6 +5,7 @@
  */
 import { StyleSheet } from 'react-native'
 import buttonStyles from './components/Buttons'
+import Responsive from 'react-native-lightweight-responsive';
 /**
  *
  * @param Theme can be spread like {Colors, NavigationColors, Gutters, Layout, Common, ...args}
@@ -23,16 +24,16 @@ export default function ({ Colors, ...args }) {
       textInput: {
         borderWidth: 0,
         borderColor: Colors.text,
-        backgroundColor: Colors.inputBackground,
-        color: Colors.text,
-        minHeight: 58,
+        backgroundColor: Colors.transparent,
+        color: '#0E0F1E',
+        minHeight: 40,
         textAlign: 'left',
-        marginTop: 10,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-        fontSize: 14,
-        borderRadius: 12,
-        fontFamily: 'Poppins-Light'
+        paddingHorizontal: 0,
+        fontSize: Responsive.font(16),
+        borderRadius: 0,
+        fontFamily: 'Poppins-Regular',
+        borderBottomWidth: 1,
+        borderBottomColor: '#565566'
       },
     }),
   }

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 
-import { Logo, CheckBox, ShapeBackground } from '@/Components'
+import { Logo, GradientBackground, ShapeBackground } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset } from '@/Navigators/utils'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -16,11 +16,6 @@ const systemFonts = [...defaultSystemFonts, 'Poppins-Regular', 'Poppins-Medium']
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
 const StartContainer = () => {
   const { Layout, Gutters, Fonts, Common } = useTheme()
-  const [isCheckRemember, setCheckRemember] = useState(false)
-  const [isHidePass, setHidePass] = useState(true);
-
-  const { width } = useWindowDimensions();
-
   const { t } = useTranslation()
 
   const init = async () => {
@@ -35,6 +30,7 @@ const StartContainer = () => {
 
   return (
     <SafeAreaView edges={['top']} style={[Layout.fill, styles.container]} >
+      <GradientBackground style={{ position: 'absolute' }} />
       <ShapeBackground style={{ position: 'absolute' }} />
       <ScrollView
         contentContainerStyle={[Layout.colVCenter,
@@ -50,7 +46,7 @@ const StartContainer = () => {
         <View style={[Layout.fullWidth, Layout.rowCenter, styles.buttonWrapper]}>
           <TouchableOpacity
             style={[Common.button.rounded, styles.buttonCreateAccount]}
-            onPress={() => navigateAndSimpleReset('ProffVerification')}
+            onPress={() => navigateAndSimpleReset('CreateAccount')}
           >
             <Text style={styles.textButton}>Create Account</Text>
           </TouchableOpacity>
