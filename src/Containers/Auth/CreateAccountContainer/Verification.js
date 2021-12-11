@@ -4,11 +4,12 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
-import ActionSheet from '@alessiocancian/react-native-actionsheet'
+import { ActionSheetCustom as ActionSheet } from '@alessiocancian/react-native-actionsheet'
 
 import { CustomImage } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset } from '@/Navigators/utils'
+
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
@@ -18,6 +19,11 @@ const Verification = ({ goBack }) => {
     const { width } = useWindowDimensions();
     const actionSheetRef = useRef(null)
 
+    const options = [
+        <Text style={styles.textPopup}>Send again</Text>,
+        <Text style={styles.textPopup}>Edit number</Text>,
+        <Text style={styles.textPopup}>Cancel</Text>
+      ]
     function showActionSheet() {
         actionSheetRef.current?.show()
     }
@@ -48,7 +54,9 @@ const Verification = ({ goBack }) => {
 
             <View style={[Layout.row, { marginTop: Responsive.height(20) }]}>
                 <Text style={[styles.textDescription]}>Sent to example@email.com</Text>
-                <TouchableOpacity onPress={goBack}><Text style={styles.textEdit}>Edit</Text></TouchableOpacity>
+                <TouchableOpacity onPress={goBack}>
+                    <Text style={styles.textEdit}>Edit</Text>
+                </TouchableOpacity>
             </View>
 
 
@@ -106,9 +114,9 @@ const Verification = ({ goBack }) => {
             <View style={Layout.fill} />
             <ActionSheet
                 ref={actionSheetRef}
-                options={['Send again', 'Edit number', 'Cancel']}
+                options={options}
                 cancelButtonIndex={2}
-                destructiveButtonIndex={1}
+                destructiveButtonIndex={2}
                 onPress={(index) => { /* do something */ }}
             />
         </ScrollView>
@@ -175,5 +183,10 @@ const styles = StyleSheet.create({
         fontSize: Responsive.font(14),
         color: '#5D5FEF',
         lineHeight: Responsive.width(21)
+    },
+    textPopup: {
+        fontFamily: 'Poppins-SemiBold',
+        color: '#5D5FEF',
+        fontSize: Responsive.font(16)
     }
 });

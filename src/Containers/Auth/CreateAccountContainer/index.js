@@ -12,6 +12,10 @@ import { navigateAndSimpleReset } from '@/Navigators/utils'
 
 import CreateAccount from './CreateAccount'
 import Verification from './Verification'
+import Username from './Username'
+import Password from './Password'
+import Interested from './Interested'
+import Recommended from './Recommended'
 
 const systemFonts = [...defaultSystemFonts, 'Poppins-Regular', 'Poppins-Medium'];
 
@@ -24,7 +28,7 @@ const CreateAccountContainer = () => {
     const scrollViewRef = useRef(null)
 
     const [keyboardHeight, setKeyboardHeight] = useState(0);
-    const [scrollValue, setScrollValue] = useState({ x: 0, y: 0 });
+    const [page, setPage] = useState(0);
 
     const init = async () => {
         await setDefaultTheme({ theme: 'default', darkMode: false })
@@ -38,11 +42,19 @@ const CreateAccountContainer = () => {
         setKeyboardHeight(0);
     }
     function nextPage() {
-        scrollViewRef.current?.scrollTo({ x: 1 * width, animated: false });
+        let newPage = page + 1
+        if (newPage <= 8) {
+            scrollViewRef.current?.scrollTo({ x: newPage * width, animated: false });
+            setPage(newPage)
+        }
     }
 
     const goBack = () => {
-        scrollViewRef.current?.scrollTo({ x: 0 * width, animated: false });
+        let newPage = page - 1
+        if (newPage >= 0) {
+            scrollViewRef.current?.scrollTo({ x: newPage * width, animated: false });
+            setPage(newPage)
+        }
     }
 
     useEffect(() => {
@@ -59,7 +71,7 @@ const CreateAccountContainer = () => {
         <SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
             <GradientBackground style={{ position: 'absolute' }} />
             <ActionBar
-                left={<BackIcon width={Responsive.width(36)} height={Responsive.height(36)} />}
+                left={<BackIcon width={Responsive.width(36)} height={Responsive.height(36)} onPress={goBack} />}
                 right={<View style={{ height: Responsive.width(36), width: Responsive.width(36) }} />}
                 center={<Text style={styles.textTitle}>Create account</Text>}
             />
@@ -74,12 +86,17 @@ const CreateAccountContainer = () => {
                     scrollEventThrottle={16}
                     pagingEnabled={true}
                     showsHorizontalScrollIndicator={false}
+                    scrollEnabled={false}
                     onScroll={(event) => {
 
                     }}>
 
                     <CreateAccount goBack={goBack} />
                     <Verification goBack={goBack} />
+                    <Username goBack={goBack} />
+                    <Password goBack={goBack} />
+                    <Interested goBack={goBack} />
+                    <Recommended goBack={goBack} />
                 </ScrollView>
 
                 <View style={[Layout.row, styles.floatingActionWrapper, { bottom: keyboardHeight }]}>

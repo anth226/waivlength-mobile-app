@@ -24,6 +24,10 @@ export default function () {
     bgShapeCenter: require('@/Assets/Images/bg_shape_center.png'),
     icEmail: require('@/Assets/Icons/ic_email.png'),
     icVerification: require('@/Assets/Icons/ic_verification.png'),
+    icUsername: require('@/Assets/Icons/ic_username.png'),
+    icPassword: require('@/Assets/Icons/ic_password.png'),
+    icInterested: require('@/Assets/Icons/ic_interested.png'),
+    icRecommended: require('@/Assets/Icons/ic_recommended.png'),
     icArrow: require('@/Assets/Icons/ic_arrow.png'),
     
     
