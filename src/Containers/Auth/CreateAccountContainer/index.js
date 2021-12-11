@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { KeyboardAvoidingView, ScrollView, View, Text, StyleSheet, Keyboard, useWindowDimensions, Platform } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
@@ -11,6 +11,7 @@ import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 import { navigateAndSimpleReset } from '@/Navigators/utils'
 
 import CreateAccount from './CreateAccount'
+import Verification from './Verification'
 
 const systemFonts = [...defaultSystemFonts, 'Poppins-Regular', 'Poppins-Medium'];
 
@@ -20,7 +21,10 @@ const CreateAccountContainer = () => {
     const { t } = useTranslation()
     const { width } = useWindowDimensions();
 
+    const scrollViewRef = useRef(null)
+
     const [keyboardHeight, setKeyboardHeight] = useState(0);
+    const [scrollValue, setScrollValue] = useState({ x: 0, y: 0 });
 
     const init = async () => {
         await setDefaultTheme({ theme: 'default', darkMode: false })
@@ -32,6 +36,13 @@ const CreateAccountContainer = () => {
 
     function onKeyboardDidHide() {
         setKeyboardHeight(0);
+    }
+    function nextPage() {
+        scrollViewRef.current?.scrollTo({ x: 1 * width, animated: false });
+    }
+
+    const goBack = () => {
+        scrollViewRef.current?.scrollTo({ x: 0 * width, animated: false });
     }
 
     useEffect(() => {
@@ -57,6 +68,7 @@ const CreateAccountContainer = () => {
                 style={[Layout.fill]}
             >
                 <ScrollView
+                    ref={scrollViewRef}
                     style={[Layout.fill]}
                     horizontal={true}
                     scrollEventThrottle={16}
@@ -64,16 +76,14 @@ const CreateAccountContainer = () => {
                     showsHorizontalScrollIndicator={false}
                     onScroll={(event) => {
 
-                    }}
-                >
+                    }}>
 
-                    <CreateAccount />
-                    <CreateAccount />
-                    <CreateAccount />
+                    <CreateAccount goBack={goBack} />
+                    <Verification goBack={goBack} />
                 </ScrollView>
 
                 <View style={[Layout.row, styles.floatingActionWrapper, { bottom: keyboardHeight }]}>
-                    <ButtonNext disabled={false} width={Responsive.width(76)} height={Responsive.height(76)} style={{ marginRight: Responsive.width(24) }} />
+                    <ButtonNext onPress={nextPage} disabled={false} width={Responsive.width(76)} height={Responsive.height(76)} style={{ marginRight: Responsive.width(24) }} />
                 </View>
             </KeyboardAvoidingView>
         </SafeAreaView >

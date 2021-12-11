@@ -6,12 +6,14 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "adb-reverse": "adb reverse tcp:8081 tcp:8081",
     "newclear": "rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-react-native-packager-* && watchman watch-del-all && rm -rf ios/build && rm -rf node_modules/ && npm cache clean --force && npm i",
     "test": "jest",
     "lint": "eslint .",
     "type-check": "tsc"
   },
   "dependencies": {
+    "@alessiocancian/react-native-actionsheet": "^3.1.1",
     "@react-native-async-storage/async-storage": "^1.15.7",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/bottom-tabs": "^6.0.5",
@@ -33,6 +35,7 @@
     "react-native-render-html": "^6.2.0",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.7.2",
+    "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^9.0.0",
     "react-redux": "^7.2.5",
     "redux": "^4.1.1",

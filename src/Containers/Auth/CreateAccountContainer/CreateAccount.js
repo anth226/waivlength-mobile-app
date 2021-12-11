@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, ScrollView, View, Text, StyleSheet, TextInput, useWindowDimensions, Platform } from 'react-native'
+import { View, Text, StyleSheet, TextInput, useWindowDimensions } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { BackIcon, ActionBar, CustomImage, ButtonNext, GradientBackground } from '@/Components'
+import { CustomImage } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 import { navigateAndSimpleReset } from '@/Navigators/utils'
@@ -26,8 +26,11 @@ const CreateAccount = () => {
         init()
     })
 
+
+
     return (
         <ScrollView
+            nestedScrollEnabled={true}
             contentContainerStyle={[Layout.alignItemsStart, styles.container, { width }]}
             style={[Layout.fill]}>
 
@@ -53,7 +56,7 @@ const CreateAccount = () => {
                 tagsStyles={tagsStyles}
                 contentWidth={width}
                 systemFonts={systemFonts}
-                source={{ html: `<p style='text-align: left;'>Waivlength will send you an email with a verification code. By continuing you agree to our <a href='https://google.com.vn'>Terms of use</a> and <a href='https://google.com.vn'>Privacy Policy</a>.</p>` }}
+                source={{ html: `<p style='text-align: left;'>Waivlength will send you an email with a verification code. By continuing you agree to our <a href='https://google.com.vn' style='text-decoration: none;'>Terms of use</a> and <a href='https://google.com.vn' style='text-decoration: none;'>Privacy Policy</a>.</p>` }}
             />
             <View style={Layout.fill} />
 

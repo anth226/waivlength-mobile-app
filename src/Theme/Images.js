@@ -23,7 +23,9 @@ export default function () {
     bgShapeBottomRight: require('@/Assets/Images/bg_shape_bottom_right.png'),
     bgShapeCenter: require('@/Assets/Images/bg_shape_center.png'),
     icEmail: require('@/Assets/Icons/ic_email.png'),
+    icVerification: require('@/Assets/Icons/ic_verification.png'),
     icArrow: require('@/Assets/Icons/ic_arrow.png'),
+    
     
   }
 }
