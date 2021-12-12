@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 
-import { CustomImage } from '@/Components'
+import { Avatar, CustomImage } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset } from '@/Navigators/utils'
 
@@ -29,16 +29,52 @@ const Recommended = () => {
     })
     const DATA = [
         {
-            id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-            title: "First Item",
+            id: 1,
+            firstName: "Linnie",
+            lastName: "Summers",
+            url: "https://picsum.photos/200/200",
+            bio: "I am the sunshine",
+            isFollowing: true
         },
         {
-            id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-            title: "Second Item",
+            id: 2,
+            firstName: "Ruth",
+            lastName: "Hamptom",
+            url: "https://picsum.photos/200/200",
+            bio: "Live, Learn, Love",
+            isFollowing: false
         },
         {
-            id: "58694a0f-3da1-471f-bd96-145571e29d72",
-            title: "Third Item",
+            id: 3,
+            firstName: "Edgar",
+            lastName: "Jones",
+            url: "",
+            bio: "Change ain't easy",
+            isFollowing: false
+        },
+        {
+            id: 4,
+            firstName: "Carlos",
+            lastName: "Daniels",
+            url: "https://picsum.photos/200/200",
+            bio: "Try new things",
+            isFollowing: false
+        },
+        {
+            id: 5,
+            firstName: "Carlos",
+            lastName: "Daniels",
+            url: "https://picsum.photos/200/200",
+            bio: "Try new things",
+            isFollowing: false
+        },
+        {
+            id: 6,
+            firstName: "Carlos",
+            lastName: "Daniels",
+            url: "https://picsum.photos/200/200",
+            bio: "Try new things",
+            isFollowing: false
         },
     ];
 
@@ -46,22 +82,34 @@ const Recommended = () => {
         return (
             <TouchableOpacity style={{}}>
                 <View style={[Layout.fullWidth, Layout.row, Layout.alignItemsCenter, styles.itemWapper]}>
-                    <CustomImage source={Images.onBoarding3} style={styles.avatar} />
+                    <Avatar source={Images.onBoarding3} style={styles.avatar} url={item['url']} firstName={item['firstName']} lastName={item['lastName']} />
                     <View style={[Layout.fill, Layout.column]}>
                         <View style={[Layout.fill, Layout.row, Layout.alignItemsCenter]}>
                             <View style={[Layout.fill, Layout.column, { marginLeft: Responsive.width(10) }]}>
-                                <Text style={styles.textNameUser}>{'BBBBBBBBBBBBBB'}</Text>
-                                <Text style={styles.textUserDescription}>{'I am the sunshine'}</Text>
+                                <Text style={styles.textNameUser}>{`${item['firstName']} ${item['lastName']}`}</Text>
+                                <Text style={styles.textUserDescription}>{item['bio']}</Text>
                             </View>
-                            <View style={styles.buttonFollow}>
-                                <Text style={styles.textFollow}>{'Follow'}</Text>
-                            </View>
+                            {
+                                item['isFollowing'] ? (
+                                    <TouchableOpacity>
+                                        <View style={styles.buttonFollowing}>
+                                            <Text style={styles.textFollowing}>{'Following'}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                ) : (
+                                    <TouchableOpacity>
+                                        <View style={styles.buttonFollow}>
+                                            <Text style={styles.textFollow}>{'Follow'}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                )
+                            }
                         </View>
                         <View style={[Layout.fullWidth, styles.lineItem]}></View>
                     </View>
 
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity >
         );
     };
 
@@ -138,9 +186,6 @@ const styles = StyleSheet.create({
     avatar: {
         width: Responsive.width(46),
         height: Responsive.height(46),
-        borderRadius: 150 / 2,
-        borderWidth: 3,
-        borderColor: "red"
     },
     textNameUser: {
         fontFamily: 'Poppins-SemiBold',
@@ -149,13 +194,21 @@ const styles = StyleSheet.create({
         color: '#242A31'
     },
     textUserDescription: {
-        fontFamily: 'Poppins-Regular',
+        fontFamily: 'Poppins-Light',
         fontSize: Responsive.font(14),
         lineHeight: Responsive.width(22),
         color: '#3B454E'
     },
-    buttonFollow: {
+    buttonFollowing: {
         backgroundColor: 'transparent',
+        paddingHorizontal: Responsive.height(15),
+        height: Responsive.height(28),
+        borderRadius: Responsive.height(14),
+        borderWidth: 1,
+        justifyContent: 'center',
+        borderColor: '#5D5FEF'
+    },
+    buttonFollow: {
         paddingHorizontal: Responsive.height(25),
         height: Responsive.height(28),
         borderRadius: Responsive.height(14),
@@ -163,14 +216,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#5D5FEF',
     },
+    textFollowing: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(14),
+        lineHeight: Responsive.width(18),
+        color: '#5D5FEF'
+    },
     textFollow: {
-        fontFamily: 'Poppins-SemiBold',
+        fontFamily: 'Poppins-Medium',
         fontSize: Responsive.font(14),
         lineHeight: Responsive.width(18),
         color: '#ffffff'
     },
     lineItem: {
         backgroundColor: '#E1E2EF',
-        height: Responsive.height(2)
+        height: Responsive.height(1)
     }
 });

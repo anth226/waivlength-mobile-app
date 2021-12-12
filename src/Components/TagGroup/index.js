@@ -192,7 +192,7 @@ export class Tag extends Component {
 
         const content =
             <View style={[styles.tagBackground, { borderColor: tintColor }, tagStyle].concat(
-                this.state.selected ? (activeTagStyle || { backgroundColor: tintColor }) : null)}>
+                this.state.selected ? (activeTagStyle || { backgroundColor: tintColor, borderColor: tintColor }) : null)}>
                 {
                     tagStyle && activeTagStyle ? <View>{textComponent}</View> : textComponent
                 }

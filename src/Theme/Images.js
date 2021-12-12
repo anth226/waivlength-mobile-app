@@ -28,8 +28,15 @@ export default function () {
     icPassword: require('@/Assets/Icons/ic_password.png'),
     icInterested: require('@/Assets/Icons/ic_interested.png'),
     icRecommended: require('@/Assets/Icons/ic_recommended.png'),
+    icConnectTwitter: require('@/Assets/Icons/ic_connect_twitter.png'),
+    icArrowDown: require('@/Assets/Icons/ic_arrow_down.png'),
+    icTwitter: require('@/Assets/Icons/ic_twitter.png'),
+    icEnableNotification: require('@/Assets/Icons/ic_enable_notification.png'),
+    bgNoNewNotification: require('@/Assets/Images/bg_no_new_notification.png'),
     icArrow: require('@/Assets/Icons/ic_arrow.png'),
-    
+
+    icLogin: require('@/Assets/Icons/ic_login.png'),
+    icEyeShow: require('@/Assets/Icons/ic_eye_show.png'),
     
   }
 }

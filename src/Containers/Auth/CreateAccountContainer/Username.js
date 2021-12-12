@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, TextInput, useWindowDimensions } from 'react-native'
+import { View, Text, StyleSheet, TextInput, useWindowDimensions, Platform } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     inputText: {
         borderBottomWidth: 0,
         paddingHorizontal: Responsive.width(5),
-        fontSize: Responsive.font(14)
+        fontSize: Responsive.font(14),
     },
     textDescription: {
         color: '#878893',

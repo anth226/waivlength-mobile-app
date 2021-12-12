@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackIcon, ActionBar, CustomImage, ButtonNext, GradientBackground } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
-import { navigateAndSimpleReset } from '@/Navigators/utils'
+import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 
 import CreateAccount from './CreateAccount'
 import Verification from './Verification'
@@ -16,6 +16,8 @@ import Username from './Username'
 import Password from './Password'
 import Interested from './Interested'
 import Recommended from './Recommended'
+import ConnectTwitter from './ConnectTwitter'
+import EnableNotification from './EnableNotification'
 
 const systemFonts = [...defaultSystemFonts, 'Poppins-Regular', 'Poppins-Medium'];
 
@@ -49,7 +51,7 @@ const CreateAccountContainer = () => {
         }
     }
 
-    const goBack = () => {
+    const goBackPage = () => {
         let newPage = page - 1
         if (newPage >= 0) {
             scrollViewRef.current?.scrollTo({ x: newPage * width, animated: false });
@@ -91,17 +93,23 @@ const CreateAccountContainer = () => {
 
                     }}>
 
-                    <CreateAccount goBack={goBack} />
-                    <Verification goBack={goBack} />
-                    <Username goBack={goBack} />
-                    <Password goBack={goBack} />
-                    <Interested goBack={goBack} />
-                    <Recommended goBack={goBack} />
+                    <CreateAccount goBack={goBackPage} nextPage={nextPage}/>
+                    <Verification goBack={goBackPage} nextPage={nextPage}/>
+                    <Username goBack={goBackPage} nextPage={nextPage}/>
+                    <Password goBack={goBackPage} nextPage={nextPage}/>
+                    <Interested goBack={goBackPage} nextPage={nextPage}/>
+                    <Recommended goBack={goBackPage} nextPage={nextPage}/>
+                    <ConnectTwitter goBack={goBackPage} nextPage={nextPage}/>
+                    <EnableNotification goBack={goBackPage} nextPage={nextPage}/>
                 </ScrollView>
+                {
+                    (page < 6) ? (
+                        <View style={[Layout.row, styles.floatingActionWrapper, { bottom: Platform.OS === 'ios' ? keyboardHeight : 0 }]}>
+                            <ButtonNext onPress={nextPage} disabled={false} width={Responsive.height(76)} height={Responsive.height(76)} style={{ marginRight: Responsive.width(24) }} />
+                        </View>
+                    ) : (null)
+                }
 
-                <View style={[Layout.row, styles.floatingActionWrapper, { bottom: keyboardHeight }]}>
-                    <ButtonNext onPress={nextPage} disabled={false} width={Responsive.width(76)} height={Responsive.height(76)} style={{ marginRight: Responsive.width(24) }} />
-                </View>
             </KeyboardAvoidingView>
         </SafeAreaView >
     )

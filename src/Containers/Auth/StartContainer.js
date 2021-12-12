@@ -7,7 +7,7 @@ import Responsive from 'react-native-lightweight-responsive';
 
 import { Logo, GradientBackground, ShapeBackground } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
-import { navigateAndSimpleReset } from '@/Navigators/utils'
+import { navigateAndSimpleReset, navigate } from '@/Navigators/utils'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 
@@ -42,18 +42,19 @@ const StartContainer = () => {
         <Text style={[Layout.fullWidth, styles.textTitle]}>Social{'\n'}Media{'\n'}Like Never{'\n'}Before.</Text>
         <Text style={[Layout.fullWidth, styles.textDescription]}>Now users hold the power.{'\n'}Post, create, collaborate and{'\n'}earn your piece of the pie.</Text>
         <View style={styles.line} />
+        <View style={{ height: Responsive.height(10) }} />
         <View style={Layout.fill} />
         <View style={[Layout.fullWidth, Layout.rowCenter, styles.buttonWrapper]}>
           <TouchableOpacity
             style={[Common.button.rounded, styles.buttonCreateAccount]}
-            onPress={() => navigateAndSimpleReset('CreateAccount')}
+            onPress={() => navigate('CreateAccount')}
           >
             <Text style={styles.textButton}>Create Account</Text>
           </TouchableOpacity>
           <View style={{ width: Responsive.width(13) }} />
           <TouchableOpacity
             style={[Common.button.rounded, styles.buttonLogIn]}
-            onPress={() => navigateAndSimpleReset('ProffVerification')}
+            onPress={() => navigate('Login')}
           >
             <Text style={[styles.textButton, { color: '#59596C' }]}>Log In</Text>
           </TouchableOpacity>
