@@ -57,6 +57,14 @@ export default function () {
     icSetting: require('@/Assets/Icons/ic_setting.png'),
     icMessage: require('@/Assets/Icons/ic_message.png'),
     icSearch: require('@/Assets/Icons/ic_search.png'),
+
+    icActionSearch: require('@/Assets/Icons/ic_action_search.png'),
+    icActionCalendar: require('@/Assets/Icons/ic_action_calendar.png'),
+
+    icBroadcast: require('@/Assets/Icons/ic_broadcast.png'),
+    icActionOption: require('@/Assets/Icons/ic_action_option.png'),
+    icPerson: require('@/Assets/Icons/ic_person.png'),
+    icTagMessage: require('@/Assets/Icons/ic_tag_message.png'),
     
   }
 }

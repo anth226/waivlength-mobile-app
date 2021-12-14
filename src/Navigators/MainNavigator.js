@@ -14,7 +14,7 @@ const MainNavigator = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName='Home'
+      initialRouteName='Message'
       screenOptions={{
         tabBarInactiveTintColor: '#00ff00',
         headerShown: false,

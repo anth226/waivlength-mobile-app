@@ -33,7 +33,8 @@ const MessageContainer = ({ goBack }) => {
             lastName: "Summers",
             url: "https://picsum.photos/200/200",
             bio: "I am the sunshine",
-            isFollowing: true
+            unRead: 4,
+            time: "02:17"
         },
         {
             id: 2,
@@ -41,7 +42,8 @@ const MessageContainer = ({ goBack }) => {
             lastName: "Hamptom",
             url: "https://picsum.photos/200/200",
             bio: "Live, Learn, Love",
-            isFollowing: false
+            unRead: 4,
+            time: "02:17"
         },
         {
             id: 3,
@@ -49,7 +51,8 @@ const MessageContainer = ({ goBack }) => {
             lastName: "Jones",
             url: "",
             bio: "Change ain't easy",
-            isFollowing: false
+            unRead: 4,
+            time: "02:17"
         },
         {
             id: 4,
@@ -57,7 +60,8 @@ const MessageContainer = ({ goBack }) => {
             lastName: "Daniels",
             url: "https://picsum.photos/200/200",
             bio: "Try new things",
-            isFollowing: false
+            unRead: 1,
+            time: "02:17"
         },
         {
             id: 5,
@@ -65,7 +69,8 @@ const MessageContainer = ({ goBack }) => {
             lastName: "Daniels",
             url: "https://picsum.photos/200/200",
             bio: "Try new things",
-            isFollowing: false
+            unRead: 1,
+            time: "02:17"
         },
         {
             id: 6,
@@ -73,40 +78,36 @@ const MessageContainer = ({ goBack }) => {
             lastName: "Daniels",
             url: "https://picsum.photos/200/200",
             bio: "Try new things",
-            isFollowing: false
+            unRead: 1,
+            time: "02:17"
         },
     ];
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity style={{}}>
-                <View style={[Layout.fullWidth, Layout.row, Layout.alignItemsCenter, styles.itemWapper]}>
-                    <Avatar source={Images.onBoarding3} style={styles.avatar} imageStyle={{ padding: 2 }} url={item['url']} firstName={item['firstName']} lastName={item['lastName']} />
-                    <View style={[Layout.fill, Layout.column]}>
-                        <View style={[Layout.fill, Layout.row, Layout.alignItemsCenter]}>
-                            <View style={[Layout.fill, Layout.column, { marginLeft: Responsive.width(10) }]}>
-                                <Text style={styles.textNameUser}>{`${item['firstName']} ${item['lastName']}`}</Text>
-                                <Text style={styles.textUserDescription}>{item['bio']}</Text>
-                            </View>
-                            {
-                                item['isFollowing'] ? (
-                                    <TouchableOpacity>
-                                        <View style={styles.buttonFollowing}>
-                                            <Text style={styles.textFollowing}>{'Following'}</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                ) : (
-                                    <TouchableOpacity>
-                                        <View style={styles.buttonFollow}>
-                                            <Text style={styles.textFollow}>{'Follow'}</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                )
-                            }
+                <View style={[Layout.fullWidth, Layout.column, Layout.alignItemsCenter, styles.itemWapper]}>
+                    <View style={[Layout.fill, Layout.row, Layout.alignItemsCenter]}>
+                        <Avatar
+                            dotStyle={styles.dotStyle}
+                            isShowDot={true}
+                            source={Images.onBoarding3}
+                            imageWrapperStyle={styles.avatar}
+                            imageStyle={styles.avatarImage}
+                            url={item['url']}
+                            firstName={item['firstName']}
+                            lastName={item['lastName']} />
+                        <View style={[Layout.fill, Layout.column, { marginLeft: Responsive.width(10) }]}>
+                            <Text style={styles.textNameUser}>{`${item['firstName']} ${item['lastName']}`}</Text>
+                            <Text style={styles.textUserDescription}>{item['bio']}</Text>
                         </View>
-                        <View style={[Layout.fullWidth, styles.lineItem]}></View>
+                        <View style={[Layout.fill, Layout.column]}>
+                            <Text style={styles.textBadgeUnread}>{`${item['unRead']}`}</Text>
+                            <Text style={styles.textTime}>{item['time']}</Text>
+                        </View>
                     </View>
-
+                    <View style={[Layout.fullWidth, styles.lineItem]}></View>
                 </View>
+
             </TouchableOpacity >
         );
     };
@@ -141,7 +142,7 @@ const MessageContainer = ({ goBack }) => {
                 </View>
 
                 <FlatList nestedScrollEnabled={false}
-                    style={[Layout.fullWidth, { marginTop: Responsive.height(30) }]}
+                    style={[Layout.fullWidth, { marginTop: Responsive.height(5) }]}
                     data={DATA}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id} />
@@ -149,6 +150,16 @@ const MessageContainer = ({ goBack }) => {
 
 
             </ScrollView>
+
+            <View style={[Layout.row, styles.floatingActionWrapper, { bottom: 0 }]}>
+                <ButtonNext disabled={false} width={Responsive.height(56)} height={Responsive.height(56)}
+                    iconStyle={{
+                        width: Responsive.height(19),
+                        height: Responsive.height(18)
+                    }}
+                    icon={Images.icMessage} />
+            </View>
+
         </KeyboardAvoidingView>
     </View>)
 }
@@ -181,12 +192,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         fontFamily: 'NotoSans-Regular',
     },
+    itemWapper: {
+        paddingHorizontal: Responsive.width(24),
+        height: Responsive.height(90)
+    },
     avatar: {
-        width: Responsive.width(50),
+        width: Responsive.height(50),
         height: Responsive.height(50),
-        borderRadius: 2,
+        borderRadius: Responsive.height(25),
         borderWidth: 2,
-        borderColor: '#ff00ff'
+        borderColor: '#C665F0',
+    },
+    avatarImage: {
+        width: Responsive.height(40),
+        height: Responsive.height(40),
+        borderRadius: Responsive.height(20),
+        backgroundColor: '#BBBEDD',
+    },
+    dotStyle: {
+        right: Responsive.height(0.1),
+        bottom: Responsive.height(5),
     },
     textNameUser: {
         fontFamily: 'Poppins-SemiBold',
@@ -196,14 +221,41 @@ const styles = StyleSheet.create({
     },
     textUserDescription: {
         fontFamily: 'Poppins-Light',
-        fontSize: Responsive.font(14),
+        fontSize: Responsive.font(13),
         lineHeight: Responsive.width(22),
-        color: '#3B454E'
+        color: '#8C97A7'
     },
     lineItem: {
-        backgroundColor: '#E1E2EF',
+        backgroundColor: '#D5DDE5',
         height: Responsive.height(1)
-    }
-
-
+    },
+    textBadgeUnread: {
+        fontFamily: 'Poppins-SemiBold',
+        fontSize: Responsive.font(11),
+        lineHeight: Responsive.width(16),
+        color: '#fff',
+        backgroundColor: '#5D5FEF',
+        width: Responsive.height(18),
+        height: Responsive.height(18),
+        borderRadius: Responsive.height(9),
+        justifyContent: 'center',
+        textAlign: 'center',
+        alignSelf: 'flex-end'
+    },
+    textTime: {
+        fontFamily: 'Poppins-Regular',
+        fontSize: Responsive.font(11),
+        lineHeight: Responsive.width(16),
+        color: '#8F9CA9',
+        justifyContent: 'center',
+        textAlign: 'center',
+        alignSelf: 'flex-end',
+        marginTop: Responsive.height(12)
+    },
+    floatingActionWrapper: {
+        marginBottom: Responsive.width(27),
+        marginRight: Responsive.width(24),
+        position: 'absolute',
+        right: 0
+      }
 });

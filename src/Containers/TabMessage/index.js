@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ExampleContainer, MessageContainer } from '@/Containers'
+import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
 
 import { CustomImage, ActionBar, ButtonNext, GradientBackground } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
@@ -16,7 +16,7 @@ const Tab = createMaterialTopTabNavigator();
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
-const TabMessageContainer = ({ goBack }) => {
+const TabMessageContainer = ({ navigation }) => {
   const { Layout, Gutters, Fonts, Common, Images } = useTheme()
   const { t } = useTranslation()
   const { width } = useWindowDimensions();
@@ -24,6 +24,7 @@ const TabMessageContainer = ({ goBack }) => {
   const init = async () => {
     await setDefaultTheme({ theme: 'default', darkMode: false })
   }
+
 
   useEffect(() => {
     init()
@@ -33,7 +34,13 @@ const TabMessageContainer = ({ goBack }) => {
     <GradientBackground style={{ position: 'absolute' }} />
     <ActionBar
       left={<CustomImage width={Responsive.height(40)} height={Responsive.height(40)} styleImage={{ borderRadius: Responsive.height(40) }} source={{ uri: 'https://picsum.photos/200/200' }} />}
-      right={<CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icSetting} />}
+      right={<View style={Layout.row}>
+        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionCalendar} onPress={() => { }} />
+        <View style={{ width: Responsive.width(16) }} />
+        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionSearch} onPress={() => { }} />
+        <View style={{ width: Responsive.width(16) }} />
+        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icSetting} onPress={() => { }} />
+      </View>}
     />
     <KeyboardAvoidingView
       {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}
@@ -55,18 +62,10 @@ const TabMessageContainer = ({ goBack }) => {
           }}
         >
           <Tab.Screen name="Message" component={MessageContainer} options={{ tabBarLabel: 'Messages' }} />
-          <Tab.Screen name="Audio" component={ExampleContainer} options={{ tabBarLabel: 'Audio Rooms' }} />
+          <Tab.Screen name="Audio" component={AudioContainer} options={{ tabBarLabel: 'Audio Rooms' }} />
         </Tab.Navigator>
 
 
-        <View style={[Layout.row, styles.floatingActionWrapper, { bottom: 0 }]}>
-          <ButtonNext disabled={false} width={Responsive.height(56)} height={Responsive.height(56)}
-            iconStyle={{
-              width: Responsive.height(19),
-              height: Responsive.height(18)
-            }}
-            icon={Images.icMessage} />
-        </View>
 
       </ScrollView>
     </KeyboardAvoidingView>
@@ -120,10 +119,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#5D5FEF',
     height: Responsive.height(2)
   },
-  floatingActionWrapper: {
-    marginBottom: Responsive.width(27),
-    marginRight: Responsive.width(24),
-    position: 'absolute',
-    right: 0
-  }
 });

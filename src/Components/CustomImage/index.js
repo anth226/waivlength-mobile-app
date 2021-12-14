@@ -1,16 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, Image } from 'react-native'
+import { View, Image, TouchableOpacity } from 'react-native'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 
-const CustomImage = ({ height, width, mode, source, style, tintColor, styleImage }) => {
+const CustomImage = ({ height, width, mode, source, style, tintColor, styleImage, onPress }) => {
   const { Layout } = useTheme()
 
-  return (
-    <View style={[{ height, width, source }, style]}>
+  return (onPress ? (<TouchableOpacity style={[{ height, width, source }, style]}>
+    <Image tintColor={tintColor} style={[Layout.fullSize, styleImage, { tintColor, width, height }]} source={source} resizeMode={mode} />
+  </TouchableOpacity>) :
+    (<View style={[{ height, width, source }, style]}>
       <Image tintColor={tintColor} style={[Layout.fullSize, styleImage, { tintColor, width, height }]} source={source} resizeMode={mode} />
     </View>
+    )
   )
 }
 

@@ -82,7 +82,7 @@ const Recommended = () => {
         return (
             <TouchableOpacity style={{}}>
                 <View style={[Layout.fullWidth, Layout.row, Layout.alignItemsCenter, styles.itemWapper]}>
-                    <Avatar source={Images.onBoarding3} style={styles.avatar} url={item['url']} firstName={item['firstName']} lastName={item['lastName']} />
+                    <Avatar source={Images.onBoarding3} imageWrapperStyle={styles.avatar} imageStyle={styles.avatarImage} url={item['url']} firstName={item['firstName']} lastName={item['lastName']} />
                     <View style={[Layout.fill, Layout.column]}>
                         <View style={[Layout.fill, Layout.row, Layout.alignItemsCenter]}>
                             <View style={[Layout.fill, Layout.column, { marginLeft: Responsive.width(10) }]}>
@@ -187,6 +187,12 @@ const styles = StyleSheet.create({
         width: Responsive.width(46),
         height: Responsive.height(46),
     },
+    avatarImage: {
+        width: Responsive.width(46),
+        height: Responsive.height(46),
+        borderRadius: Responsive.height(23),
+        backgroundColor: '#BBBEDD'
+    },
     textNameUser: {
         fontFamily: 'Poppins-SemiBold',
         fontSize: Responsive.font(16),
@@ -229,7 +235,7 @@ const styles = StyleSheet.create({
         color: '#ffffff'
     },
     lineItem: {
-        backgroundColor: '#E1E2EF',
+        backgroundColor: '#D5DDE5',
         height: Responsive.height(1)
     }
 });

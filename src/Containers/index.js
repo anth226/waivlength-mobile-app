@@ -17,3 +17,4 @@ export { default as UploadDocumentContainer } from './Auth/UploadDocumentContain
 
 export { default as TabMessageContainer } from './TabMessage'
 export { default as MessageContainer } from './TabMessage/MessageContainer'
+export { default as AudioContainer } from './TabMessage/AudioContainer'
