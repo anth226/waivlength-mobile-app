@@ -49,14 +49,14 @@ const StartContainer = () => {
             style={[Common.button.rounded, styles.buttonCreateAccount]}
             onPress={() => navigate('CreateAccount')}
           >
-            <Text style={styles.textButton}>Create Account</Text>
+            <Text style={styles.textButtonCreateAccount}>Create Account</Text>
           </TouchableOpacity>
           <View style={{ width: Responsive.width(13) }} />
           <TouchableOpacity
             style={[Common.button.rounded, styles.buttonLogIn]}
             onPress={() => navigate('Login')}
           >
-            <Text style={[styles.textButton, { color: '#59596C' }]}>Log In</Text>
+            <Text style={[styles.textButtonLogin]}>Log In</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -112,14 +112,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     height: Responsive.height(73),
     borderRadius: Responsive.height(20),
-    backgroundColor: '#ffffff',
+    backgroundColor: '#EDF1F5',
     flex: 1,
     borderColor: '#D0D0DB',
     borderWidth: 1
   },
-  textButton: {
+  textButtonCreateAccount: {
     fontFamily: 'Poppins-Medium',
     fontSize: Responsive.font(16),
     color: '#ffffff'
+  },
+  textButtonLogin: {
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: Responsive.font(16),
+    color: '#59596C'
   }
 });

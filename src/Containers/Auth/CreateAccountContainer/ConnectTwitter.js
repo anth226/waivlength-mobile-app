@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     },
     buttonConnect: {
         height: Responsive.height(52),
-        borderRadius: 26
+        borderRadius: Responsive.height(26),
     },
     textButton: {
         fontFamily: 'Poppins-SemiBold',

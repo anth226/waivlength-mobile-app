@@ -8,7 +8,7 @@ import Responsive from 'react-native-lightweight-responsive';
 
 import { CustomImage, GradientBackground, ActionBar, BackIcon, ButtonNext } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
-import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
+import { navigateAndSimpleReset, goBack, navigate } from '@/Navigators/utils'
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
@@ -46,8 +46,8 @@ const LoginContainer = () => {
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
     <GradientBackground style={{ position: 'absolute' }} />
     <ActionBar
-      left={<BackIcon onPress={goBack} width={Responsive.width(36)} height={Responsive.height(36)} />}
-      right={<View style={{ height: Responsive.width(36), width: Responsive.width(36) }} />}
+      left={<BackIcon onPress={goBack} width={Responsive.height(36)} height={Responsive.height(36)} />}
+      right={<View style={{ height: Responsive.height(36), width: Responsive.height(36) }} />}
       center={<Text style={styles.textTitle}>Login</Text>}
     />
     <KeyboardAvoidingView
@@ -100,7 +100,7 @@ const LoginContainer = () => {
 
       </ScrollView>
       <View style={[Layout.row, styles.floatingActionWrapper, { bottom: Platform.OS === 'ios' ? keyboardHeight : 0 }]}>
-        <ButtonNext onPress={() => navigateAndSimpleReset('Main')} disabled={false} width={Responsive.width(76)} height={Responsive.height(76)} style={{ marginRight: Responsive.width(24) }} />
+        <ButtonNext onPress={() => navigate('2FAVerification')} disabled={false} width={Responsive.height(76)} height={Responsive.height(76)} style={{ marginRight: Responsive.width(24) }} />
       </View>
     </KeyboardAvoidingView>
   </SafeAreaView >

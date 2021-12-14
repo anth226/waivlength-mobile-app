@@ -37,6 +37,26 @@ export default function () {
 
     icLogin: require('@/Assets/Icons/ic_login.png'),
     icEyeShow: require('@/Assets/Icons/ic_eye_show.png'),
+
+    icLogoBg: require('@/Assets/Icons/ic_logo_bg.png'),
+
+    icTabHome: require('@/Assets/Icons/ic_tab_home.png'),
+    icTabHomeFocused: require('@/Assets/Icons/ic_tab_home_focused.png'),
+    icTabMessage: require('@/Assets/Icons/ic_tab_message.png'),
+    icTabMesaageFocused: require('@/Assets/Icons/ic_tab_mesaage_focused.png'),
+    icTabNotification: require('@/Assets/Icons/ic_tab_notification.png'),
+    icTabNotificationFocused: require('@/Assets/Icons/ic_tab_notification_focused.png'),
+    icTabChallenge: require('@/Assets/Icons/ic_tab_challenge.png'),
+    icTabChallengeFocused: require('@/Assets/Icons/ic_tab_challenge_focused.png'),
+    
+    bgTab: require('@/Assets/Images/bg_tab.png'),
+    
+    
+
+
+    icSetting: require('@/Assets/Icons/ic_setting.png'),
+    icMessage: require('@/Assets/Icons/ic_message.png'),
+    icSearch: require('@/Assets/Icons/ic_search.png'),
     
   }
 }

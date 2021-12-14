@@ -121,7 +121,7 @@ const Recommended = () => {
             style={[Layout.fill]}>
 
             <View style={[Layout.row, Layout.fullWidth, { alignItems: 'center', marginTop: Responsive.height(28) }]}>
-                <CustomImage width={Responsive.width(45)} height={Responsive.height(45)} source={Images.icRecommended} />
+                <CustomImage width={Responsive.height(45)} height={Responsive.height(45)} source={Images.icRecommended} />
                 <Text style={styles.textStep}>
                     <Text style={styles.textCurrentStep}>6</Text>
                     /8

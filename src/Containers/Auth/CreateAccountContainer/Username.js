@@ -33,7 +33,7 @@ const Username = () => {
             style={[Layout.fill]}>
 
             <View style={[Layout.row, Layout.fullWidth, { alignItems: 'center', marginTop: Responsive.height(28) }]}>
-                <CustomImage width={Responsive.width(45)} height={Responsive.height(45)} source={Images.icUsername} />
+                <CustomImage width={Responsive.height(45)} height={Responsive.height(45)} source={Images.icUsername} />
                 <Text style={styles.textStep}>
                     <Text style={styles.textCurrentStep}>3</Text>
                     /8
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     },
     textDescription: {
         color: '#878893',
-        fontFamily: 'Poppins-Regular',
+        fontFamily: 'NotoSans-Regular',
         fontSize: Responsive.font(12),
         lineHeight: Responsive.width(16),
         marginTop: Responsive.height(18)

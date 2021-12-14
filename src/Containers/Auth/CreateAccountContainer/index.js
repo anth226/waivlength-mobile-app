@@ -10,7 +10,7 @@ import { setDefaultTheme } from '@/Store/Theme'
 import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
 import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 
-import CreateAccount from './CreateAccount'
+import Email from './Email'
 import Verification from './Verification'
 import Username from './Username'
 import Password from './Password'
@@ -73,8 +73,8 @@ const CreateAccountContainer = () => {
         <SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
             <GradientBackground style={{ position: 'absolute' }} />
             <ActionBar
-                left={<BackIcon width={Responsive.width(36)} height={Responsive.height(36)} onPress={goBack} />}
-                right={<View style={{ height: Responsive.width(36), width: Responsive.width(36) }} />}
+                left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
+                right={<View style={{ height: Responsive.height(36), width: Responsive.height(36) }} />}
                 center={<Text style={styles.textTitle}>Create account</Text>}
             />
             <KeyboardAvoidingView
@@ -93,7 +93,7 @@ const CreateAccountContainer = () => {
 
                     }}>
 
-                    <CreateAccount goBack={goBackPage} nextPage={nextPage}/>
+                    <Email goBack={goBackPage} nextPage={nextPage}/>
                     <Verification goBack={goBackPage} nextPage={nextPage}/>
                     <Username goBack={goBackPage} nextPage={nextPage}/>
                     <Password goBack={goBackPage} nextPage={nextPage}/>
@@ -159,18 +159,3 @@ const styles = StyleSheet.create({
     }
 });
 
-const tagsStyles = {
-    p: {
-        fontSize: Responsive.font(12),
-        color: '#878893',
-        fontFamily: 'Poppins-Regular',
-        paddingHorizontal: Responsive.width(3),
-        lineHeight: Responsive.width(18)
-    },
-    a: {
-        fontSize: Responsive.font(12),
-        color: '#2773F1',
-        fontFamily: 'Poppins-Regular',
-        lineHeight: Responsive.width(18),
-    }
-}

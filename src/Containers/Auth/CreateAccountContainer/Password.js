@@ -33,7 +33,7 @@ const Password = () => {
             style={[Layout.fill]}>
 
             <View style={[Layout.row, Layout.fullWidth, { alignItems: 'center', marginTop: Responsive.height(28) }]}>
-                <CustomImage width={Responsive.width(45)} height={Responsive.height(45)} source={Images.icPassword} />
+                <CustomImage width={Responsive.height(45)} height={Responsive.height(45)} source={Images.icPassword} />
                 <Text style={styles.textStep}>
                     <Text style={styles.textCurrentStep}>4</Text>
                     /8
@@ -48,6 +48,7 @@ const Password = () => {
                     placeholder={'User can enter password here'}
                     placeholderTextColor={'#7C8093'}
                     selectTextOnFocus
+                    secureTextEntry={true}
                     style={[Layout.fullWidth, Common.textInput, styles.inputText]}
                 />
             </View>
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     },
     textDescription: {
         color: '#878893',
-        fontFamily: 'Poppins-Regular',
+        fontFamily: 'NotoSans-Regular',
         fontSize: Responsive.font(12),
         lineHeight: Responsive.width(16),
         marginTop: Responsive.height(18)

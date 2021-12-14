@@ -4,6 +4,7 @@ import {
   StartContainer,
   CreateAccountContainer,
   LoginContainer,
+  FA2VerificationContainer,
   SignUpContainer,
   VerificationContainer,
   ProffVerificationContainer,
@@ -21,6 +22,7 @@ const AuthNavigator = () => {
       <Stack.Screen name="CreateAccount" component={CreateAccountContainer} />
 
       <Stack.Screen name="Login" component={LoginContainer} />
+      <Stack.Screen name="2FAVerification" component={FA2VerificationContainer} />
       <Stack.Screen name="SignUp" component={SignUpContainer} />
       <Stack.Screen name="Verification" component={VerificationContainer} />
       <Stack.Screen name="ProffVerification" component={ProffVerificationContainer} />

@@ -33,7 +33,7 @@ const Interested = () => {
             style={[Layout.fill]}>
 
             <View style={[Layout.row, Layout.fullWidth, { alignItems: 'center', marginTop: Responsive.height(28) }]}>
-                <CustomImage width={Responsive.width(45)} height={Responsive.height(45)} source={Images.icInterested} />
+                <CustomImage width={Responsive.height(45)} height={Responsive.height(45)} source={Images.icInterested} />
                 <Text style={styles.textStep}>
                     <Text style={styles.textCurrentStep}>5</Text>
                     /8
@@ -53,6 +53,7 @@ const Interested = () => {
                 tintColor={'#5D5FEF'}
                 tagStyle={styles.tag}
                 style={styles.tagGroup}
+                touchableOpacity={true}
             />
 
             <View style={Layout.fill} />

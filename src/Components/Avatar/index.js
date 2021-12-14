@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 
-const Avatar = ({ height, width, style, url, firstName, lastName, onPress }) => {
+const Avatar = ({ height, width, style, url, firstName, lastName, onPress, imageStyle }) => {
     const { Layout, Images } = useTheme()
 
     return (
@@ -14,7 +14,9 @@ const Avatar = ({ height, width, style, url, firstName, lastName, onPress }) => 
             onPress={onPress}>
             {
                 !_.isEmpty(url) ? (
-                    <Image style={{ width, height, borderRadius: height / 2 }} source={{ uri: url }} resizeMode={'cover'} />
+                    <View style={[{ width, height, borderRadius: height / 2 }, imageStyle]}>
+                        <Image style={[Layout.fill, { borderRadius: height / 2 }, imageStyle]} source={{ uri: url }} resizeMode={'cover'} />
+                    </View>
                 ) : (
                     <View style={[Layout.fill, Layout.rowCenter]}>
                         <Text style={styles.textStyle}>{!_.isNil(firstName) ? firstName.charAt(0) : ''}</Text>

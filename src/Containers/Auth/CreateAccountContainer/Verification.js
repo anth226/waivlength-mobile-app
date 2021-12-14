@@ -43,7 +43,7 @@ const Verification = ({ goBack }) => {
             style={[Layout.fill]}>
 
             <View style={[Layout.row, Layout.fullWidth, { alignItems: 'center', marginTop: Responsive.height(28) }]}>
-                <CustomImage width={Responsive.width(45)} height={Responsive.height(45)} source={Images.icVerification} />
+                <CustomImage width={Responsive.height(45)} height={Responsive.height(45)} source={Images.icVerification} />
                 <Text style={styles.textStep}>
                     <Text style={styles.textCurrentStep}>2</Text>
                     /8
@@ -154,13 +154,13 @@ const styles = StyleSheet.create({
         color: '#242332'
     },
     textDescription: {
-        fontFamily: 'Poppins-Regular',
+        fontFamily: 'NotoSans-Regular',
         fontSize: Responsive.font(14),
         lineHeight: Responsive.width(19),
         color: '#8184A3'
     },
     textEdit: {
-        fontFamily: 'Poppins-SemiBold',
+        fontFamily: 'NotoSans-SemiBold',
         fontSize: Responsive.font(14),
         color: '#5D5FEF',
         lineHeight: Responsive.width(19),

@@ -13,7 +13,7 @@ import { navigateAndSimpleReset } from '@/Navigators/utils'
 const systemFonts = [...defaultSystemFonts, 'Poppins-Regular', 'Poppins-Medium'];
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
-const CreateAccount = () => {
+const Email = () => {
     const { Layout, Gutters, Fonts, Common, Images } = useTheme()
     const { t } = useTranslation()
     const { width } = useWindowDimensions();
@@ -35,7 +35,7 @@ const CreateAccount = () => {
             style={[Layout.fill]}>
 
             <View style={[Layout.row, Layout.fullWidth, { alignItems: 'center', marginTop: Responsive.height(28) }]}>
-                <CustomImage width={Responsive.width(45)} height={Responsive.height(45)} source={Images.icEmail} />
+                <CustomImage width={Responsive.height(45)} height={Responsive.height(45)} source={Images.icEmail} />
                 <Text style={styles.textStep}>
                     <Text style={styles.textCurrentStep}>1</Text>
                     /8
@@ -46,7 +46,7 @@ const CreateAccount = () => {
             <TextInput
                 onChangeText={text => { }}
                 editable={true}
-                placeholder={'enter your email'}
+                placeholder={'Enter your email'}
                 placeholderTextColor={'#7C8093'}
                 selectTextOnFocus
                 style={[Layout.fullWidth, Common.textInput, styles.inputText]}
@@ -64,7 +64,7 @@ const CreateAccount = () => {
     )
 }
 
-export default CreateAccount
+export default Email
 
 const styles = StyleSheet.create({
     container: {
@@ -77,13 +77,13 @@ const styles = StyleSheet.create({
         color: '#242332',
     },
     textStep: {
-        fontFamily: 'Poppins-Medium',
+        fontFamily: 'NotoSans-Regular',
         fontSize: Responsive.font(16),
         color: '#8C93BC',
         paddingHorizontal: Responsive.width(8)
     },
     textCurrentStep: {
-        fontFamily: 'Poppins-Medium',
+        fontFamily: 'NotoSans-SemiBold',
         fontSize: Responsive.font(19),
         color: '#5D5FEF',
     },
