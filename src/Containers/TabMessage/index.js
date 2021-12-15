@@ -10,7 +10,7 @@ import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers
 
 import { CustomImage, ActionBar, ButtonNext, GradientBackground } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
-import { navigateAndSimpleReset } from '@/Navigators/utils'
+import { navigateAndSimpleReset, navigate } from '@/Navigators/utils'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -35,11 +35,11 @@ const TabMessageContainer = ({ navigation }) => {
     <ActionBar
       left={<CustomImage width={Responsive.height(40)} height={Responsive.height(40)} styleImage={{ borderRadius: Responsive.height(40) }} source={{ uri: 'https://picsum.photos/200/200' }} />}
       right={<View style={Layout.row}>
-        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionCalendar} onPress={() => { }} />
+        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionCalendar}  onPress={() => navigate('CalendarEvent')}/>
         <View style={{ width: Responsive.width(16) }} />
         <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionSearch} onPress={() => { }} />
         <View style={{ width: Responsive.width(16) }} />
-        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icSetting} onPress={() => { }} />
+        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icSetting} onPress={() => navigate('SettingMessage')} />
       </View>}
     />
     <KeyboardAvoidingView

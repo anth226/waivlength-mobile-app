@@ -1,15 +1,22 @@
 import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { ExampleContainer, TabMessageContainer } from '@/Containers'
+import { ExampleContainer, AudioContainer } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
 import Responsive from 'react-native-lightweight-responsive'
 import { View } from 'react-native'
+import TabHomeNavigator from './TabHomeNavigator'
+import TabMessageNavigator from './TabMessageNavigator'
+import TabNotificationNavigator from './TabNotificationNavigator'
+import TabChallengeNavigator from './TabChallengeNavigator'
+
 
 const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator()
 
 // @refresh reset
-const MainNavigator = () => {
+const MainTabNavigator = () => {
   const { Layout, Gutters, Fonts, Common, Images } = useTheme()
 
   return (
@@ -29,7 +36,7 @@ const MainNavigator = () => {
     >
       <Tab.Screen
         name="Home"
-        component={ExampleContainer}
+        component={TabHomeNavigator}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size, focused }) => focused ?
@@ -45,7 +52,7 @@ const MainNavigator = () => {
         }} />
       <Tab.Screen
         name="Message"
-        component={TabMessageContainer}
+        component={TabMessageNavigator}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size, focused }) => focused ?
@@ -61,7 +68,7 @@ const MainNavigator = () => {
       />
       <Tab.Screen
         name="Notification"
-        component={ExampleContainer}
+        component={TabNotificationNavigator}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size, focused }) => focused ?
@@ -78,7 +85,7 @@ const MainNavigator = () => {
       />
       <Tab.Screen
         name="Challenge"
-        component={ExampleContainer}
+        component={TabChallengeNavigator}
         options={{
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size, focused }) => focused ?
@@ -95,5 +102,18 @@ const MainNavigator = () => {
     </Tab.Navigator>
   )
 }
+
+
+const MainNavigator = () => {
+  const { Layout, Gutters, Fonts, Common, Images } = useTheme()
+
+  return (
+    <Stack.Navigator initialRouteName="MainTab" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="MainTab" component={MainTabNavigator} />
+      <Stack.Screen name="CalendarEvent" component={AudioContainer} />
+    </Stack.Navigator>
+  )
+}
+
 
 export default MainNavigator
