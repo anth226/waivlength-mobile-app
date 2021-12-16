@@ -1,8 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import {
-  TabMessageContainer,
-  SettingMessageContainer
+  ExampleContainer
 } from '@/Containers'
 
 const Stack = createStackNavigator()
@@ -11,8 +10,7 @@ const Stack = createStackNavigator()
 const TabChallengeNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="TabMessage" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="TabMessage" component={TabMessageContainer} />
-      <Stack.Screen name="SettingMessage" component={SettingMessageContainer} />
+      <Stack.Screen name="TabMessage" component={ExampleContainer} />
     </Stack.Navigator>
   )
 }

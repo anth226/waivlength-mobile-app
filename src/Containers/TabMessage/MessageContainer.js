@@ -10,7 +10,7 @@ import { ExampleContainer } from '@/Containers'
 
 import { CustomImage, Avatar, ButtonNext, GradientBackground } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
-import { navigateAndSimpleReset } from '@/Navigators/utils'
+import { navigate, navigateAndSimpleReset } from '@/Navigators/utils'
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
@@ -81,10 +81,28 @@ const MessageContainer = ({ goBack }) => {
             unRead: 1,
             time: "02:17"
         },
+        {
+            id: 6,
+            firstName: "Carlos",
+            lastName: "Daniels",
+            url: "https://picsum.photos/200/200",
+            bio: "Try new things",
+            unRead: 1,
+            time: "02:17"
+        },
+        {
+            id: 6,
+            firstName: "Carlos",
+            lastName: "Daniels",
+            url: "https://picsum.photos/200/200",
+            bio: "Try new things",
+            unRead: 1,
+            time: "02:17"
+        },
     ];
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity style={{}}>
+            <TouchableOpacity style={{}} onPress={() => navigate('Conversation')}>
                 <View style={[Layout.fullWidth, Layout.column, Layout.alignItemsCenter, styles.itemWapper]}>
                     <View style={[Layout.fill, Layout.row, Layout.alignItemsCenter]}>
                         <Avatar
@@ -120,36 +138,34 @@ const MessageContainer = ({ goBack }) => {
             {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}
             style={[Layout.fill]}
         >
-            <ScrollView
-                nestedScrollEnabled={true}
-                contentContainerStyle={[Layout.alignItemsStart, styles.container, { width }]}
-                style={[Layout.fill]}>
-
-                <View style={[Layout.fullWidth]}>
-                    <View style={[Layout.fill, styles.searchStyle]}>
-                        <View style={[Layout.fullWidth, Layout.row, { alignItems: 'center' }]}>
-                            <CustomImage width={Responsive.height(20)} height={Responsive.height(20)} source={Images.icSearch} />
-                            <TextInput
-                                onChangeText={text => { }}
-                                editable={true}
-                                placeholder={'Search for messeges'}
-                                placeholderTextColor={'#7C8093'}
-                                selectTextOnFocus
-                                style={[Layout.fullWidth, Common.textInput, styles.inputText]}
-                            />
-                        </View>
+            <View style={[Layout.fullWidth, Layout.row]}>
+                <View style={{ width: Responsive.width(29) }} />
+                <View style={[Layout.fill, styles.searchStyle]}>
+                    <View style={[Layout.fullWidth, Layout.row, { alignItems: 'center' }]}>
+                        <CustomImage width={Responsive.height(20)} height={Responsive.height(20)} source={Images.icSearch} />
+                        <TextInput
+                            onChangeText={text => { }}
+                            editable={true}
+                            placeholder={'Search for messeges'}
+                            placeholderTextColor={'#7C8093'}
+                            selectTextOnFocus
+                            style={[Layout.fullWidth, Common.textInput, styles.inputText]}
+                        />
                     </View>
                 </View>
-
-                <FlatList nestedScrollEnabled={false}
-                    style={[Layout.fullWidth, { marginTop: Responsive.height(5) }]}
-                    data={DATA}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id} />
+                <View style={{ width: Responsive.width(29) }} />
+            </View>
 
 
+            <FlatList nestedScrollEnabled={false}
+                style={[Layout.fill, { marginTop: Responsive.height(5) }]}
+                data={DATA}
+                ListHeaderComponent={<View style={{ height: Responsive.height(15) }}/>}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id} />
 
-            </ScrollView>
+
+
 
             <View style={[Layout.row, styles.floatingActionWrapper, { bottom: 0 }]}>
                 <ButtonNext disabled={false} width={Responsive.height(56)} height={Responsive.height(56)}
@@ -157,6 +173,7 @@ const MessageContainer = ({ goBack }) => {
                         width: Responsive.height(19),
                         height: Responsive.height(18)
                     }}
+                    onPress={() => navigate('NewMessage')}
                     icon={Images.icMessage} />
             </View>
 
@@ -180,8 +197,7 @@ const styles = StyleSheet.create({
         borderColor: '#96A1AE',
         borderRadius: Responsive.height(24),
         borderWidth: Responsive.height(1),
-        marginVertical: Responsive.width(17),
-        marginHorizontal: Responsive.width(29),
+        marginTop: Responsive.width(17),
         justifyContent: 'center',
         paddingHorizontal: Responsive.width(20)
     },
@@ -257,5 +273,5 @@ const styles = StyleSheet.create({
         marginRight: Responsive.width(24),
         position: 'absolute',
         right: 0
-      }
+    }
 });

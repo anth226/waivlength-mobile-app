@@ -20,3 +20,6 @@ export { default as MessageContainer } from './TabMessage/MessageContainer'
 export { default as AudioContainer } from './TabMessage/AudioContainer'
 export { default as SettingMessageContainer } from './TabMessage/SettingMessageContainer'
 
+//MainEx
+export * from './MainEx'
+

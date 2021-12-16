@@ -6,7 +6,7 @@ import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 import { Avatar } from '@/Components'
 
-const AvatarGroup = ({ height, containerStyle, onPress }) => {
+const AvatarGroup = ({ height, containerStyle, onPress, data, text, textStyle, colorCircle }) => {
     const { Layout, Images } = useTheme()
 
     return (
@@ -46,24 +46,31 @@ const AvatarGroup = ({ height, containerStyle, onPress }) => {
                     <Avatar
                         isShowDot={false}
                         imageWrapperStyle={[styles.avatar, { height, width: height, position: 'absolute', top: 0, left: Responsive.height(height * 2) }]}
-                        imageStyle={[styles.avatarImage, { backgroundColor: '#f8f8f8' }]}
-                        textStyle={styles.textCountStyle}
+                        imageStyle={[styles.avatarImage, { backgroundColor: colorCircle }]}
+                        textStyle={[styles.textCountStyle, textStyle]}
                         isText={true}
                         firstName={"50+"}
                         lastName={""} />
                 </View>
-                <Text style={[styles.textCountStyle, { marginLeft: Responsive.width(2 * height/3) }]}>Members</Text>
+                <Text style={[styles.textCountStyle, textStyle, { marginLeft: Responsive.width(2 * height/3) }]}>{text}</Text>
             </View>
         </TouchableOpacity>
     )
 }
 
 AvatarGroup.propTypes = {
-    height: PropTypes.number
+    height: PropTypes.number,
+    data: PropTypes.array,
+    text: PropTypes.string,
+    textStyle: PropTypes.any,
+    colorCircle: PropTypes.color
 }
 
 AvatarGroup.defaultProps = {
-    height: Responsive.height(46)
+    height: Responsive.height(46),
+    data: [],
+    text: '',
+    colorCircle: '#f8f8f8'
 }
 
 export default AvatarGroup
@@ -108,8 +115,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     avatarImage: {
-        width: Responsive.height(28),
-        height: Responsive.height(28),
+        width: Responsive.height(29),
+        height: Responsive.height(29),
         borderRadius: Responsive.height(15),
         backgroundColor: '#BBBEDD',
     },

@@ -1,7 +1,13 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { ExampleContainer, AudioContainer } from '@/Containers'
+import {
+  ExampleContainer,
+  CalendarEventContainer,
+  ConversationContainer,
+  NewMessageContainer,
+  SearchMessageContainer
+} from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
 import Responsive from 'react-native-lightweight-responsive'
@@ -110,7 +116,10 @@ const MainNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="MainTab" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="MainTab" component={MainTabNavigator} />
-      <Stack.Screen name="CalendarEvent" component={AudioContainer} />
+      <Stack.Screen name="CalendarEvent" component={CalendarEventContainer} />
+      <Stack.Screen name="Conversation" component={ConversationContainer} />
+      <Stack.Screen name="NewMessage" component={NewMessageContainer} />
+      <Stack.Screen name="SearchMessage" component={SearchMessageContainer} />
     </Stack.Navigator>
   )
 }

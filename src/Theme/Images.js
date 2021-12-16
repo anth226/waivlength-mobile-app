@@ -65,6 +65,19 @@ export default function () {
     icActionOption: require('@/Assets/Icons/ic_action_option.png'),
     icPerson: require('@/Assets/Icons/ic_person.png'),
     icTagMessage: require('@/Assets/Icons/ic_tag_message.png'),
-    
+
+    icActionCalendarAdd: require('@/Assets/Icons/ic_action_calendar_add.png'),
+    icActionSearchBg: require('@/Assets/Icons/ic_action_search_bg.png'),
+    icClock: require('@/Assets/Icons/ic_clock.png'),
+    icCalendar: require('@/Assets/Icons/ic_calendar.png'),
+    icActionOptionMore: require('@/Assets/Icons/ic_action_option_more.png'),
+
+    icAttachment: require('@/Assets/Icons/ic_attachment.png'),
+    icMicrophone: require('@/Assets/Icons/ic_microphone.png'),
+    icEmoji: require('@/Assets/Icons/ic_emoji.png'),
+    icVerified: require('@/Assets/Icons/ic_verified.png'),
+    icSend: require('@/Assets/Icons/ic_send.png'),
+    icEmptySearch: require('@/Assets/Icons/ic_empty_search.png'),
+
   }
 }

@@ -37,7 +37,7 @@ const TabMessageContainer = ({ navigation }) => {
       right={<View style={Layout.row}>
         <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionCalendar}  onPress={() => navigate('CalendarEvent')}/>
         <View style={{ width: Responsive.width(16) }} />
-        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionSearch} onPress={() => { }} />
+        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionSearch} onPress={() => navigate('SearchMessage')} />
         <View style={{ width: Responsive.width(16) }} />
         <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icSetting} onPress={() => navigate('SettingMessage')} />
       </View>}

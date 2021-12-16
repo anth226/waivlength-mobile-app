@@ -82,9 +82,11 @@ const AudioContainer = ({ goBack }) => {
             time: "02:17"
         },
     ];
-    const renderItem = ({ item }) => {
+
+
+    const renderItem = ({ item, index }) => {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity disabled={true}>
                 <View style={[Layout.fill, Layout.column, Layout.alignItemsCenter, styles.itemStyleWrapper]}>
                     <View style={[Layout.fullWidth, Layout.row, Layout.alignItemsCenter, { marginTop: Responsive.height(18) }]}>
                         <Text style={[Layout.fill, styles.textCreateBy]}>{`Created by @muhammad`}</Text>
@@ -94,12 +96,12 @@ const AudioContainer = ({ goBack }) => {
                             <Text style={styles.textLive}>{`Live`}</Text>
                         </View>
                         <View width={Responsive.width(12)} />
-                        <CustomImage source={Images.icActionOption} width={Responsive.height(24)} height={Responsive.height(24)} />
+                        <CustomImage source={Images.icActionOption} width={Responsive.height(24)} height={Responsive.height(24)} onPress={() => {}} />
                     </View>
                     <Text style={[Layout.fullWidth, styles.textTitle]}>{`UX Problem Analisys`}</Text>
                     <View style={[Layout.fullWidth, styles.lineItem]}></View>
                     <View style={[Layout.fullWidth, Layout.row, Layout.alignItemsCenter, { marginTop: Responsive.height(15) }]}>
-                        <AvatarGroup height={Responsive.height(32)} />
+                        <AvatarGroup height={Responsive.height(32)} text={'Members'} />
                     </View>
                     <View style={Layout.fill} />
                     <View style={[Layout.fullWidth, Layout.row, Layout.alignItemsCenter, { marginBottom: Responsive.height(23) }]}>
@@ -153,7 +155,7 @@ const AudioContainer = ({ goBack }) => {
                 <TouchableOpacity
                     style={[Layout.fullWidth, Common.button.rounded, styles.buttonCreate]}
                     onPress={() => {}}>
-                    <Text style={styles.textButtonCreate}>Enable Notifications</Text>
+                    <Text style={styles.textButtonCreate}>Create an audio room</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
