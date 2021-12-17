@@ -39,7 +39,7 @@ const LoginContainer = () => {
         Keyboard.removeListener('keyboardDidShow', onKeyboardDidShow);
         Keyboard.removeListener('keyboardDidHide', onKeyboardDidHide);
     };
-}, []);
+});
 
 
 

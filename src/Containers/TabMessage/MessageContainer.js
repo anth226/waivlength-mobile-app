@@ -82,7 +82,7 @@ const MessageContainer = ({ goBack }) => {
             time: "02:17"
         },
         {
-            id: 6,
+            id: 7,
             firstName: "Carlos",
             lastName: "Daniels",
             url: "https://picsum.photos/200/200",
@@ -91,7 +91,7 @@ const MessageContainer = ({ goBack }) => {
             time: "02:17"
         },
         {
-            id: 6,
+            id: 8,
             firstName: "Carlos",
             lastName: "Daniels",
             url: "https://picsum.photos/200/200",

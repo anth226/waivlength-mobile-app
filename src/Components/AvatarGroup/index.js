@@ -63,7 +63,7 @@ AvatarGroup.propTypes = {
     data: PropTypes.array,
     text: PropTypes.string,
     textStyle: PropTypes.any,
-    colorCircle: PropTypes.color
+    colorCircle: PropTypes.any
 }
 
 AvatarGroup.defaultProps = {

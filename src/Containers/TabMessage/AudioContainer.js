@@ -10,7 +10,7 @@ import { ExampleContainer } from '@/Containers'
 
 import { CustomImage, Avatar, AvatarGroup, GradientBackground } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
-import { navigateAndSimpleReset } from '@/Navigators/utils'
+import { navigateAndSimpleReset, navigate } from '@/Navigators/utils'
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
@@ -118,7 +118,7 @@ const AudioContainer = ({ goBack }) => {
 
                     <TouchableOpacity
                         style={[Common.button.rounded, styles.buttonJoinNow]}
-                        onPress={() => { }}>
+                        onPress={() => navigate('ConversationAudio')}>
                         <Text style={styles.textButtonJoinNow}>Join Now</Text>
                     </TouchableOpacity>
 

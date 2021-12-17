@@ -65,8 +65,6 @@ const TabMessageContainer = ({ navigation }) => {
           <Tab.Screen name="Audio" component={AudioContainer} options={{ tabBarLabel: 'Audio Rooms' }} />
         </Tab.Navigator>
 
-
-
       </ScrollView>
     </KeyboardAvoidingView>
   </SafeAreaView>)

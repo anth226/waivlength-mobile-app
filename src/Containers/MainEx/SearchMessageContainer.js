@@ -87,6 +87,7 @@ const SearchMessageContainer = () => {
                         placeholder={'Search'}
                         placeholderTextColor={'#7C8093'}
                         selectTextOnFocus
+                        autoFocus
                         style={[Layout.fullWidth, Common.textInput, styles.inputText]}
                     />
                     <CustomImage width={Responsive.height(20)} height={Responsive.height(20)} source={Images.icSearch} />

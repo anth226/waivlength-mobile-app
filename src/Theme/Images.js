@@ -78,6 +78,8 @@ export default function () {
     icVerified: require('@/Assets/Icons/ic_verified.png'),
     icSend: require('@/Assets/Icons/ic_send.png'),
     icEmptySearch: require('@/Assets/Icons/ic_empty_search.png'),
+    icActionPlus: require('@/Assets/Icons/ic_action_plus.png'),
+    icActionEmoji: require('@/Assets/Icons/ic_action_emoji.png'),
 
   }
 }
