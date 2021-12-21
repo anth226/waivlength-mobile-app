@@ -84,6 +84,14 @@ export default function () {
     icWorld: require('@/Assets/Icons/ic_world.png'),
     icLock: require('@/Assets/Icons/ic_lock.png'),
     icChatRoom: require('@/Assets/Icons/ic_chat_room.png'),
+    icChatRoomSmall: require('@/Assets/Icons/ic_chat_room_small.png'),
+
+    icHamburger: require('@/Assets/Icons/ic_hamburger.png'),
+    icAddProfile: require('@/Assets/Icons/ic_add_profile.png'),
+    icPlus: require('@/Assets/Icons/ic_plus.png'),
+    icChatRoomLock: require('@/Assets/Icons/ic_chat_room_lock.png'),
+    icRules: require('@/Assets/Icons/ic_rules.png'),
+    icAnnouncement: require('@/Assets/Icons/ic_announcement.png'),
 
   }
 }

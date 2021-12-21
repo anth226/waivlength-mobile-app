@@ -16,3 +16,4 @@ export { default as AvatarGroup } from './AvatarGroup'
 export { default as TypingAnimation } from './TypingAnimation'
 
 export * from './Dialog'
+export * from './Drawer'
