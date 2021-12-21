@@ -7,7 +7,9 @@ import {
   ConversationContainer,
   NewMessageContainer,
   SearchMessageContainer,
-  ConversationAudioContainer
+  ConversationAudioContainer,
+  CreateNewEventContainer,
+  GroupConversationContainer
 } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
@@ -122,6 +124,8 @@ const MainNavigator = () => {
       <Stack.Screen name="NewMessage" component={NewMessageContainer} />
       <Stack.Screen name="SearchMessage" component={SearchMessageContainer} />
       <Stack.Screen name="ConversationAudio" component={ConversationAudioContainer} />
+      <Stack.Screen name="CreateNewEvent" component={CreateNewEventContainer} />
+      <Stack.Screen name="GroupConversation" component={GroupConversationContainer} />
     </Stack.Navigator>
   )
 }

@@ -81,5 +81,9 @@ export default function () {
     icActionPlus: require('@/Assets/Icons/ic_action_plus.png'),
     icActionEmoji: require('@/Assets/Icons/ic_action_emoji.png'),
 
+    icWorld: require('@/Assets/Icons/ic_world.png'),
+    icLock: require('@/Assets/Icons/ic_lock.png'),
+    icChatRoom: require('@/Assets/Icons/ic_chat_room.png'),
+
   }
 }

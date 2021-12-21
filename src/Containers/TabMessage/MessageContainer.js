@@ -38,12 +38,13 @@ const MessageContainer = ({ goBack }) => {
         },
         {
             id: 2,
-            firstName: "Ruth",
-            lastName: "Hamptom",
+            firstName: "Social",
+            lastName: "Community",
             url: "https://picsum.photos/200/200",
             bio: "Live, Learn, Love",
             unRead: 4,
-            time: "02:17"
+            time: "02:17",
+            isChatRoom: true
         },
         {
             id: 3,
@@ -101,22 +102,28 @@ const MessageContainer = ({ goBack }) => {
         },
     ];
     const renderItem = ({ item }) => {
+        let isChatRoom = item['isChatRoom']
         return (
-            <TouchableOpacity style={{}} onPress={() => navigate('Conversation')}>
+            <TouchableOpacity style={{}} onPress={() => isChatRoom ? navigate('GroupConversation') : navigate('Conversation')}>
                 <View style={[Layout.fullWidth, Layout.column, Layout.alignItemsCenter, styles.itemWapper]}>
                     <View style={[Layout.fill, Layout.row, Layout.alignItemsCenter]}>
                         <Avatar
                             dotStyle={styles.dotStyle}
-                            isShowDot={true}
+                            isShowDot={!isChatRoom}
                             source={Images.onBoarding3}
                             imageWrapperStyle={styles.avatar}
-                            imageStyle={styles.avatarImage}
+                            imageStyle={isChatRoom? styles.avatarImageChatRoom : styles.avatarImage}
                             url={item['url']}
                             firstName={item['firstName']}
                             lastName={item['lastName']} />
                         <View style={[Layout.fill, Layout.column, { marginLeft: Responsive.width(10) }]}>
                             <Text style={styles.textNameUser}>{`${item['firstName']} ${item['lastName']}`}</Text>
                             <Text style={styles.textUserDescription}>{item['bio']}</Text>
+                            {
+                                isChatRoom && (
+                                    <Text style={styles.textUserDescription}>{`@ - Chat Room`}</Text>
+                                )
+                            }
                         </View>
                         <View style={[Layout.fill, Layout.column]}>
                             <Text style={styles.textBadgeUnread}>{`${item['unRead']}`}</Text>
@@ -223,6 +230,12 @@ const styles = StyleSheet.create({
         width: Responsive.height(40),
         height: Responsive.height(40),
         borderRadius: Responsive.height(20),
+        backgroundColor: '#BBBEDD',
+    },
+    avatarImageChatRoom: {
+        width: Responsive.height(50),
+        height: Responsive.height(50),
+        borderRadius: Responsive.height(25),
         backgroundColor: '#BBBEDD',
     },
     dotStyle: {

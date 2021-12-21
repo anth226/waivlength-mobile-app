@@ -6,7 +6,7 @@ import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 import { Avatar } from '@/Components'
 
-const AvatarGroup = ({ height, containerStyle, onPress, data, text, textStyle, colorCircle }) => {
+const AvatarGroup = ({ height, containerStyle, onPress, data, text, textAction, textStyle, textActionStyle, colorCircle }) => {
     const { Layout, Images } = useTheme()
 
     return (
@@ -47,9 +47,9 @@ const AvatarGroup = ({ height, containerStyle, onPress, data, text, textStyle, c
                         isShowDot={false}
                         imageWrapperStyle={[styles.avatar, { height, width: height, position: 'absolute', top: 0, left: Responsive.height(height * 2) }]}
                         imageStyle={[styles.avatarImage, { backgroundColor: colorCircle }]}
-                        textStyle={[styles.textCountStyle, textStyle]}
+                        textStyle={[styles.textCountStyle, textStyle, textActionStyle]}
                         isText={true}
-                        firstName={"50+"}
+                        firstName={textAction}
                         lastName={""} />
                 </View>
                 <Text style={[styles.textCountStyle, textStyle, { marginLeft: Responsive.width(2 * height/3) }]}>{text}</Text>
@@ -62,7 +62,9 @@ AvatarGroup.propTypes = {
     height: PropTypes.number,
     data: PropTypes.array,
     text: PropTypes.string,
+    textAction: PropTypes.string,
     textStyle: PropTypes.any,
+    textActionStyle: PropTypes.any,
     colorCircle: PropTypes.any
 }
 
@@ -70,6 +72,7 @@ AvatarGroup.defaultProps = {
     height: Responsive.height(46),
     data: [],
     text: '',
+    textAction: '',
     colorCircle: '#f8f8f8'
 }
 

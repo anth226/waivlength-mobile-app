@@ -11,6 +11,8 @@ import { ExampleContainer } from '@/Containers'
 import { CustomImage, Avatar, AvatarGroup, GradientBackground } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, navigate } from '@/Navigators/utils'
+import EventBus from 'react-native-event-bus';
+import { EVENTS } from '@/Constants';
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
@@ -18,6 +20,10 @@ const AudioContainer = ({ goBack }) => {
     const { Layout, Gutters, Fonts, Common, Images } = useTheme()
     const { t } = useTranslation()
     const { width } = useWindowDimensions();
+
+    const onOpen = () => {
+        EventBus.getInstance().fireEvent(EVENTS.OPEN_CREATE_AUDIO_ROOM_DIALOG, {})
+    };
 
     const init = async () => {
         await setDefaultTheme({ theme: 'default', darkMode: false })
@@ -96,7 +102,7 @@ const AudioContainer = ({ goBack }) => {
                             <Text style={styles.textLive}>{`Live`}</Text>
                         </View>
                         <View width={Responsive.width(12)} />
-                        <CustomImage source={Images.icActionOption} width={Responsive.height(24)} height={Responsive.height(24)} onPress={() => {}} />
+                        <CustomImage source={Images.icActionOption} width={Responsive.height(24)} height={Responsive.height(24)} onPress={() => { }} />
                     </View>
                     <Text style={[Layout.fullWidth, styles.textTitle]}>{`UX Problem Analisys`}</Text>
                     <View style={[Layout.fullWidth, styles.lineItem]}></View>
@@ -136,25 +142,18 @@ const AudioContainer = ({ goBack }) => {
             {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}
             style={[Layout.fill]}
         >
-            <ScrollView
-                nestedScrollEnabled={true}
-                contentContainerStyle={[Layout.alignItemsStart, styles.container, { width }]}
-                style={[Layout.fill]}>
-
-                <FlatList nestedScrollEnabled={false}
-                    style={[Layout.fullWidth, { marginTop: Responsive.height(5) }]}
-                    data={DATA}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id} />
-
-
-
-            </ScrollView>
+            <FlatList nestedScrollEnabled={false}
+                style={[Layout.fullWidth]}
+                data={DATA}
+                renderItem={renderItem}
+                ListHeaderComponent={<View style={{ height: Responsive.height(18) }}/>}
+                ListFooterComponent={<View style={{ height: Responsive.height(65) }}/>}
+                keyExtractor={(item) => item.id} />
 
             <View style={[Layout.row, styles.floatingActionWrapper]}>
                 <TouchableOpacity
                     style={[Layout.fullWidth, Common.button.rounded, styles.buttonCreate]}
-                    onPress={() => {}}>
+                    onPress={onOpen}>
                     <Text style={styles.textButtonCreate}>Create an audio room</Text>
                 </TouchableOpacity>
             </View>
@@ -176,7 +175,7 @@ const styles = StyleSheet.create({
         marginBottom: Responsive.height(8)
     },
     itemStyleWrapper: {
-        backgroundColor: '#fff',
+        backgroundColor: '#E6FFFFFF',
         borderRadius: Responsive.height(18),
         marginVertical: Responsive.height(8),
         paddingHorizontal: Responsive.height(20),

@@ -15,7 +15,7 @@ import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
-const ConversationContainer = () => {
+const GroupConversationContainer = () => {
     const { Layout, Gutters, Fonts, Common, Images } = useTheme()
     const { t } = useTranslation()
     const { width } = useWindowDimensions();
@@ -141,7 +141,7 @@ const ConversationContainer = () => {
             center={<View style={[Layout.fullWidth, Layout.row, Layout.alignItemsCenter, { paddingHorizontal: Responsive.width(13) }]}>
                 <CustomImage width={Responsive.height(30)} height={Responsive.height(30)} styleImage={{ borderRadius: Responsive.height(40) }} source={{ uri: 'https://picsum.photos/200/200' }} />
                 <View style={{ width: Responsive.width(8) }} />
-                <Text style={styles.textTitle}>Robert Fox</Text>
+                <Text style={styles.textTitle}>Social Community</Text>
             </View>}
         />
         <View style={styles.line} />
@@ -197,7 +197,7 @@ const ConversationContainer = () => {
     </SafeAreaView>)
 }
 
-export default ConversationContainer
+export default GroupConversationContainer
 
 const styles = StyleSheet.create({
     container: {
