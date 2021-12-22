@@ -54,7 +54,7 @@ export default function () {
     
 
 
-    icSetting: require('@/Assets/Icons/ic_setting.png'),
+    icActionSetting: require('@/Assets/Icons/ic_action_setting.png'),
     icMessage: require('@/Assets/Icons/ic_message.png'),
     icSearch: require('@/Assets/Icons/ic_search.png'),
 
@@ -92,6 +92,22 @@ export default function () {
     icChatRoomLock: require('@/Assets/Icons/ic_chat_room_lock.png'),
     icRules: require('@/Assets/Icons/ic_rules.png'),
     icAnnouncement: require('@/Assets/Icons/ic_announcement.png'),
+    icLogoDark: require('@/Assets/Icons/ic_logo_dark.png'),
+    ic2Person: require('@/Assets/Icons/ic_2_person.png'),
+    icAddProfile2: require('@/Assets/Icons/ic_add_profile_2.png'),
+    icNotification: require('@/Assets/Icons/ic_notification.png'),
+    icSetting: require('@/Assets/Icons/ic_setting.png'),
+    icActionShare: require('@/Assets/Icons/ic_action_share.png'),
+    icActionCopyLink: require('@/Assets/Icons/ic_action_copy_link.png'),
+    icActionWhatsapp: require('@/Assets/Icons/ic_action_whatsapp.png'),
+    icActionFbMessenger: require('@/Assets/Icons/ic_action_fb_messenger.png'),
+    icActionGmail: require('@/Assets/Icons/ic_action_gmail.png'),
+    icLocation: require('@/Assets/Icons/ic_location.png'),
+    icActionShareGray: require('@/Assets/Icons/ic_action_share_gray.png'),
+    icCheck2: require('@/Assets/Icons/ic_check_2.png'),
+    icEmptyEvent: require('@/Assets/Icons/ic_empty_event.png'),
+    icArrowDown2: require('@/Assets/Icons/ic_arrow_down_2.png'),
+
 
   }
 }

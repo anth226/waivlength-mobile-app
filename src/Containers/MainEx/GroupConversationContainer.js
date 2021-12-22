@@ -153,7 +153,7 @@ const GroupConversationContainer = ({ route, navigation }) => {
             time: "10:20 PM"
         },
         {
-            id: 3,
+            id: 4,
             firstName: "Edgar",
             lastName: "Jones",
             url: "",
@@ -161,7 +161,7 @@ const GroupConversationContainer = ({ route, navigation }) => {
             time: "10:20 PM"
         },
         {
-            id: 3,
+            id: 5,
             firstName: "Edgar",
             lastName: "Jones",
             url: "",
@@ -169,7 +169,7 @@ const GroupConversationContainer = ({ route, navigation }) => {
             time: "10:20 PM"
         },
         {
-            id: 3,
+            id: 6,
             firstName: "Edgar",
             lastName: "Jones",
             url: "",
@@ -177,7 +177,7 @@ const GroupConversationContainer = ({ route, navigation }) => {
             time: "10:20 PM"
         },
         {
-            id: 3,
+            id: 7,
             firstName: "Edgar",
             lastName: "Jones",
             url: "",
@@ -185,7 +185,7 @@ const GroupConversationContainer = ({ route, navigation }) => {
             time: "10:20 PM"
         },
         {
-            id: 3,
+            id: 8,
             firstName: "Edgar",
             lastName: "Jones",
             url: "",
@@ -193,7 +193,7 @@ const GroupConversationContainer = ({ route, navigation }) => {
             time: "10:20 PM"
         },
         {
-            id: 3,
+            id: 9,
             firstName: "Edgar",
             lastName: "Jones",
             url: "",
@@ -220,7 +220,9 @@ const GroupConversationContainer = ({ route, navigation }) => {
                             </View>
 
                             <View style={[Layout.fill, Layout.row]}>
-                                <Text style={styles.textBubbleOrtherWrapper}>{item['content']}</Text>
+                                <View style={styles.viewBubbleOrtherWrapper}>
+                                    <Text style={styles.textBubbleOrtherWrapper}>{item['content']}</Text>
+                                </View>
                                 <View style={Layout.fill} />
                             </View>
                             <View style={{ width: Responsive.width(49) }} />
@@ -233,7 +235,9 @@ const GroupConversationContainer = ({ route, navigation }) => {
                             <View style={{ width: Responsive.width(49) }} />
                             <View style={[Layout.fill, Layout.row]}>
                                 <View style={Layout.fill} />
-                                <Text style={styles.textBubbleMeWrapper}>{item['content']}</Text>
+                                <View style={styles.viewBubbleMeWrapper}>
+                                    <Text style={styles.textBubbleMeWrapper}>{item['content']}</Text>
+                                </View>
                             </View>
                             <View style={{ marginLeft: Responsive.width(8) }}>
                                 <Avatar
@@ -280,7 +284,9 @@ const GroupConversationContainer = ({ route, navigation }) => {
                             leftNavigation.openDrawer();
                         }}>
                         <CustomImage width={Responsive.height(20)} height={Responsive.height(14)} source={Images.icHamburger} />
-                        <Text style={styles.textBadgetAction}>100</Text>
+                        <View style={styles.viewBadgetActionWrapper}>
+                            <Text style={styles.textBadgetAction}>100</Text>
+                        </View>
                     </TouchableOpacity>
                 }
                 center={
@@ -388,15 +394,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    textBadgetAction: {
+    viewBadgetActionWrapper: {
+        paddingHorizontal: Responsive.height(3),
+        paddingTop: Responsive.height(1),
+        borderRadius: Responsive.height(12),
         position: 'absolute',
         bottom: Responsive.height(2),
         right: 0,
         backgroundColor: '#5D5FEF',
+    },
+    textBadgetAction: {
         color: '#ffffff',
-        paddingHorizontal: Responsive.height(3),
-        paddingTop: Responsive.height(1),
-        borderRadius: Responsive.height(12),
         textAlign: 'center',
         fontSize: Responsive.font(7),
         fontFamily: 'Poppins-Medium',
@@ -454,25 +462,31 @@ const styles = StyleSheet.create({
         left: 0,
         bottom: 0
     },
-    textBubbleOrtherWrapper: {
+    viewBubbleOrtherWrapper: {
         backgroundColor: '#ffffff',
         paddingHorizontal: Responsive.width(17),
         paddingVertical: Responsive.height(14),
         borderBottomLeftRadius: Responsive.height(14),
         borderTopRightRadius: Responsive.height(14),
         borderBottomRightRadius: Responsive.height(14),
+        overflow: "hidden",
+    },
+    textBubbleOrtherWrapper: {
         fontFamily: 'Poppins-Medium',
         fontSize: Responsive.font(14),
         color: '#000000',
         lineHeight: Responsive.width(22),
     },
-    textBubbleMeWrapper: {
+    viewBubbleMeWrapper: {
         backgroundColor: '#5D5FEF',
         paddingHorizontal: Responsive.width(17),
         paddingVertical: Responsive.height(14),
         borderBottomLeftRadius: Responsive.height(14),
         borderTopLeftRadius: Responsive.height(14),
         borderBottomRightRadius: Responsive.height(14),
+        overflow: "hidden",
+    },
+    textBubbleMeWrapper: {
         fontFamily: 'Poppins-Medium',
         fontSize: Responsive.font(14),
         color: '#ffffff',
@@ -480,7 +494,6 @@ const styles = StyleSheet.create({
     },
     inputWrapper: {
         height: Responsive.height(50),
-        borderRadius: Responsive.height(14),
         flexDirection: 'row',
         borderRadius: Responsive.width(12),
         backgroundColor: '#ffffff',

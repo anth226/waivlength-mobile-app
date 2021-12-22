@@ -13,7 +13,8 @@ import { EVENTS } from '@/Constants';
 import EventBus from 'react-native-event-bus';
 import { navigateAndSimpleReset, navigate } from '@/Navigators/utils'
 
-import { CustomImage, DialogCreateAudioRoom } from '@/Components'
+import { CustomImage, DialogCreateAudioRoom, DialogGroupConversationOption, DialogGroupConversationInvite, DialogGroupConversationEvent } from '@/Components'
+import Responsive from 'react-native-lightweight-responsive';
 
 const Stack = createStackNavigator()
 
@@ -21,21 +22,54 @@ const Stack = createStackNavigator()
 const ApplicationNavigator = () => {
   const { Layout, darkMode, NavigationTheme, Images, Common } = useTheme()
   const { colors } = NavigationTheme
-  const modalizeRef = useRef(null);
+  const modalizeCreateAudioRoomRef = useRef(null);
+  const modalizeGroupConversationOptionRef = useRef(null);
+  const modalizeGroupConversationInviteRef = useRef(null);
+  const modalizeGroupConversationEventRef = useRef(null);
 
-  const onOpen = () => {
-    modalizeRef.current?.open();
+  const onOpenAudioRoomDialog = () => {
+    modalizeCreateAudioRoomRef.current?.open();
   };
 
-  const onClose = () => {
-    modalizeRef.current?.close();
+  const onCloseAudioRoomDialog = () => {
+    modalizeCreateAudioRoomRef.current?.close();
+  };
+
+  const onOpenGroupConversationOptionDialog = () => {
+    modalizeGroupConversationOptionRef.current?.open();
+  };
+
+  const onCloseAGroupConversationOptionDialog = () => {
+    modalizeGroupConversationOptionRef.current?.close();
+  };
+
+  const onOpenGroupConversationInviteDialog = () => {
+    modalizeGroupConversationInviteRef.current?.open();
+  };
+
+  const onCloseAGroupConversationInviteDialog = () => {
+    modalizeGroupConversationInviteRef.current?.close();
+  };
+
+  const onOpenGroupConversationEventDialog = () => {
+    modalizeGroupConversationEventRef.current?.open();
+  };
+
+  const onCloseAGroupConversationEventDialog = () => {
+    modalizeGroupConversationEventRef.current?.close();
   };
 
 
   useEffect(() => {
-    EventBus.getInstance().addListener(EVENTS.OPEN_CREATE_AUDIO_ROOM_DIALOG, onOpen)
+    EventBus.getInstance().addListener(EVENTS.OPEN_CREATE_AUDIO_ROOM_DIALOG, onOpenAudioRoomDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_GROUP_CONVERSATION_OPTION_DIALOG, onOpenGroupConversationOptionDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_GROUP_CONVERSATION_INVITE_DIALOG, onOpenGroupConversationInviteDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_GROUP_CONVERSATION_EVENT_DIALOG, onOpenGroupConversationEventDialog)
     return () => {
-      EventBus.getInstance().removeListener(onOpen)
+      EventBus.getInstance().removeListener(onOpenAudioRoomDialog)
+      EventBus.getInstance().removeListener(onOpenGroupConversationOptionDialog)
+      EventBus.getInstance().removeListener(onOpenGroupConversationInviteDialog)
+      EventBus.getInstance().removeListener(onOpenGroupConversationEventDialog)
     };
   });
 
@@ -67,15 +101,28 @@ const ApplicationNavigator = () => {
       </NavigationContainer>
       <DialogCreateAudioRoom
         handlePosition="inside"
-        modalizeRef={modalizeRef}
+        modalizeRef={modalizeCreateAudioRoomRef}
         adjustToContentHeight={true}
         onPressAddATopic={() => {
 
         }}
         onPressLetGo={() => {
-          onClose();
+          onCloseAudioRoomDialog();
           navigate('CreateNewEvent');
         }} />
+      <DialogGroupConversationOption
+        handlePosition="inside"
+        modalizeRef={modalizeGroupConversationOptionRef}
+        modalTopOffset={Responsive.height(35)} />
+      <DialogGroupConversationInvite
+        handlePosition="inside"
+        modalTopOffset={Responsive.height(35)}
+        modalizeRef={modalizeGroupConversationInviteRef} />
+      <DialogGroupConversationEvent
+        handlePosition="inside"
+        modalTopOffset={Responsive.height(35)}
+        modalizeRef={modalizeGroupConversationEventRef}/>
+
     </SafeAreaProvider>
   )
 }

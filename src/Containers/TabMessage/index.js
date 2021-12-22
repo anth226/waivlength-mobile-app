@@ -35,37 +35,31 @@ const TabMessageContainer = ({ navigation }) => {
     <ActionBar
       left={<CustomImage width={Responsive.height(40)} height={Responsive.height(40)} styleImage={{ borderRadius: Responsive.height(40) }} source={{ uri: 'https://picsum.photos/200/200' }} />}
       right={<View style={Layout.row}>
-        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionCalendar}  onPress={() => navigate('CalendarEvent')}/>
+        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionCalendar} onPress={() => navigate('CalendarEvent')} />
         <View style={{ width: Responsive.width(16) }} />
         <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionSearch} onPress={() => navigate('SearchMessage')} />
         <View style={{ width: Responsive.width(16) }} />
-        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icSetting} onPress={() => navigate('SettingMessage')} />
+        <CustomImage width={Responsive.height(40)} height={Responsive.height(40)} source={Images.icActionSetting} onPress={() => navigate('SettingMessage')} />
       </View>}
     />
     <KeyboardAvoidingView
       {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}
       style={[Layout.fill]}
     >
-      <ScrollView
-        nestedScrollEnabled={true}
-        contentContainerStyle={[Layout.alignItemsStart, styles.container, { width }]}
-        style={[Layout.fill]}>
 
-        <Tab.Navigator
-          style={[Layout.fullWidth, { marginTop: Responsive.height(5) }]}
-          screenOptions={{
-            tabBarActiveTintColor: '#5D5FEF',
-            tabBarInactiveTintColor: '#272D37',
-            tabBarStyle: styles.tabBar,
-            tabBarIndicatorStyle: styles.tabIndicator,
-            tabBarLabelStyle: styles.textTabLabel,
-          }}
-        >
-          <Tab.Screen name="Message" component={MessageContainer} options={{ tabBarLabel: 'Messages' }} />
-          <Tab.Screen name="Audio" component={AudioContainer} options={{ tabBarLabel: 'Audio Rooms' }} />
-        </Tab.Navigator>
-
-      </ScrollView>
+      <Tab.Navigator
+        style={[Layout.fullWidth, { marginTop: Responsive.height(5) }]}
+        screenOptions={{
+          tabBarActiveTintColor: '#5D5FEF',
+          tabBarInactiveTintColor: '#272D37',
+          tabBarStyle: styles.tabBar,
+          tabBarIndicatorStyle: styles.tabIndicator,
+          tabBarLabelStyle: styles.textTabLabel,
+        }}
+      >
+        <Tab.Screen name="Message" component={MessageContainer} options={{ tabBarLabel: 'Messages' }} />
+        <Tab.Screen name="Audio" component={AudioContainer} options={{ tabBarLabel: 'Audio Rooms' }} />
+      </Tab.Navigator>
     </KeyboardAvoidingView>
   </SafeAreaView>)
 }

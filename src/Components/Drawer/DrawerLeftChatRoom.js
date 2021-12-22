@@ -4,12 +4,23 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 import { CustomImage } from '@/Components'
+import EventBus from 'react-native-event-bus';
+import { EVENTS } from '@/Constants';
 
 const DrawerLeftChatRoom = ({ style, ...props }) => {
     const { Layout, Images, Common } = useTheme()
 
+    const onOpenGroupConversationOption = () => {
+        EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_OPTION_DIALOG, {})
+    };
 
+    const onOpenGroupConversationInvite = () => {
+        EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_INVITE_DIALOG, {})
+    };
 
+    const onOpenGroupConversationEvent = () => {
+        EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_EVENT_DIALOG, {})
+    };
 
     return (<View style={[Layout.fill, Layout.row]}>
         <View style={styles.listTabWrapper}>
@@ -19,11 +30,12 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(12) }]}>
                 <CustomImage height={Responsive.height(12)} width={Responsive.height(12)} source={Images.icChatRoom} style={{ paddingHorizontal: Responsive.width(15) }} />
                 <Text style={styles.textChatRoom}>Chat Room</Text>
-                <CustomImage height={Responsive.height(24)} width={Responsive.height(24)} source={Images.icActionOption} onPress={() => { }} />
+                <CustomImage height={Responsive.height(24)} width={Responsive.height(24)} source={Images.icActionOption} onPress={onOpenGroupConversationOption} />
             </View>
-            <View style={{ paddingHorizontal: Responsive.width(20) }}>
+            <View style={{ paddingHorizontal: Responsive.width(20), marginTop: Responsive.height(8) }}>
                 <TouchableOpacity
                     style={[Layout.fullWidth, Common.button.outlineRounded, styles.buttonInvite]}
+                    onPress={onOpenGroupConversationInvite}
                 >
                     <CustomImage height={Responsive.height(18)} width={Responsive.height(18)} source={Images.icAddProfile} />
                     <Text style={styles.textButtonInvite}>Invite</Text>
@@ -31,11 +43,14 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
 
             </View>
 
-            <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), marginTop: Responsive.height(30) }]}>
+            <TouchableOpacity
+                style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), marginTop: Responsive.height(30) }]}
+                onPress={onOpenGroupConversationEvent}
+            >
                 <CustomImage height={Responsive.height(24)} width={Responsive.height(24)} source={Images.icCalendar} tintColor={'#44486F'} style={{ paddingHorizontal: Responsive.width(15) }} />
                 <View style={{ width: Responsive.width(10) }} />
                 <Text style={styles.textChatRoom}>EVENTS</Text>
-            </View>
+            </TouchableOpacity>
 
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), marginTop: Responsive.height(10) }]}>
                 <CustomImage height={Responsive.height(12)} width={Responsive.height(12)} source={Images.icChatRoom} style={{ paddingHorizontal: Responsive.width(15) }} />
@@ -44,9 +59,9 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
             </View>
 
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingRight: Responsive.width(20), marginTop: Responsive.height(34) }]}>
-                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} source={Images.icArrow} tintColor={'#737892'} style={{ transform: [{ rotate: '90deg' }], paddingHorizontal: Responsive.width(15) }} />
-                <Text style={[styles.textChatRoom, {  }]}>INTERNAL SPACE</Text>
-                <CustomImage height={Responsive.height(12)} width={Responsive.height(12)} source={Images.icPlus} onPress={() => {}} />
+                <CustomImage height={Responsive.height(10)} width={Responsive.height(10)} source={Images.icArrowDown2} tintColor={'#737892'} style={{ paddingHorizontal: Responsive.width(15) }} />
+                <Text style={[styles.textChatRoom, {}]}>INTERNAL SPACE</Text>
+                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { }} />
             </View>
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(2) }]}>
                 <CustomImage height={Responsive.height(19)} width={Responsive.height(19)} source={Images.icChatRoomLock} style={{ paddingHorizontal: Responsive.width(15) }} />
@@ -61,9 +76,9 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
 
 
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingRight: Responsive.width(20), marginTop: Responsive.height(34) }]}>
-                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} source={Images.icArrow} tintColor={'#737892'} style={{ transform: [{ rotate: '90deg' }], paddingHorizontal: Responsive.width(15) }} />
-                <Text style={[styles.textChatRoom, {  }]}>VERIFY YOURSELF FIRST</Text>
-                <CustomImage height={Responsive.height(12)} width={Responsive.height(12)} source={Images.icPlus} onPress={() => {}} />
+                <CustomImage height={Responsive.height(10)} width={Responsive.height(10)} source={Images.icArrowDown2} tintColor={'#737892'} style={{ paddingHorizontal: Responsive.width(15) }} />
+                <Text style={[styles.textChatRoom, {}]}>VERIFY YOURSELF FIRST</Text>
+                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { }} />
             </View>
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(2) }]}>
                 <CustomImage height={Responsive.height(19)} width={Responsive.height(19)} source={Images.icChatRoomLock} style={{ paddingHorizontal: Responsive.width(15) }} />
@@ -72,9 +87,9 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
             </View>
 
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingRight: Responsive.width(20), marginTop: Responsive.height(34) }]}>
-                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} source={Images.icArrow} tintColor={'#737892'} style={{ transform: [{ rotate: '90deg' }], paddingHorizontal: Responsive.width(15) }} />
-                <Text style={[styles.textChatRoom, {  }]}>WELCOME WAIVERS</Text>
-                <CustomImage height={Responsive.height(12)} width={Responsive.height(12)} source={Images.icPlus} onPress={() => {}} />
+                <CustomImage height={Responsive.height(10)} width={Responsive.height(10)} source={Images.icArrowDown2} tintColor={'#737892'} style={{ paddingHorizontal: Responsive.width(15) }} />
+                <Text style={[styles.textChatRoom, {}]}>WELCOME WAIVERS</Text>
+                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { }} />
             </View>
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(2) }]}>
                 <CustomImage height={Responsive.height(19)} width={Responsive.height(19)} source={Images.icRules} style={{ paddingHorizontal: Responsive.width(15) }} />
@@ -93,9 +108,9 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
             </View>
 
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingRight: Responsive.width(20), marginTop: Responsive.height(34) }]}>
-                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} source={Images.icArrow} tintColor={'#737892'} style={{ transform: [{ rotate: '90deg' }], paddingHorizontal: Responsive.width(15) }} />
-                <Text style={[styles.textChatRoom, {  }]}>WAIVLENGTH</Text>
-                <CustomImage height={Responsive.height(12)} width={Responsive.height(12)} source={Images.icPlus} onPress={() => {}} />
+                <CustomImage height={Responsive.height(10)} width={Responsive.height(10)} source={Images.icArrowDown2} tintColor={'#737892'} style={{ paddingHorizontal: Responsive.width(15) }} />
+                <Text style={[styles.textChatRoom, {}]}>WAIVLENGTH</Text>
+                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { }} />
             </View>
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(2) }]}>
                 <CustomImage height={Responsive.height(19)} width={Responsive.height(19)} source={Images.icChatRoomLock} style={{ paddingHorizontal: Responsive.width(15) }} />
