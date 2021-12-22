@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, View, Text, FlatList, TextInput, StyleSheet, useWindowDimensions, TouchableOpacity, DrawerLayoutAndroidComponent } from 'react-native'
+import { KeyboardAvoidingView, View, Text, FlatList, TextInput, StyleSheet, useWindowDimensions, TouchableOpacity } from 'react-native'
 import { createDrawerNavigator, useDrawerProgress } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView } from 'react-native-gesture-handler'
@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import _ from 'lodash';
 import { ExampleContainer } from '@/Containers'
 
-import { CustomImage, ActionBar, DrawerLeftChatRoom, GradientBackground, BackIcon, Avatar, TypingAnimation } from '@/Components'
+import { CustomImage, ActionBar, DrawerLeftChatRoom, GradientBackground, BackIcon, Avatar, TypingAnimation, DrawerRightChatRoom } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 import Animated from 'react-native-reanimated';
@@ -24,7 +24,7 @@ const DrawerNavigator = ({ navigation }) => {
 
     const drawerContent = (props) => {
         return (<Animated.View style={[styles.stack, { borderRadius: 10, transform: [{ scale: 0.9 }] }]}>
-            <DrawerLeftChatRoom />
+            <DrawerLeftChatRoom {...props} />
         </Animated.View>)
     }
 
@@ -69,7 +69,10 @@ const DrawerRightNavigator = ({ navigation }) => {
     const animatedStyle = { borderRadius, transform: [{ scale }] };
 
     const drawerContent = (props) => {
-        return <Text>Hello Right X</Text>
+        return (
+            <Animated.View style={[styles.stack, { borderRadius: 10, transform: [{ scale: 0.9 }] }]}>
+                <DrawerRightChatRoom {...props} />
+            </Animated.View>)
     }
 
     return (

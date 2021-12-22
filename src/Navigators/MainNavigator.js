@@ -9,7 +9,10 @@ import {
   SearchMessageContainer,
   ConversationAudioContainer,
   CreateNewEventContainer,
-  GroupConversationContainer
+  GroupConversationContainer,
+  CreateNewChannelContainer,
+  PinnedMessageContainer,
+  ReportServerContainer
 } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
@@ -126,6 +129,9 @@ const MainNavigator = () => {
       <Stack.Screen name="ConversationAudio" component={ConversationAudioContainer} />
       <Stack.Screen name="CreateNewEvent" component={CreateNewEventContainer} />
       <Stack.Screen name="GroupConversation" component={GroupConversationContainer} />
+      <Stack.Screen name="CreateNewChannel" component={CreateNewChannelContainer} />
+      <Stack.Screen name="PinnedMessage" component={PinnedMessageContainer} />
+      <Stack.Screen name="ReportServer" component={ReportServerContainer} />
     </Stack.Navigator>
   )
 }

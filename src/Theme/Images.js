@@ -107,7 +107,23 @@ export default function () {
     icCheck2: require('@/Assets/Icons/ic_check_2.png'),
     icEmptyEvent: require('@/Assets/Icons/ic_empty_event.png'),
     icArrowDown2: require('@/Assets/Icons/ic_arrow_down_2.png'),
+    icVolume: require('@/Assets/Icons/ic_volume.png'),
 
 
+    // Drawer Left
+    icStrokeGradient: require('@/Assets/Icons/ic_stroke_gradient.png'),
+    icGradientCircle: require('@/Assets/Icons/ic_gradient_circle.png'),
+    icWaivlength: require('@/Assets/Icons/ic_waivlength.png'),
+    icMessagesTab: require('@/Assets/Icons/ic_messages_tab.png'),
+    icAddTab: require('@/Assets/Icons/ic_add_tab.png'),
+    icCircleTab1506: require('@/Assets/Icons/ic_circle_tab_1506.png'),
+    icCircleTab1507: require('@/Assets/Icons/ic_circle_tab_1507.png'),
+    
+    // Drawer Right
+    icInviteDrawerRight: require('@/Assets/Icons/ic_invite_drawer_right.png'),
+    icSettingDrawerRight: require('@/Assets/Icons/ic_setting_drawer_right.png'),
+    icPinDrawerRight: require('@/Assets/Icons/ic_pin_drawer_right.png'),
+    icNotificationDrawerRight: require('@/Assets/Icons/ic_notification_drawer_right.png'),
+    icCheckBot: require('@/Assets/Icons/ic_check_bot.png'),
   }
 }

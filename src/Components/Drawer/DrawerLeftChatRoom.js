@@ -6,6 +6,7 @@ import Responsive from 'react-native-lightweight-responsive';
 import { CustomImage } from '@/Components'
 import EventBus from 'react-native-event-bus';
 import { EVENTS } from '@/Constants';
+import { navigateAndSimpleReset, navigate } from '@/Navigators/utils'
 
 const DrawerLeftChatRoom = ({ style, ...props }) => {
     const { Layout, Images, Common } = useTheme()
@@ -24,7 +25,42 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
 
     return (<View style={[Layout.fill, Layout.row]}>
         <View style={styles.listTabWrapper}>
-            <Text>HiHI</Text>
+            <View style={{ marginLeft: Responsive.width(2) }}>
+                <View style={styles.listTabWrapperCircleWhite}>
+                    <CustomImage height={Responsive.width(26)} width={Responsive.width(26)} source={Images.icMessagesTab} />
+                </View>
+                <View style={styles.circleUnread}>
+                    <Text style={styles.textUnread}>12</Text>
+                </View>
+            </View>
+
+            <View style={styles.viewStrokeCircle}>
+                <CustomImage height={Responsive.width(62)} width={Responsive.width(62)} source={Images.icStrokeGradient} style={{ position: 'absolute' }} />
+                <CustomImage height={Responsive.width(56)} width={Responsive.width(56)} source={Images.icGradientCircle} style={{ position: 'absolute' }} />
+                <CustomImage height={Responsive.width(35)} width={Responsive.width(30)} source={Images.icWaivlength} style={{ position: 'absolute' }} />
+            </View>
+
+            <View>
+                <View style={styles.listTabWrapperCircleWhite}>
+                    <CustomImage height={Responsive.width(56)} width={Responsive.width(56)} source={Images.icCircleTab1506} />
+                </View>
+                <View style={styles.circleUnread}>
+                    <Text style={styles.textUnread}>12</Text>
+                </View>
+            </View>
+
+            <View>
+                <View style={styles.listTabWrapperCircleWhite}>
+                    <CustomImage height={Responsive.width(56)} width={Responsive.width(56)} source={Images.icCircleTab1507} />
+                </View>
+                <View style={styles.circleUnread}>
+                    <Text style={styles.textUnread}>12</Text>
+                </View>
+            </View>
+
+            <View style={styles.listTabWrapperBoundButtonAdd}>
+                <CustomImage height={Responsive.width(30)} width={Responsive.width(30)} source={Images.icAddTab} />
+            </View>
         </View>
         <View style={styles.listContentWrapper}>
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(12) }]}>
@@ -61,7 +97,7 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingRight: Responsive.width(20), marginTop: Responsive.height(34) }]}>
                 <CustomImage height={Responsive.height(10)} width={Responsive.height(10)} source={Images.icArrowDown2} tintColor={'#737892'} style={{ paddingHorizontal: Responsive.width(15) }} />
                 <Text style={[styles.textChatRoom, {}]}>INTERNAL SPACE</Text>
-                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { }} />
+                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { navigate('CreateNewChannel') }} />
             </View>
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(2) }]}>
                 <CustomImage height={Responsive.height(19)} width={Responsive.height(19)} source={Images.icChatRoomLock} style={{ paddingHorizontal: Responsive.width(15) }} />
@@ -78,7 +114,7 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingRight: Responsive.width(20), marginTop: Responsive.height(34) }]}>
                 <CustomImage height={Responsive.height(10)} width={Responsive.height(10)} source={Images.icArrowDown2} tintColor={'#737892'} style={{ paddingHorizontal: Responsive.width(15) }} />
                 <Text style={[styles.textChatRoom, {}]}>VERIFY YOURSELF FIRST</Text>
-                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { }} />
+                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { navigate('CreateNewChannel') }} />
             </View>
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(2) }]}>
                 <CustomImage height={Responsive.height(19)} width={Responsive.height(19)} source={Images.icChatRoomLock} style={{ paddingHorizontal: Responsive.width(15) }} />
@@ -89,7 +125,7 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingRight: Responsive.width(20), marginTop: Responsive.height(34) }]}>
                 <CustomImage height={Responsive.height(10)} width={Responsive.height(10)} source={Images.icArrowDown2} tintColor={'#737892'} style={{ paddingHorizontal: Responsive.width(15) }} />
                 <Text style={[styles.textChatRoom, {}]}>WELCOME WAIVERS</Text>
-                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { }} />
+                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { navigate('CreateNewChannel') }} />
             </View>
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(2) }]}>
                 <CustomImage height={Responsive.height(19)} width={Responsive.height(19)} source={Images.icRules} style={{ paddingHorizontal: Responsive.width(15) }} />
@@ -110,7 +146,7 @@ const DrawerLeftChatRoom = ({ style, ...props }) => {
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingRight: Responsive.width(20), marginTop: Responsive.height(34) }]}>
                 <CustomImage height={Responsive.height(10)} width={Responsive.height(10)} source={Images.icArrowDown2} tintColor={'#737892'} style={{ paddingHorizontal: Responsive.width(15) }} />
                 <Text style={[styles.textChatRoom, {}]}>WAIVLENGTH</Text>
-                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { }} />
+                <CustomImage height={Responsive.height(20)} width={Responsive.height(20)} styleImage={{ width: Responsive.height(12), height: Responsive.height(12) }} source={Images.icPlus} onPress={() => { navigate('CreateNewChannel') }} />
             </View>
             <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingHorizontal: Responsive.width(20), paddingVertical: Responsive.height(2) }]}>
                 <CustomImage height={Responsive.height(19)} width={Responsive.height(19)} source={Images.icChatRoomLock} style={{ paddingHorizontal: Responsive.width(15) }} />
@@ -138,8 +174,47 @@ const styles = StyleSheet.create({
         flexGrow: 1
     },
     listTabWrapper: {
-        width: Responsive.width(60),
-        height: '100%'
+        width: Responsive.width(79),
+        height: '100%',
+    },
+    listTabWrapperCircleWhite: {
+        height: Responsive.width(56),
+        width: Responsive.width(56),
+        backgroundColor: '#ffffff',
+        borderRadius: Responsive.width(56 / 2.0),
+        marginTop: Responsive.height(10),
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    viewStrokeCircle: {
+        width: Responsive.width(62),
+        height: Responsive.width(62),
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: Responsive.height(10),
+        marginRight: Responsive.width(10),
+    },
+    circleUnread: {
+        backgroundColor: '#FA4D56', width: Responsive.width(20), height: Responsive.width(20), position: 'absolute',
+        right: Responsive.width(20), top: Responsive.height(5), zIndex: 2,
+        borderRadius: Responsive.width(10), alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textUnread: {
+        color: '#ffffff',
+        fontFamily: 'Poppins-SemiBold',
+        fontSize: Responsive.font(12),
+    },
+    listTabWrapperBoundButtonAdd: {
+        height: Responsive.width(56),
+        width: Responsive.width(56),
+        backgroundColor: '#ffffff',
+        borderRadius: Responsive.width(56 / 2.0),
+        marginTop: Responsive.height(10),
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#24A148',
+        borderWidth: Responsive.width(2),
     },
     listContentWrapper: {
         flex: 1,

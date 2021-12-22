@@ -6,7 +6,10 @@ import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 import { Modalize } from 'react-native-modalize';
 import { Switch } from 'react-native-switch';
+import EventBus from 'react-native-event-bus';
 import { CustomImage } from '@/Components'
+import { EVENTS } from '@/Constants'
+import { navigateAndSimpleReset, navigate } from '@/Navigators/utils'
 
 const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPressAddATopic, onPressLetGo, ...props }) => {
     const { Layout, Images, Common } = useTheme()
@@ -98,11 +101,21 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
                         </View>
                     </TouchableOpacity>
                     <View style={[Layout.fullWidth, styles.lineAction]} />
-                    <TouchableOpacity style={styles.itemAction}>
+                    <TouchableOpacity
+                        style={styles.itemAction}
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            navigate('ReportServer')
+                        }}
+                    >
                         <Text style={styles.textGroupAction}>Report Server</Text>
                     </TouchableOpacity>
                     <View style={[Layout.fullWidth, styles.lineAction]} />
-                    <TouchableOpacity style={styles.itemAction}>
+                    <TouchableOpacity style={styles.itemAction}
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_LEAVE_GROUP_DIALOG, {})
+                        }}>
                         <Text style={[styles.textGroupAction, { color: '#DA1E28' }]}>Leave Server</Text>
                     </TouchableOpacity>
 
