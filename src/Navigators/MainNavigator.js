@@ -20,7 +20,8 @@ import {
   SettingNotificationContainer,
   CreateNewCategoryContainer,
   EditServerProfileContainer,
-  ReviewReportGroupContainer
+  ReviewReportGroupContainer,
+  SettingChannelContainer
 } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
@@ -149,6 +150,7 @@ const MainNavigator = () => {
       <Stack.Screen name="CreateNewCategory" component={CreateNewCategoryContainer} />
       <Stack.Screen name="EditServerProfile" component={EditServerProfileContainer} />
       <Stack.Screen name="ReviewReportGroup" component={ReviewReportGroupContainer} />
+      <Stack.Screen name="SettingChannel" component={SettingChannelContainer} />
       
     </Stack.Navigator>
   )

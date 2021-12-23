@@ -17,4 +17,6 @@ export { default as SettingNotificationContainer } from './SettingNotificationCo
 export { default as CreateNewCategoryContainer } from './CreateNewCategoryContainer'
 export { default as EditServerProfileContainer } from './EditServerProfileContainer'
 export { default as ReviewReportGroupContainer } from './ReviewReportGroupContainer'
+export { default as SettingChannelContainer } from './SettingChannelContainer'
+
 

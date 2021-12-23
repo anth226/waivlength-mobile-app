@@ -72,6 +72,7 @@ const DrawerRightChatRoom = ({ style, ...props }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
+                    onPress={() => navigate('SettingChannel')}
                     style={[styles.buttonTab]}
                 >
                     <CustomImage height={Responsive.height(22)} width={Responsive.height(22)} source={Images.icSettingDrawerRight} />
@@ -89,7 +90,7 @@ const DrawerRightChatRoom = ({ style, ...props }) => {
 
             </View>
 
-            <View style={{ flex: 1, paddingHorizontal: Responsive.width(20)}}>
+            <View style={{ flex: 1, paddingHorizontal: Responsive.width(20) }}>
 
                 <SectionList
                     ItemSeparatorComponent={FlatListItemSeparator}
@@ -99,9 +100,11 @@ const DrawerRightChatRoom = ({ style, ...props }) => {
                         { index: 2, title: 'BOTS - 3', data: C },
                     ]}
                     renderSectionHeader={({ section }) => (
-                        
-                        <View style={[Layout.fullWidth, Layout.rowHCenter, { paddingRight: Responsive.width(20), marginTop: section.index === 0 ? 0 : Responsive.height(34),
-                        marginBottom: Responsive.height(10) }]}>
+
+                        <View style={[Layout.fullWidth, Layout.rowHCenter, {
+                            paddingRight: Responsive.width(20), marginTop: section.index === 0 ? 0 : Responsive.height(34),
+                            marginBottom: Responsive.height(10)
+                        }]}>
                             <Text style={[styles.textChatRoom, {}]}>{section.title}</Text>
                         </View>
                     )}
@@ -129,9 +132,9 @@ const DrawerRightChatRoom = ({ style, ...props }) => {
                                         alignItems: 'center',
                                         paddingHorizontal: Responsive.width(5),
                                     }}>
-                
+
                                         <CustomImage height={Responsive.height(10)} width={Responsive.width(12)} source={Images.icCheckBot} />
-                                        <Text style={[styles.textBot, {marginLeft: Responsive.width(5), marginTop: Responsive.height(3)}]}>BOT</Text>
+                                        <Text style={[styles.textBot, { marginLeft: Responsive.width(5), marginTop: Responsive.height(3) }]}>BOT</Text>
                                     </View>
                                 </View>
                                 <Text style={styles.textMessageChatRoom}>{item.value}</Text>
