@@ -10,7 +10,7 @@ import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers
 
 import { ActionBar, GradientBackground, CustomImage, RadioButton, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
-import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
+import { navigateAndSimpleReset, goBack, navigate } from '@/Navigators/utils'
 import _ from 'lodash'
 
 
@@ -54,7 +54,11 @@ const ReportServerContainer = ({ navigation }) => {
           <Text style={[Layout.fullWidth, styles.textSubHeader]}>Report this server to Waivlength Trust & Safety. Please select the option that best describes the problem.</Text>
         </View>
         <View style={{ height: Responsive.height(20) }} />
-        <TouchableOpacity style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
+        <TouchableOpacity
+          onPress={() => {
+            navigate('ReviewReportGroup')
+          }}
+          style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
           <View style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
             <Text style={[Layout.fill, styles.textItemAction]}>Promoting or encouraging spam</Text>
             <CustomImage
@@ -66,7 +70,11 @@ const ReportServerContainer = ({ navigation }) => {
           </View>
         </TouchableOpacity>
         <View style={{ height: Responsive.height(18) }} />
-        <TouchableOpacity style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
+        <TouchableOpacity
+          onPress={() => {
+            navigate('ReviewReportGroup')
+          }}
+          style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
           <View style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
             <Text style={[Layout.fill, styles.textItemAction]}>Abuse or harassment</Text>
             <CustomImage
@@ -78,7 +86,11 @@ const ReportServerContainer = ({ navigation }) => {
           </View>
         </TouchableOpacity>
         <View style={{ height: Responsive.height(18) }} />
-        <TouchableOpacity style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
+        <TouchableOpacity
+          onPress={() => {
+            navigate('ReviewReportGroup')
+          }}
+          style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
           <View style={{ height: Responsive.height(90), alignItems: 'center', flexDirection: 'row' }}>
             <Text style={[Layout.fill, styles.textItemAction]}>Explicit, graphic, or unwanted sexual content</Text>
             <CustomImage
@@ -90,7 +102,11 @@ const ReportServerContainer = ({ navigation }) => {
           </View>
         </TouchableOpacity>
         <View style={{ height: Responsive.height(18) }} />
-        <TouchableOpacity style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
+        <TouchableOpacity
+          onPress={() => {
+            navigate('ReviewReportGroup')
+          }}
+          style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
           <View style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
             <Text style={[Layout.fill, styles.textItemAction]}>Something else</Text>
             <CustomImage
@@ -102,8 +118,14 @@ const ReportServerContainer = ({ navigation }) => {
           </View>
         </TouchableOpacity>
 
+        <View style={Layout.fill} />
 
-
+        <TouchableOpacity
+          style={[Layout.fullWidth, Common.button.rounded, styles.buttonCancel]}
+          onPress={goBack}>
+          <Text style={styles.textButtonCancel}>Cancel</Text>
+        </TouchableOpacity>
+        <View style={{ height: Responsive.height(42) }} />
       </ScrollView>
     </KeyboardAvoidingView>
   </SafeAreaView>)
@@ -137,5 +159,19 @@ const styles = StyleSheet.create({
     lineHeight: Responsive.width(22),
     color: '#30333E',
     paddingHorizontal: Responsive.width(20),
+  },
+  buttonCancel: {
+    height: Responsive.height(46),
+    borderRadius: Responsive.height(23),
+    backgroundColor: 'transparent',
+    borderWidth: Responsive.height(1),
+    borderColor: '#B7C2CD',
+    height: Responsive.height(46)
+  },
+  textButtonCancel: {
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: Responsive.font(14),
+    lineHeight: Responsive.width(22),
+    color: '#55606B',
   },
 });

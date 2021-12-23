@@ -10,7 +10,7 @@ import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers
 
 import { ActionBar, GradientBackground, CustomImage, RadioButton, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
-import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
+import { navigateAndSimpleReset, goBack, navigate } from '@/Navigators/utils'
 import _ from 'lodash'
 
 

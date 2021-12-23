@@ -40,6 +40,7 @@ const DrawerNavigator = ({ navigation }) => {
                     backgroundColor: 'transparent',
                     width: Responsive.width(342),
                 },
+                lazy: true
             }}
             drawerContent={drawerContent} >
             <Drawer.Screen

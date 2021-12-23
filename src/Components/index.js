@@ -14,6 +14,7 @@ export { default as TagGroup } from './TagGroup'
 export { default as Avatar } from './Avatar'
 export { default as AvatarGroup } from './AvatarGroup'
 export { default as TypingAnimation } from './TypingAnimation'
+export { default as HorizontalProgressBar } from './HorizontalProgressBar'
 
 export * from './Dialog'
 export * from './Drawer'

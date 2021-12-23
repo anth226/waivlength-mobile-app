@@ -16,7 +16,11 @@ import {
   CreateNewEventStep1Container,
   CreateNewEventStep2Container,
   CreateNewEventStep3Container,
-  SettingServerContainer
+  SettingServerContainer,
+  SettingNotificationContainer,
+  CreateNewCategoryContainer,
+  EditServerProfileContainer,
+  ReviewReportGroupContainer
 } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
@@ -37,10 +41,11 @@ const MainTabNavigator = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName='Message'
+      initialRouteName='Home'
       screenOptions={{
         tabBarInactiveTintColor: '#00ff00',
         headerShown: false,
+        lazy: true,
         tabBarStyle: {
           height: Responsive.height(88),
           borderTopColor: 'transparent',
@@ -140,6 +145,11 @@ const MainNavigator = () => {
       <Stack.Screen name="CreateNewEventStep2" component={CreateNewEventStep2Container} />
       <Stack.Screen name="CreateNewEventStep3" component={CreateNewEventStep3Container} />
       <Stack.Screen name="SettingServer" component={SettingServerContainer} />
+      <Stack.Screen name="SettingNotification" component={SettingNotificationContainer} />
+      <Stack.Screen name="CreateNewCategory" component={CreateNewCategoryContainer} />
+      <Stack.Screen name="EditServerProfile" component={EditServerProfileContainer} />
+      <Stack.Screen name="ReviewReportGroup" component={ReviewReportGroupContainer} />
+      
     </Stack.Navigator>
   )
 }

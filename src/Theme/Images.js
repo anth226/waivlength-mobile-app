@@ -48,10 +48,10 @@ export default function () {
     icTabNotificationFocused: require('@/Assets/Icons/ic_tab_notification_focused.png'),
     icTabChallenge: require('@/Assets/Icons/ic_tab_challenge.png'),
     icTabChallengeFocused: require('@/Assets/Icons/ic_tab_challenge_focused.png'),
-    
+
     bgTab: require('@/Assets/Images/bg_tab.png'),
-    
-    
+
+
 
 
     icActionSetting: require('@/Assets/Icons/ic_action_setting.png'),
@@ -108,7 +108,7 @@ export default function () {
     icEmptyEvent: require('@/Assets/Icons/ic_empty_event.png'),
     icArrowDown2: require('@/Assets/Icons/ic_arrow_down_2.png'),
     icVolume: require('@/Assets/Icons/ic_volume.png'),
-
+    icEdit2: require('@/Assets/Icons/ic_edit_2.png'),
 
     // Drawer Left
     icStrokeGradient: require('@/Assets/Icons/ic_stroke_gradient.png'),
@@ -118,7 +118,7 @@ export default function () {
     icAddTab: require('@/Assets/Icons/ic_add_tab.png'),
     icCircleTab1506: require('@/Assets/Icons/ic_circle_tab_1506.png'),
     icCircleTab1507: require('@/Assets/Icons/ic_circle_tab_1507.png'),
-    
+
     // Drawer Right
     icInviteDrawerRight: require('@/Assets/Icons/ic_invite_drawer_right.png'),
     icSettingDrawerRight: require('@/Assets/Icons/ic_setting_drawer_right.png'),
@@ -134,6 +134,17 @@ export default function () {
     icRules2: require('@/Assets/Icons/ic_rules_2.png'),
     icBan: require('@/Assets/Icons/ic_ban.png'),
     icEdit: require('@/Assets/Icons/ic_edit.png'),
+
+    // Home Tab
+    icThreeDotVertical: require('@/Assets/Icons/ic_three_dot_vertical.png'),
+    icLikeHomeTabSmall: require('@/Assets/Icons/ic_like_home_tab_small.png'),
+    icCommentHomeTabSmall: require('@/Assets/Icons/ic_comment_home_tab_small.png'),
+    icShareHomeTabSmall: require('@/Assets/Icons/ic_share_home_tab_small.png'),
+    icBookmarkHomeTabSmall: require('@/Assets/Icons/ic_bookmark_home_tab_small.png'),
+    icEmojiHomeTab: require('@/Assets/Icons/ic_emoji_home_tab.png'),
+    icHeartHomeTab: require('@/Assets/Icons/ic_heart_home_tab.png'),
+    icBookOpen: require('@/Assets/Icons/ic_book_open.png'),
+
 
   }
 }

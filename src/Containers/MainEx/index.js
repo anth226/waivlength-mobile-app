@@ -13,3 +13,8 @@ export { default as CreateNewEventStep2Container } from './CreateNewEventStep2Co
 export { default as CreateNewEventStep3Container } from './CreateNewEventStep3Container'
 
 export { default as SettingServerContainer } from './SettingServerContainer'
+export { default as SettingNotificationContainer } from './SettingNotificationContainer'
+export { default as CreateNewCategoryContainer } from './CreateNewCategoryContainer'
+export { default as EditServerProfileContainer } from './EditServerProfileContainer'
+export { default as ReviewReportGroupContainer } from './ReviewReportGroupContainer'
+

@@ -43,7 +43,12 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
                         <CustomImage width={Responsive.height(22)} height={Responsive.height(22)} source={Images.icAddProfile2} />
                         <Text style={styles.textAction}>Invite</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[Layout.fill, Layout.column, { justifyContent: 'center', alignItems: 'center' }]}>
+                    <TouchableOpacity
+                        style={[Layout.fill, Layout.column, { justifyContent: 'center', alignItems: 'center' }]}
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            navigate('SettingNotification')
+                        }}>
                         <CustomImage width={Responsive.height(22)} height={Responsive.height(22)} source={Images.icNotification} />
                         <Text style={styles.textAction}>Notifications</Text>
                     </TouchableOpacity>
@@ -67,7 +72,12 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
                         <Text style={styles.textGroupAction}>Create Channel</Text>
                     </TouchableOpacity>
                     <View style={[Layout.fullWidth, styles.lineAction]} />
-                    <TouchableOpacity style={styles.itemAction}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            navigate('CreateNewCategory')
+                        }}
+                        style={styles.itemAction}>
                         <Text style={styles.textGroupAction}>Create Category</Text>
                     </TouchableOpacity>
                     <View style={[Layout.fullWidth, styles.lineAction]} />
@@ -80,7 +90,12 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
 
                 <View style={[Layout.fill, Layout.column, styles.groupActionWrapper, { marginHorizontal: Responsive.width(20) }]}>
 
-                    <TouchableOpacity style={styles.itemAction}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            navigate('EditServerProfile')
+                        }}
+                        style={styles.itemAction}>
                         <Text style={styles.textGroupAction}>Edit Server Profile</Text>
                     </TouchableOpacity>
                     <View style={[Layout.fullWidth, styles.lineAction]} />
