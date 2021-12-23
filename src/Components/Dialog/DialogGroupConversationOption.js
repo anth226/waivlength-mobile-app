@@ -47,7 +47,12 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
                         <CustomImage width={Responsive.height(22)} height={Responsive.height(22)} source={Images.icNotification} />
                         <Text style={styles.textAction}>Notifications</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[Layout.fill, Layout.column, { justifyContent: 'center', alignItems: 'center' }]}>
+                    <TouchableOpacity
+                        style={[Layout.fill, Layout.column, { justifyContent: 'center', alignItems: 'center' }]}
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            navigate('SettingServer')
+                        }}>
                         <CustomImage width={Responsive.height(22)} height={Responsive.height(22)} source={Images.icSetting} />
                         <Text style={styles.textAction}>Settings</Text>
                     </TouchableOpacity>

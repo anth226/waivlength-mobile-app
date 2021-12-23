@@ -39,7 +39,7 @@ const CreateNewChannelContainer = ({ navigation }) => {
           <Text style={styles.textCancel}>Cancel</Text>
         </TouchableOpacity>
       }
-      center={<Text style={styles.textTitle}>Create Chancel</Text>}
+      center={<Text style={styles.textTitle}>Create Channel</Text>}
       right={
         <TouchableOpacity style={styles.buttonTextActionBar} onPress={goBack} >
           <Text style={styles.textCreate}>Create</Text>

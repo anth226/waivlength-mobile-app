@@ -138,7 +138,7 @@ const ApplicationNavigator = () => {
         }}
         onPressLetGo={() => {
           onCloseAudioRoomDialog();
-          navigate('CreateNewEvent');
+          navigate('CreateNewAudioRoom');
         }} />
       <DialogGroupConversationOption
         handlePosition="inside"

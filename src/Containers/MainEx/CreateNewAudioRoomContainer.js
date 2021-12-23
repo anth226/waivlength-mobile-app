@@ -14,7 +14,7 @@ import { navigateAndSimpleReset, navigate, goBack } from '@/Navigators/utils'
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
-const CreateNewEventContainer = () => {
+const CreateNewAudioRoomContainer = () => {
     const { Layout, Gutters, Fonts, Common, Images } = useTheme()
     const { t } = useTranslation()
     const { width } = useWindowDimensions();
@@ -155,7 +155,7 @@ const CreateNewEventContainer = () => {
     </SafeAreaView>)
 }
 
-export default CreateNewEventContainer
+export default CreateNewAudioRoomContainer
 
 const styles = StyleSheet.create({
     parentContainer: {

@@ -7,6 +7,7 @@ import Responsive from 'react-native-lightweight-responsive';
 import { Modalize } from 'react-native-modalize';
 import { Switch } from 'react-native-switch';
 import { CustomImage, Avatar } from '@/Components'
+import { navigateAndSimpleReset, navigate, goBack } from '@/Navigators/utils'
 
 const DialogGroupConversationEvent = ({ height, width, style, modalizeRef, onPressAddATopic, onPressLetGo, ...props }) => {
     const { Layout, Images, Common } = useTheme()
@@ -107,6 +108,7 @@ const DialogGroupConversationEvent = ({ height, width, style, modalizeRef, onPre
                 <View style={Layout.fill} />
                 <TouchableOpacity onPress={() => {
                     modalizeRef.current?.close();
+                    navigate('CreateNewEventStep1')
                 }}>
                     <Text style={styles.textCreate}>Create</Text>
                 </TouchableOpacity>

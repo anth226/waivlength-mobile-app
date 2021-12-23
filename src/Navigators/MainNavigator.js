@@ -8,11 +8,15 @@ import {
   NewMessageContainer,
   SearchMessageContainer,
   ConversationAudioContainer,
-  CreateNewEventContainer,
+  CreateNewAudioRoomContainer,
   GroupConversationContainer,
   CreateNewChannelContainer,
   PinnedMessageContainer,
-  ReportServerContainer
+  ReportServerContainer,
+  CreateNewEventStep1Container,
+  CreateNewEventStep2Container,
+  CreateNewEventStep3Container,
+  SettingServerContainer
 } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
@@ -127,11 +131,15 @@ const MainNavigator = () => {
       <Stack.Screen name="NewMessage" component={NewMessageContainer} />
       <Stack.Screen name="SearchMessage" component={SearchMessageContainer} />
       <Stack.Screen name="ConversationAudio" component={ConversationAudioContainer} />
-      <Stack.Screen name="CreateNewEvent" component={CreateNewEventContainer} />
+      <Stack.Screen name="CreateNewAudioRoom" component={CreateNewAudioRoomContainer} />
       <Stack.Screen name="GroupConversation" component={GroupConversationContainer} />
       <Stack.Screen name="CreateNewChannel" component={CreateNewChannelContainer} />
       <Stack.Screen name="PinnedMessage" component={PinnedMessageContainer} />
       <Stack.Screen name="ReportServer" component={ReportServerContainer} />
+      <Stack.Screen name="CreateNewEventStep1" component={CreateNewEventStep1Container} />
+      <Stack.Screen name="CreateNewEventStep2" component={CreateNewEventStep2Container} />
+      <Stack.Screen name="CreateNewEventStep3" component={CreateNewEventStep3Container} />
+      <Stack.Screen name="SettingServer" component={SettingServerContainer} />
     </Stack.Navigator>
   )
 }

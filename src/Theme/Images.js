@@ -125,5 +125,15 @@ export default function () {
     icPinDrawerRight: require('@/Assets/Icons/ic_pin_drawer_right.png'),
     icNotificationDrawerRight: require('@/Assets/Icons/ic_notification_drawer_right.png'),
     icCheckBot: require('@/Assets/Icons/ic_check_bot.png'),
+
+    icClose2: require('@/Assets/Icons/ic_close_2.png'),
+    icLocation2: require('@/Assets/Icons/ic_location_2.png'),
+    icInfo: require('@/Assets/Icons/ic_info.png'),
+    icModeration: require('@/Assets/Icons/ic_moderation.png'),
+    icChannel: require('@/Assets/Icons/ic_channel.png'),
+    icRules2: require('@/Assets/Icons/ic_rules_2.png'),
+    icBan: require('@/Assets/Icons/ic_ban.png'),
+    icEdit: require('@/Assets/Icons/ic_edit.png'),
+
   }
 }
