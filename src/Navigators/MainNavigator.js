@@ -21,7 +21,13 @@ import {
   CreateNewCategoryContainer,
   EditServerProfileContainer,
   ReviewReportGroupContainer,
-  SettingChannelContainer
+  SettingChannelContainer,
+  ListOfDailyChallengeContainer,
+  ListOfActiveChallengeContainer,
+  CreateNewWalletContainer,
+  ImportWalletContainer,
+  ConfirmWalletContainer,
+  DeFiDetailContainer,
 } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
@@ -151,6 +157,12 @@ const MainNavigator = () => {
       <Stack.Screen name="EditServerProfile" component={EditServerProfileContainer} />
       <Stack.Screen name="ReviewReportGroup" component={ReviewReportGroupContainer} />
       <Stack.Screen name="SettingChannel" component={SettingChannelContainer} />
+      <Stack.Screen name="ListOfDailyChallenge" component={ListOfDailyChallengeContainer} />
+      <Stack.Screen name="ListOfActiveChallenge" component={ListOfActiveChallengeContainer} />
+      <Stack.Screen name="CreateNewWallet" component={CreateNewWalletContainer} />
+      <Stack.Screen name="ImportWallet" component={ImportWalletContainer} />
+      <Stack.Screen name="ConfirmWallet" component={ConfirmWalletContainer} />
+      <Stack.Screen name="DeFiDetail" component={DeFiDetailContainer} />
       
     </Stack.Navigator>
   )

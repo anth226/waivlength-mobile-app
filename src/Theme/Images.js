@@ -145,6 +145,38 @@ export default function () {
     icHeartHomeTab: require('@/Assets/Icons/ic_heart_home_tab.png'),
     icBookOpen: require('@/Assets/Icons/ic_book_open.png'),
 
+    // Notification Tab
+    icNotificationSetting: require('@/Assets/Icons/ic_notification_setting.png'),
+    icHorizontalThreeDot: require('@/Assets/Icons/ic_horizontal_three_dot.png'),
 
+    // Challenge Tab
+    icDartboardChallenge: require('@/Assets/Icons/ic_dartboard_challenge.png'),
+    icLevelChallenge: require('@/Assets/Icons/ic_level_challenge.png'),
+    icBgChallengeItem: require('@/Assets/Icons/ic_bg_challenge_item.png'),
+    icChallengeItemPurple: require('@/Assets/Icons/ic_challenge_item_purple.png'),
+    icProgressBarChallenge: require('@/Assets/Icons/ic_progress_bar_challenge.png'),
+    icCrownChallenge: require('@/Assets/Icons/ic_crown_challenge.png'),
+    icWaivlengthWhite: require('@/Assets/Icons/ic_waivlength_white.png'),
+    icPlusChallenge: require('@/Assets/Icons/ic_plus_challenge.png'),
+    icImportChallenge: require('@/Assets/Icons/ic_import_challenge.png'),
+    icPrestigeLevelChallenge: require('@/Assets/Icons/ic_prestige_level_challenge.png'),
+    icRewardsCollected: require('@/Assets/Icons/ic_rewards_collected.png'),
+
+    // Wallet
+    icShieldSecurity: require('@/Assets/Icons/ic_shield_security.png'),
+
+    // DeFi detail
+    icGroup1DefiDetail: require('@/Assets/Icons/ic_group_1_defi_detail.png'),
+    icGroup2DefiDetail: require('@/Assets/Icons/ic_group_2_defi_detail.png'),
+    icGroup3DefiDetail: require('@/Assets/Icons/ic_group_3_defi_detail.png'),
+    icGroup4DefiDetail: require('@/Assets/Icons/ic_group_4_defi_detail.png'),
+    icAddWalletDefiDetail: require('@/Assets/Icons/ic_add_wallet_defi_detail.png'),
+    icCardPurpleBgDefi: require('@/Assets/Images/ic_card_purple_bg_defi.png'),
+    icEditWhite: require('@/Assets/Icons/ic_edit_white.png'),
+    icBxNetworkChart: require('@/Assets/Icons/ic_bx_network_chart.png'),
+    icCopyWallet: require('@/Assets/Icons/ic_copy_wallet.png'),
+    icArrowDownWallet: require('@/Assets/Icons/ic_arrow_down_wallet.png'),
+    icClaimDefi: require('@/Assets/Icons/ic_claim_defi.png'),
+    icRepeat: require('@/Assets/Icons/ic_repeat.png'),
   }
 }

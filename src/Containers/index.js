@@ -24,6 +24,18 @@ export { default as SettingMessageContainer } from './TabMessage/SettingMessageC
 //Tab Home
 export { default as TabHomeContainer } from './TabHome'
 
+// Tab notification
+export { default as TabNotificationContainer } from './TabNotification'
+export { default as AllNotificationContainer } from './TabNotification/AllContainer'
+export { default as MentionNotificationContainer } from './TabNotification/MentionContainer'
+
+// Tab Challenge
+export { default as TabChallengeContainer } from './TabChallenge'
+export { default as ChallengeNotificationContainer } from './TabChallenge/ChallengeContainer'
+export { default as RewardContainer } from './TabChallenge/RewardContainer'
+export { default as EducationContainer } from './TabChallenge/EducationContainer'
+export { default as DeFiContainer } from './TabChallenge/DeFiContainer'
+
 //MainEx
 export * from './MainEx'
 

@@ -15,6 +15,7 @@ export { default as Avatar } from './Avatar'
 export { default as AvatarGroup } from './AvatarGroup'
 export { default as TypingAnimation } from './TypingAnimation'
 export { default as HorizontalProgressBar } from './HorizontalProgressBar'
+export { default as TabBar2Button } from './TabBar2Button'
 
 export * from './Dialog'
 export * from './Drawer'

@@ -230,12 +230,18 @@ const GroupConversationContainer = ({ route, navigation }) => {
                                 <View style={Layout.fill} />
                             </View>
                             <View style={{ width: Responsive.width(49) }} />
-                            <Text style={styles.textItemTime}>{item['time']}</Text>
+                            <View style={Layout.column}>
+                                <View style={Layout.fill} />
+                                <Text style={styles.textItemTime}>{item['time']}</Text>
+                            </View>
 
                         </View>
                     ) : (
                         <View style={[Layout.row, styles.itemStyleWrapper, { width }]}>
-                            <Text style={styles.textItemTime}>{item['time']}</Text>
+                            <View style={Layout.column}>
+                                <View style={Layout.fill} />
+                                <Text style={styles.textItemTime}>{item['time']}</Text>
+                            </View>
                             <View style={{ width: Responsive.width(49) }} />
                             <View style={[Layout.fill, Layout.row]}>
                                 <View style={Layout.fill} />

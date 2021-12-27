@@ -109,20 +109,31 @@ const ConversationContainer = () => {
                     (index % 2 == 0) ? (
                         <View style={[Layout.row, styles.itemStyleWrapper, { width }]}>
                             <View style={[Layout.fill, Layout.row]}>
-                                <Text style={styles.textBubbleOrtherWrapper}>{item['content']}</Text>
+                                <View style={styles.viewBubbleOrtherWrapper}>
+                                    <Text style={styles.textBubbleOrtherWrapper}>{item['content']}</Text>
+                                </View>
                                 <View style={Layout.fill} />
                             </View>
                             <View style={{ width: Responsive.width(49) }} />
-                            <Text style={styles.textItemTime}>{item['time']}</Text>
+                            <View style={Layout.column}>
+                                <View style={Layout.fill} />
+                                <Text style={styles.textItemTime}>{item['time']}</Text>
+                            </View>
+
 
                         </View>
                     ) : (
                         <View style={[Layout.row, styles.itemStyleWrapper, { width }]}>
-                            <Text style={styles.textItemTime}>{item['time']}</Text>
+                            <View style={Layout.column}>
+                                <View style={Layout.fill} />
+                                <Text style={styles.textItemTime}>{item['time']}</Text>
+                            </View>
                             <View style={{ width: Responsive.width(49) }} />
                             <View style={[Layout.fill, Layout.row]}>
                                 <View style={Layout.fill} />
-                                <Text style={styles.textBubbleMeWrapper}>{item['content']}</Text>
+                                <View style={styles.viewBubbleMeWrapper}>
+                                    <Text style={styles.textBubbleMeWrapper}>{item['content']}</Text>
+                                </View>
                             </View>
                         </View>
                     )
@@ -230,25 +241,31 @@ const styles = StyleSheet.create({
         left: 0,
         bottom: 0
     },
-    textBubbleOrtherWrapper: {
+    viewBubbleOrtherWrapper: {
         backgroundColor: '#ffffff',
         paddingHorizontal: Responsive.width(17),
         paddingVertical: Responsive.height(14),
         borderBottomLeftRadius: Responsive.height(14),
         borderTopRightRadius: Responsive.height(14),
         borderBottomRightRadius: Responsive.height(14),
+        overflow: "hidden",
+    },
+    textBubbleOrtherWrapper: {
         fontFamily: 'Poppins-Medium',
         fontSize: Responsive.font(14),
         color: '#000000',
         lineHeight: Responsive.width(22),
     },
-    textBubbleMeWrapper: {
+    viewBubbleMeWrapper: {
         backgroundColor: '#5D5FEF',
         paddingHorizontal: Responsive.width(17),
         paddingVertical: Responsive.height(14),
         borderBottomLeftRadius: Responsive.height(14),
         borderTopLeftRadius: Responsive.height(14),
         borderBottomRightRadius: Responsive.height(14),
+        overflow: "hidden",
+    },
+    textBubbleMeWrapper: {
         fontFamily: 'Poppins-Medium',
         fontSize: Responsive.font(14),
         color: '#ffffff',

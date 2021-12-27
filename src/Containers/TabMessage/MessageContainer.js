@@ -112,7 +112,7 @@ const MessageContainer = ({ goBack }) => {
                             isShowDot={!isChatRoom}
                             source={Images.onBoarding3}
                             imageWrapperStyle={styles.avatar}
-                            imageStyle={isChatRoom? styles.avatarImageChatRoom : styles.avatarImage}
+                            imageStyle={isChatRoom ? styles.avatarImageChatRoom : styles.avatarImage}
                             url={item['url']}
                             firstName={item['firstName']}
                             lastName={item['lastName']} />
@@ -126,7 +126,10 @@ const MessageContainer = ({ goBack }) => {
                             }
                         </View>
                         <View style={[Layout.fill, Layout.column]}>
-                            <Text style={styles.textBadgeUnread}>{`${item['unRead']}`}</Text>
+                            <View style={styles.viewBadgeUnread}>
+                                <Text style={styles.textUnread}>{`${item['unRead']}`}</Text>
+                            </View>
+
                             <Text style={styles.textTime}>{item['time']}</Text>
                         </View>
                     </View>
@@ -167,7 +170,7 @@ const MessageContainer = ({ goBack }) => {
             <FlatList nestedScrollEnabled={false}
                 style={[Layout.fill, { marginTop: Responsive.height(5) }]}
                 data={DATA}
-                ListHeaderComponent={<View style={{ height: Responsive.height(15) }}/>}
+                ListHeaderComponent={<View style={{ height: Responsive.height(15) }} />}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id} />
 
@@ -258,18 +261,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#D5DDE5',
         height: Responsive.height(1)
     },
-    textBadgeUnread: {
-        fontFamily: 'Poppins-SemiBold',
-        fontSize: Responsive.font(11),
-        lineHeight: Responsive.width(16),
-        color: '#fff',
+    viewBadgeUnread: {
         backgroundColor: '#5D5FEF',
         width: Responsive.height(18),
         height: Responsive.height(18),
         borderRadius: Responsive.height(9),
         justifyContent: 'center',
+        alignSelf: 'flex-end',
+        alignItems: 'center'
+    },
+    textUnread: {
+        fontFamily: 'Poppins-SemiBold',
+        fontSize: Responsive.font(11),
+        lineHeight: Responsive.width(16),
+        color: '#fff',
+        
+        justifyContent: 'center',
         textAlign: 'center',
-        alignSelf: 'flex-end'
     },
     textTime: {
         fontFamily: 'Poppins-Regular',

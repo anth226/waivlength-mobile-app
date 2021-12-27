@@ -18,5 +18,11 @@ export { default as CreateNewCategoryContainer } from './CreateNewCategoryContai
 export { default as EditServerProfileContainer } from './EditServerProfileContainer'
 export { default as ReviewReportGroupContainer } from './ReviewReportGroupContainer'
 export { default as SettingChannelContainer } from './SettingChannelContainer'
+export { default as ListOfDailyChallengeContainer } from './ListOfDailyChallengeContainer'
+export { default as ListOfActiveChallengeContainer } from './ListOfActiveChallengeContainer'
+export { default as CreateNewWalletContainer } from './CreateNewWalletContainer'
+export { default as ImportWalletContainer } from './ImportWalletContainer'
+export { default as ConfirmWalletContainer } from './ConfirmWalletContainer'
+export { default as DeFiDetailContainer } from './DeFiDetailContainer'
 
 
