@@ -28,6 +28,12 @@ import {
   ImportWalletContainer,
   ConfirmWalletContainer,
   DeFiDetailContainer,
+  ReceiveWalletAddressContainer,
+  SendWalletAddressContainer,
+  SettingOptionWalletContainer,
+  ListOfTokenToSendContainer,
+  AddCustomTokenContainer,
+  StakingDeFiContainer,
 } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
@@ -163,6 +169,12 @@ const MainNavigator = () => {
       <Stack.Screen name="ImportWallet" component={ImportWalletContainer} />
       <Stack.Screen name="ConfirmWallet" component={ConfirmWalletContainer} />
       <Stack.Screen name="DeFiDetail" component={DeFiDetailContainer} />
+      <Stack.Screen name="SendWalletAddress" component={SendWalletAddressContainer} />
+      <Stack.Screen name="ReceiveWalletAddress" component={ReceiveWalletAddressContainer} />
+      <Stack.Screen name="SettingOptionWallet" component={SettingOptionWalletContainer} />
+      <Stack.Screen name="ListOfTokenToSend" component={ListOfTokenToSendContainer} />
+      <Stack.Screen name="AddCustomToken" component={AddCustomTokenContainer} />
+      <Stack.Screen name="StakingDeFi" component={StakingDeFiContainer} />
       
     </Stack.Navigator>
   )

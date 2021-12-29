@@ -178,5 +178,41 @@ export default function () {
     icArrowDownWallet: require('@/Assets/Icons/ic_arrow_down_wallet.png'),
     icClaimDefi: require('@/Assets/Icons/ic_claim_defi.png'),
     icRepeat: require('@/Assets/Icons/ic_repeat.png'),
+    icDollar: require('@/Assets/Icons/ic_dollar.png'),
+    icArrowSelectCoin: require('@/Assets/Icons/ic_arrow_select_coin.png'),
+    icArrowTimeCoin: require('@/Assets/Icons/ic_arrow_time_coin.png'),
+    icNiceEthereumLogo: require('@/Assets/Icons/ic_nice_ethereum_logo.png'),
+    icTagWallet: require('@/Assets/Icons/ic_tag_wallet.png'),
+    icSendWallet: require('@/Assets/Icons/ic_send_wallet.png'),
+    icReceiveWallet: require('@/Assets/Icons/ic_receive_wallet.png'),
+    icAlertCircle: require('@/Assets/Icons/ic_alert_circle.png'),
+    icExportWallet: require('@/Assets/Icons/ic_export_wallet.png'),
+    icSettingsSendWallet: require('@/Assets/Icons/ic_settings_send_wallet.png'),
+    icCopySendWallet: require('@/Assets/Icons/ic_copy_send_wallet.png'),
+    icScanSendWallet: require('@/Assets/Icons/ic_scan_send_wallet.png'),
+    icCryptocurrencyEth: require('@/Assets/Icons/ic_cryptocurrency_eth.png'),
+    icPolygonSendWallet: require('@/Assets/Icons/ic_polygon_send_wallet.png'),
+    icSendWhiteWallet: require('@/Assets/Icons/ic_send_white_wallet.png'),
+    icAddCustomToken: require('@/Assets/Icons/ic_add_custom_token.png'),
+    icVerifyListedToken: require('@/Assets/Icons/ic_verify_listed_token.png'),
+    icEmojioneQuestionMark: require('@/Assets/Icons/ic_emojione_question_mark.png'),
+
+    // Dialog Asset Tile
+    icBinanceCoin: require('@/Assets/Icons/ic_binance_coin.png'),
+    icArrowSwapHorizontal: require('@/Assets/Icons/ic_arrow_swap_horizontal.png'),
+    icSend20: require('@/Assets/Icons/ic_send_20.png'),
+    // Dialog History Tile
+    icReceivedHistoryTile: require('@/Assets/Icons/ic_received_history_tile.png'),
+    icCopyHistoryTile: require('@/Assets/Icons/ic_copy_history_tile.png'),
+    icGlobalHistoryTile: require('@/Assets/Icons/ic_global_history_tile.png'),
+
+    icHelpCircle: require('@/Assets/Icons/ic_help_circle.png'),
+    icCryptocurrencyBnb: require('@/Assets/Icons/ic_cryptocurrency_bnb.png'),
+    icArrowDownConfirmSwap: require('@/Assets/Icons/ic_arrow_down_confirm_swap.png'),
+    icCryptocurrencyUsdt: require('@/Assets/Icons/ic_cryptocurrency_usdt.png'),
+    icHashtag: require('@/Assets/Icons/ic_hashtag.png'),
+    icCopyBlue: require('@/Assets/Icons/ic_copy_blue.png'),
+    icExternalLink: require('@/Assets/Icons/ic_external_link.png'),
+
   }
 }

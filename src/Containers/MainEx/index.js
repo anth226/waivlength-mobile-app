@@ -24,5 +24,11 @@ export { default as CreateNewWalletContainer } from './CreateNewWalletContainer'
 export { default as ImportWalletContainer } from './ImportWalletContainer'
 export { default as ConfirmWalletContainer } from './ConfirmWalletContainer'
 export { default as DeFiDetailContainer } from './DeFiDetailContainer'
+export { default as SendWalletAddressContainer } from './SendWalletAddressContainer'
+export { default as ReceiveWalletAddressContainer } from './ReceiveWalletAddressContainer'
+export { default as SettingOptionWalletContainer } from './SettingOptionWalletContainer'
+export { default as ListOfTokenToSendContainer } from './ListOfTokenToSendContainer'
+export { default as AddCustomTokenContainer } from './AddCustomTokenContainer'
+export { default as StakingDeFiContainer } from './StakingDeFiContainer'
 
 

@@ -1,16 +1,19 @@
-import React, { useEffect, useRef } from 'react'
-import { KeyboardAvoidingView, View, Text, FlatList, TextInput, StyleSheet, useWindowDimensions, TouchableOpacity, DrawerLayoutAndroidComponent } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
+import { KeyboardAvoidingView, View, Text, FlatList, TextInput, StyleSheet, useWindowDimensions, TouchableOpacity, DrawerLayoutAndroidComponent, Modal } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
-import { DeFiContainer, ChallengeNotificationContainer, RewardContainer, EducationContainer } from '@/Containers'
 import { CustomImage, ActionBar, GradientBackground, BackIcon, Avatar, TabBar2Button, HorizontalProgressBar } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, navigate, goBack } from '@/Navigators/utils'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { ScrollView } from 'react-native-gesture-handler';
+import { LineChart } from "react-native-chart-kit";
+import EventBus from 'react-native-event-bus';
+import { EVENTS } from '@/Constants'
+import { Layout } from '@/Theme';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -21,10 +24,124 @@ const HEADER_HEIGHT = Responsive.height(300);
 
 const OVERLAY_VISIBILITY_OFFSET = 32;
 
+const ExchangeLiquidityTabContainer = () => {
+    const { Layout, Gutters, Fonts, Common, Images } = useTheme()
+    const { t } = useTranslation()
+    const { width, height } = useWindowDimensions();
+    const [indexTab, setIndexTab] = useState(0);
+    const [visibleWalletOption, setVisibleWalletOption] = useState(false);
+
+
+    const init = async () => {
+
+    }
+
+    useEffect(() => {
+        init()
+    })
+
+    return (
+        <View style={Layout.fullWidth}>
+            <TabBar2Button style={{
+                height: Responsive.height(52), marginHorizontal: Responsive.width(20),
+                marginTop: Responsive.height(2), marginBottom: Responsive.height(16)
+            }}
+                indexSelected={indexTab}
+                onPressTab1={() => setIndexTab(0)}
+                onPressTab2={() => setIndexTab(1)}
+                tab1Title={'Exchange'}
+                tab2Title={'Liquidity'}
+            />
+
+            {/* Exchange Tab */}
+            {indexTab == 0 && <View style={Layout.fullWidth}>
+                <View style={[Layout.rowHCenter, { justifyContent: 'space-between', marginHorizontal: Responsive.width(20) }]}>
+                    <Text style={styles.textTradeTokens}>Trade tokens in an instant</Text>
+                    <CustomImage source={Images.icSetting} tintColor={'#59616C'} width={Responsive.height(22)}
+                        height={Responsive.height(22)} onPress={() => {
+                            EventBus.getInstance().fireEvent(EVENTS.OPEN_EXCHANGE_SETTING_DIALOG, {})
+                        }} />
+                </View>
+                <View style={styles.viewTradeCorner}>
+                    <View style={styles.viewTradeCornerTop}>
+                        <Text style={styles.textCornerTop}>0.0</Text>
+                    </View>
+                    <View style={styles.viewTradeCornerBottom}>
+                        <Text style={styles.textCornerTop}>0.0</Text>
+                    </View>
+
+                    <View style={styles.viewDolar}>
+                        <View style={[Layout.rowCenter, {
+                            width: Responsive.height(22),
+                            height: Responsive.height(22), backgroundColor: '#FFFFFF',
+                            borderRadius: Responsive.height(11)
+                        }]}>
+                            <CustomImage source={Images.icDollar} width={Responsive.height(10)}
+                                height={Responsive.height(20)} />
+                        </View>
+
+                        {/* <Text style={styles.textCornerTop}>0.0</Text> */}
+                    </View>
+
+                    <View style={styles.viewCircleTradeCorner}>
+                        <View style={styles.viewCircleTradeCornerInside}>
+                            <CustomImage source={Images.icRepeat} width={Responsive.height(24)}
+                                height={Responsive.height(24)} style={{ alignSelf: 'center' }} />
+                        </View>
+                    </View>
+
+                    <TouchableOpacity style={styles.viewEnterAmount} onPress={() => {
+                        EventBus.getInstance().fireEvent(EVENTS.OPEN_CONFIRM_SWAP_STEP1_DIALOG, {})
+                    }}>
+                        <Text style={styles.textCornerTop}>Enter an amount</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>}
+
+            {/* Liquidity Tab */}
+
+            {indexTab == 1 && <View style={Layout.fullWidth}>
+                <View style={[Layout.rowHCenter, { justifyContent: 'space-between', marginHorizontal: Responsive.width(20) }]}>
+                    <Text style={styles.textYourLiquidity}>Your Liquidity</Text>
+                    <CustomImage source={Images.icSetting} tintColor={'#59616C'} width={Responsive.height(22)}
+                        height={Responsive.height(22)} onPress={() => {
+                            EventBus.getInstance().fireEvent(EVENTS.OPEN_EXCHANGE_SETTING_DIALOG, {})
+                        }} />
+                </View>
+                <Text style={styles.textYourLiquidityBelow}>Remove liquidity to receive tokens back</Text>
+                <View style={[Layout.rowHCenter, styles.viewCakeBnbInfo]}>
+                    <View style={Layout.fill}>
+                        <View style={Layout.row}>
+                            <CustomImage source={Images.icCryptocurrencyBnb} width={Responsive.height(24)} height={Responsive.height(24)} />
+                            <CustomImage source={Images.icCryptocurrencyUsdt} width={Responsive.height(24)}
+                                height={Responsive.height(24)} style={{ marginLeft: Responsive.width(4), marginRight: Responsive.width(7) }} />
+                            <Text style={styles.textCakeBnbLabel}>CAKE/BNB</Text>
+                        </View>
+                        <Text style={styles.textCakeBnbValue}>0.5574</Text>
+                    </View>
+                    <CustomImage source={Images.icArrowDown2} width={Responsive.height(20)} height={Responsive.height(20)} />
+                </View>
+                <Text style={styles.textDontSee}>Don’t see a pool you joined?</Text>
+                <TouchableOpacity style={[Layout.rowCenter, styles.viewFindOtherToken]} onPress={() => {
+                    EventBus.getInstance().fireEvent(EVENTS.OPEN_FIND_OTHER_LP_TOKEN_DIALOG, {})
+                }}>
+                    <Text style={styles.textFindOtherToken}>Find other LP tokens</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[Layout.rowCenter, styles.viewAddLiquidity]} onPress={() => { }}>
+                    <Text style={styles.textAddLiquidity}>Add Liquidity</Text>
+                </TouchableOpacity>
+            </View>
+            }
+        </View>
+    )
+}
+
 const DeFiDetailContainer = () => {
     const { Layout, Gutters, Fonts, Common, Images } = useTheme()
     const { t } = useTranslation()
     const { width, height } = useWindowDimensions();
+    const [visibleNetworkDropdown, setVisibleNetworkDropdown] = useState(false);
+    const [visibleWalletOption, setVisibleWalletOption] = useState(false);
 
     //const { top, bottom } = useSafeAreaInsets();
 
@@ -223,7 +340,12 @@ const DeFiDetailContainer = () => {
                 <View style={[Layout.rowHCenter, { marginHorizontal: Responsive.width(20) }]}>
                     <Text style={styles.textWalletLabel}>Wallets</Text>
 
-                    <TouchableOpacity style={{ paddingVertical: Responsive.height(16), paddingHorizontal: Responsive.width(8) }}>
+                    <TouchableOpacity style={{
+                        paddingVertical: Responsive.height(16),
+                        paddingHorizontal: Responsive.width(8)
+                    }} onPress={() => {
+                        EventBus.getInstance().fireEvent(EVENTS.OPEN_ADD_WALLET_DIALOG, {})
+                    }}>
                         <CustomImage source={Images.icAddWalletDefiDetail} width={Responsive.width(25)}
                             height={Responsive.width(25)}
                         />
@@ -243,11 +365,16 @@ const DeFiDetailContainer = () => {
                         <View style={[Layout.rowHCenter, { marginTop: Responsive.height(14), justifyContent: 'space-between' }]}>
                             <View style={Layout.rowHCenter}>
                                 <Text style={styles.textWalletWhite}>Wallet</Text>
-                                <CustomImage source={Images.icEditWhite} width={Responsive.width(14)} height={Responsive.width(14)} />
+                                <CustomImage source={Images.icEditWhite} width={Responsive.width(14)} height={Responsive.width(14)}
+                                    onPress={() => {
+                                        EventBus.getInstance().fireEvent(EVENTS.OPEN_RENAME_WALLET_DIALOG, {})
+                                    }} />
                             </View>
 
                             <View style={Layout.rowHCenter}>
-                                <TouchableOpacity style={[Layout.rowCenter, styles.viewDropdownWallet]}>
+                                <TouchableOpacity style={[Layout.rowCenter, styles.viewDropdownWallet]} onPress={() => {
+                                    setVisibleNetworkDropdown(true);
+                                }}>
 
                                     <Text style={styles.textDropDown}>BSC</Text>
 
@@ -255,7 +382,10 @@ const DeFiDetailContainer = () => {
 
                                 </TouchableOpacity>
                                 <CustomImage source={Images.icBxNetworkChart} width={Responsive.width(24)}
-                                    height={Responsive.width(24)} style={{ marginRight: Responsive.width(15) }} />
+                                    height={Responsive.width(24)} style={{ marginRight: Responsive.width(15) }}
+                                    onPress={() => {
+                                        setVisibleWalletOption(true);
+                                    }} />
                             </View>
 
                         </View>
@@ -279,6 +409,56 @@ const DeFiDetailContainer = () => {
 
                         </View>
 
+                        {
+                            visibleNetworkDropdown ? <View style={styles.viewNetworkDropdown}>
+                                <TouchableOpacity style={[Layout.fill, Layout.rowCenter, styles.viewItemNetworkDropdown]} onPress={() => {
+                                    setVisibleNetworkDropdown(false);
+                                }}>
+                                    <Text style={styles.textNetworkDropdown}>BSC</Text>
+                                </TouchableOpacity>
+                                <View style={[Layout.fill, Layout.rowCenter, styles.viewItemNetworkDropdown]}>
+                                    <Text style={styles.textNetworkDropdown}>ETH</Text>
+                                </View>
+                                <View style={[Layout.fill, Layout.rowCenter, styles.viewItemNetworkDropdown]}>
+                                    <Text style={styles.textNetworkDropdown}>SOL</Text>
+                                </View>
+                                <View style={[Layout.fill, Layout.rowCenter, styles.viewItemNetworkDropdown]}>
+                                    <Text style={styles.textNetworkDropdown}>ADA</Text>
+                                </View>
+                                <View style={[Layout.fill, Layout.rowCenter, styles.viewItemNetworkDropdown]}>
+                                    <Text style={styles.textNetworkDropdown}>MATIC</Text>
+                                </View>
+                            </View> : null
+                        }
+
+                        {
+                            visibleWalletOption ? <View style={styles.viewWalletOption}>
+                                <TouchableOpacity style={[Layout.fill, Layout.rowCenter, styles.viewItemWalletOption]} onPress={() => {
+                                    setVisibleWalletOption(false);
+                                }}>
+                                    <Text style={styles.textWalletOption}>Buy</Text>
+                                    <CustomImage source={Images.icTagWallet} width={Responsive.height(20)} height={Responsive.height(20)} />
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[Layout.fill, Layout.rowCenter, styles.viewItemWalletOption]} onPress={() => {
+                                    navigate('SendWalletAddress')
+                                    setVisibleWalletOption(false);
+                                }}>
+                                    <Text style={styles.textWalletOption}>Send</Text>
+                                    <CustomImage source={Images.icSendWallet} width={Responsive.height(20)} height={Responsive.height(20)} />
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[Layout.fill, Layout.rowCenter, styles.viewItemWalletOption]}
+                                    onPress={() => {
+                                        navigate('ReceiveWalletAddress')
+                                        setVisibleWalletOption(false);
+                                    }}>
+                                    <Text style={styles.textWalletOption}>Receive</Text>
+                                    <CustomImage source={Images.icReceiveWallet} width={Responsive.height(20)} height={Responsive.height(20)} />
+                                </TouchableOpacity>
+                            </View> : null
+                        }
+
+
+
                     </View>
                 </View>
 
@@ -286,7 +466,15 @@ const DeFiDetailContainer = () => {
                 <TabBar2Button style={{
                     height: Responsive.height(52), marginHorizontal: Responsive.width(20),
                     marginTop: Responsive.height(20), marginBottom: Responsive.height(16)
-                }} indexSelected={0} />
+                }}
+                    indexSelected={0}
+                    onPressTab1={() => {
+                        EventBus.getInstance().fireEvent(EVENTS.OPEN_ASSET_TILE_WALLET_DIALOG, {})
+                    }}
+                    onPressTab2={() => {
+                        EventBus.getInstance().fireEvent(EVENTS.OPEN_HISTORY_TILE_WALLET_DIALOG, {})
+                    }}
+                />
 
                 {/* Body view assets & history */}
                 <View style={[Layout.fullWidth]}>
@@ -332,7 +520,9 @@ const DeFiDetailContainer = () => {
                             <Text style={styles.textRewardsEarned}>Stake to earn rewards</Text>
                         </View>
 
-                        <TouchableOpacity style={[styles.viewDropdown, Layout.rowCenter]}>
+                        <TouchableOpacity style={[styles.viewDropdown, Layout.rowCenter]} onPress={() => {
+                            navigate('StakingDeFi')
+                        }}>
                             <Text style={styles.textClaim}>Stake</Text>
                             <CustomImage source={Images.icClaimDefi} width={Responsive.height(10)} height={Responsive.height(15)} />
                         </TouchableOpacity>
@@ -344,30 +534,103 @@ const DeFiDetailContainer = () => {
 
                 <Text style={styles.textRewardsLabel}>Exchange</Text>
 
-                <TabBar2Button style={{
+                {/* <TabBar2Button style={{
                     height: Responsive.height(52), marginHorizontal: Responsive.width(20),
                     marginTop: Responsive.height(2), marginBottom: Responsive.height(16)
-                }} indexSelected={0} />
+                }} indexSelected={0} />*/}
 
-                <View style={[Layout.rowHCenter, { justifyContent: 'space-between', marginHorizontal: Responsive.width(20) }]}>
-                    <Text style={styles.textTradeTokens}>Trade tokens in an instant</Text>
-                    <CustomImage source={Images.icSetting} tintColor={'#59616C'} width={Responsive.height(22)} height={Responsive.height(22)} />
+                {/* Exchange Tab */}
+
+                <ExchangeLiquidityTabContainer />
+
+                <View style={styles.viewDivider} />
+
+                <Text style={styles.textRewardsLabel}>Graph</Text>
+
+                <Text style={styles.textEthereumLabel}>Ethereum</Text>
+
+                <View style={[styles.viewRowCoin, Layout.rowHCenter]}>
+                    <View style={[Layout.rowCenter, styles.viewRowCoinIcon]}>
+                        <CustomImage source={Images.icNiceEthereumLogo} width={Responsive.height(24)}
+                            height={Responsive.height(38)} style={{ alignSelf: 'center' }} />
+                    </View>
+
+                    <TouchableOpacity style={[Layout.row, Layout.fill]} onPress={() => {
+                        EventBus.getInstance().fireEvent(EVENTS.OPEN_SELECT_TOKEN_DIALOG, {})
+                    }}>
+                        <Text style={styles.textSelectCoinLabel}>Select Coin</Text>
+                        <CustomImage source={Images.icArrowSelectCoin} width={Responsive.height(18)}
+                            height={Responsive.height(18)} style={{ alignSelf: 'center', marginLeft: Responsive.width(11) }} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={[Layout.row, styles.view24hButton]}>
+                        <Text style={styles.text24hLabel}>24H</Text>
+                        <CustomImage source={Images.icArrowTimeCoin} width={Responsive.height(10)}
+                            height={Responsive.height(10)} style={{ alignSelf: 'center', marginLeft: Responsive.width(5) }} />
+                    </TouchableOpacity>
                 </View>
 
-                <View style={styles.viewTradeCorner}>
-                    <View style={styles.viewTradeCornerTop}>
-                        <Text style={styles.textCornerTop}>0.0</Text>
-                    </View>
-                    <View style={styles.viewTradeCornerBottom}>
-                        <Text style={styles.textCornerTop}>0.0</Text>
+                <View style={[styles.fullWidth, { paddingHorizontal: Responsive.width(20) }]}>
+                    <Text style={styles.textAmountTotal}>US $4340.20</Text>
+                    <Text style={styles.textGreen}>+$38 (+2.422%) 24H</Text>
+                    <View style={[Layout.row, { alignItems: 'flex-end' }]}>
+                        <Text style={styles.textTime}>2:00PM</Text>
+                        <Text style={styles.textDate}>29 Nov, 2021</Text>
                     </View>
 
-                    <View style={styles.viewCircleTradeCorner}>
-                        <View style={styles.viewCircleTradeCornerInside}>
-                            <CustomImage source={Images.icRepeat} width={Responsive.height(24)}
-                            height={Responsive.height(24)} style={{alignSelf: 'center'}}/>
-                        </View>
-                    </View>
+                </View>
+
+                <View style={styles.viewLineChartContainer}>
+                    <LineChart
+                        data={{
+                            labels: ["January", "February", "March", "April", "May", "June"],
+                            datasets: [
+                                {
+                                    data: [
+                                        Math.random() * 100,
+                                        Math.random() * 100,
+                                        Math.random() * 100,
+                                        Math.random() * 100,
+                                        Math.random() * 100,
+                                        Math.random() * 100,
+                                        Math.random() * 100,
+                                    ]
+                                }
+                            ]
+                        }}
+                        width={width}
+                        height={Responsive.height(231)}
+                        yAxisInterval={1} // optional, defaults to 1
+
+                        xLabelsOffset={0}
+                        withInnerLines={false}
+                        withOuterLines={false}
+                        withVerticalLines={false}
+                        withHorizontalLines={false}
+                        withHorizontalLabels={false}
+                        withVerticalLabels={false}
+                        chartConfig={{
+                            backgroundColor: "#edf1f5",
+                            backgroundGradientFrom: "#edf1f5",
+                            backgroundGradientTo: "#edf1f5",
+                            decimalPlaces: 2, // optional, defaults to 2dp
+                            color: (opacity = 1) => `rgba(91, 99, 230, 1.0)`,
+                            labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                            style: {
+                                paddingHorizontal: 0,
+                            },
+                            propsForDots: {
+                                r: "6",
+                                strokeWidth: "2",
+                                stroke: "#ffffff"
+                            },
+                            horizontalOffset: 0,
+                        }}
+                        bezier
+                        style={{
+                            marginVertical: 8,
+                        }}
+                    />
                 </View>
 
             </View>
@@ -391,7 +654,7 @@ const styles = StyleSheet.create({
     buttonCancel: {
         height: Responsive.height(36),
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     viewRow4Button: {
@@ -568,9 +831,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     textCornerTop: {
-        fontFamily: 'Poppins-SemiBold',
-        fontSize: Responsive.font(31),
-        color: '#949BA6',
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(16),
+        color: '#5D5FEF',
         alignSelf: 'center',
     },
     viewTradeCornerBottom: {
@@ -582,6 +845,17 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
+    },
+    viewDolar: {
+        backgroundColor: '#E5ECF5',
+        borderRadius: Responsive.height(16),
+        minWidth: Responsive.height(90),
+        height: Responsive.height(30),
+        paddingLeft: Responsive.width(5),
+        paddingVertical: Responsive.height(4),
+        position: 'absolute',
+        bottom: Responsive.height(136),
+        marginLeft: Responsive.width(15),
     },
     viewCircleTradeCorner: {
         width: Responsive.height(60),
@@ -601,24 +875,155 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: Responsive.height(51 / 2),
     },
-
-
-    tabBar: {
-        height: Responsive.height(55),
-        borderTopColor: 'transparent',
-        backgroundColor: 'transparent',
-        elevation: 0,
+    viewEnterAmount: {
+        width: Responsive.height(195),
+        height: Responsive.height(62),
+        backgroundColor: '#D7DFFF',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        borderRadius: Responsive.height(16),
+        position: 'absolute',
+        bottom: Responsive.height(-40),
+        zIndex: 1000,
     },
-    textTabLabel: {
+    textYourLiquidity: {
+        fontFamily: 'Poppins-SemiBold',
+        fontSize: Responsive.font(14),
+        color: '#242A31',
+    },
+    textYourLiquidityBelow: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(12),
+        color: '#666B7D',
+        marginTop: Responsive.height(4),
+        marginHorizontal: Responsive.width(20),
+        marginBottom: Responsive.width(20),
+    },
+    viewCakeBnbInfo: {
+        backgroundColor: 'rgba(242, 245, 249, 1.0)',
+        height: Responsive.height(73),
+        borderRadius: Responsive.height(16),
+        marginHorizontal: Responsive.width(20),
+        marginBottom: Responsive.width(20),
+        paddingVertical: Responsive.height(13),
+        paddingHorizontal: Responsive.width(18),
+    },
+    textCakeBnbLabel: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(18),
+        color: '#5D5FEF',
+        lineHeight: Responsive.height(27),
+    },
+    textCakeBnbValue: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(11),
+        lineHeight: Responsive.height(18),
+        color: '#949BA6',
+    },
+    textDontSee: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(14),
+        color: '#666B7D',
+        marginBottom: Responsive.width(20),
+        textAlign: 'center'
+    },
+    viewFindOtherToken: {
+        backgroundColor: 'white',
+        borderColor: '#5D5FEF',
+        borderWidth: Responsive.height(1),
+        borderRadius: Responsive.height(31),
+        width: Responsive.width(236),
+        height: Responsive.height(40),
+        alignSelf: 'center',
+        marginBottom: Responsive.height(20),
+    },
+    textFindOtherToken: {
+        fontSize: Responsive.font(14),
+        fontFamily: 'Poppins-Medium',
+        color: '#5D5FEF',
+        lineHeight: Responsive.height(21),
+    },
+    viewAddLiquidity: {
+        backgroundColor: '#5D5FEF',
+        borderRadius: Responsive.height(31),
+        width: Responsive.width(236),
+        height: Responsive.height(40),
+        alignSelf: 'center',
+        marginBottom: Responsive.height(20),
+    },
+    textAddLiquidity: {
+        fontSize: Responsive.font(16),
+        fontFamily: 'Poppins-Medium',
+        color: 'white',
+        lineHeight: Responsive.height(24),
+    },
+    textEthereumLabel: {
+        marginHorizontal: Responsive.width(20),
+        marginTop: Responsive.height(8),
+        fontFamily: 'Poppins-Regular',
+        fontSize: Responsive.font(24),
+        color: '#3B3F51',
+    },
+    viewRowCoin: {
+        minHeight: Responsive.height(62),
+        marginHorizontal: Responsive.width(20),
+        marginTop: Responsive.height(20),
+    },
+    viewRowCoinIcon: {
+        width: Responsive.height(59),
+        height: Responsive.height(62),
+        borderRadius: Responsive.height(16),
+        backgroundColor: '#D7DFFF'
+    },
+    textSelectCoinLabel: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(16),
+        color: '#2B2F3F',
+        marginLeft: Responsive.width(12),
+    },
+    view24hButton: {
+        backgroundColor: '#D7DFFF',
+        borderRadius: Responsive.height(24),
+        height: Responsive.height(33),
+        paddingHorizontal: Responsive.width(11),
+    },
+    text24hLabel: {
+        fontFamily: 'Poppins-Bold',
+        fontSize: Responsive.font(16),
+        color: '#5D5FEF',
+    },
+    textAmountTotal: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(36),
+        color: '#202732',
+        marginTop: Responsive.height(17),
+        marginBottom: Responsive.height(3),
+    },
+    textGreen: {
         fontFamily: 'Poppins-SemiBold',
         fontSize: Responsive.font(16),
-        lineHeight: Responsive.width(22),
-        textTransform: 'none'
+        color: '#399C67',
+        marginBottom: Responsive.height(7),
     },
-    tabIndicator: {
-        backgroundColor: '#5D5FEF',
-        height: Responsive.height(3),
+    textTime: {
+        fontFamily: 'Poppins-Bold',
+        fontSize: Responsive.font(14),
+        color: '#5D5FEF',
+        marginBottom: Responsive.height(7),
     },
+    textDate: {
+        fontFamily: 'Poppins-Bold',
+        fontSize: Responsive.font(11),
+        color: '#878dea',
+        marginBottom: Responsive.height(9),
+        marginLeft: Responsive.width(7),
+    },
+    viewLineChartContainer: {
+        height: Responsive.height(231),
+        marginBottom: Responsive.height(10)
+    },
+
+
     line: {
         height: Responsive.height(1),
         backgroundColor: '#BFCBD6'
@@ -693,5 +1098,44 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-Bold',
         fontSize: Responsive.font(14),
         color: '#ffffff',
-    }
+    },
+    viewNetworkDropdown: {
+        position: 'absolute',
+        top: Responsive.height(54),
+        right: Responsive.width(49),
+        backgroundColor: '#F3F9FF',
+        borderRadius: Responsive.height(20),
+        paddingVertical: Responsive.height(10),
+    },
+    viewItemNetworkDropdown: {
+        backgroundColor: '#e5eafb',
+        height: Responsive.height(24),
+        marginHorizontal: Responsive.width(5),
+        borderRadius: Responsive.height(8),
+        paddingHorizontal: Responsive.width(5)
+    },
+    textNetworkDropdown: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(14),
+        color: '#5D5FEF',
+    },
+    viewWalletOption: {
+        position: 'absolute',
+        top: Responsive.height(54),
+        right: Responsive.width(11),
+        backgroundColor: '#F3F9FF',
+        borderRadius: Responsive.height(12),
+        minWidth: Responsive.width(141),
+    },
+    viewItemWalletOption: {
+        height: Responsive.height(43),
+        paddingHorizontal: Responsive.width(16),
+        justifyContent: 'space-between'
+    },
+    textWalletOption: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(16),
+        color: '#525563',
+    },
+
 });

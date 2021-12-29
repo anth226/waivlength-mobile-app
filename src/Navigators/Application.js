@@ -20,7 +20,16 @@ import {
   DialogGroupConversationInvite,
   DialogGroupConversationEvent,
   DialogGroupConversationNotification,
-  DialogGroupConversationLeaveGroup
+  DialogGroupConversationLeaveGroup,
+  DialogAddWallet,
+  DialogRenameWallet,
+  DialogAssetTileWallet,
+  DialogHistoryTileWallet,
+  DialogExchangeSetting,
+  DialogSelectToken,
+  DialogConfirmSwapStep1,
+  DialogConfirmSwapStep2,
+  DialogFindOtherLpToken,
 } from '@/Components'
 import Responsive from 'react-native-lightweight-responsive';
 
@@ -36,6 +45,15 @@ const ApplicationNavigator = () => {
   const modalizeGroupConversationEventRef = useRef(null);
   const modalizeGroupConversationNotificationRef = useRef(null);
   const modalizeGroupConversationLeaveGroupRef = useRef(null);
+  const modalizeAddWalletRef = useRef(null);
+  const modalizeRenameWalletRef = useRef(null);
+  const modalizeAssetTileWalletRef = useRef(null);
+  const modalizeHistoryTileWalletRef = useRef(null);
+  const modalizeExchangeSettingRef = useRef(null);
+  const modalizeSelectTokenRef = useRef(null);
+  const modalizeConfirmSwapStep1Ref = useRef(null);
+  const modalizeConfirmSwapStep2Ref = useRef(null);
+  const modalizeFindOtherLpTokenRef = useRef(null);
 
   const onOpenAudioRoomDialog = () => {
     modalizeCreateAudioRoomRef.current?.open();
@@ -85,6 +103,77 @@ const ApplicationNavigator = () => {
     modalizeGroupConversationLeaveGroupRef.current?.close();
   };
 
+  const onOpenAddWalletDialog = () => {
+    modalizeAddWalletRef.current?.open();
+  };
+
+  const onCloseAddWalletDialog = () => {
+    modalizeAddWalletRef.current?.close();
+  };
+
+  const onOpenRenameWalletDialog = () => {
+    modalizeRenameWalletRef.current?.open();
+  };
+
+  const onCloseRenameWalletDialog = () => {
+    modalizeRenameWalletRef.current?.close();
+  };
+
+  const onOpenAssetTileWalletDialog = () => {
+    modalizeAssetTileWalletRef.current?.open();
+  };
+
+  const onCloseAssetTileWalletDialog = () => {
+    modalizeAssetTileWalletRef.current?.close();
+  };
+
+  const onOpenHistoryTileWalletDialog = () => {
+    modalizeHistoryTileWalletRef.current?.open();
+  };
+
+  const onCloseHistoryTileWalletDialog = () => {
+    modalizeHistoryTileWalletRef.current?.close();
+  };
+
+  const onOpenExchangeSettingDialog = () => {
+    modalizeExchangeSettingRef.current?.open();
+  };
+
+  const onCloseExchangeSettingDialog = () => {
+    modalizeExchangeSettingRef.current?.close();
+  };
+
+  const onOpenSelectTokenDialog = () => {
+    modalizeSelectTokenRef.current?.open();
+  };
+
+  const onCloseSelectTokenDialog = () => {
+    modalizeSelectTokenRef.current?.close();
+  };
+
+  const onOpenConfirmSwapStep1Dialog = () => {
+    modalizeConfirmSwapStep1Ref.current?.open();
+  };
+
+  const onCloseConfirmSwapStep1Dialog = () => {
+    modalizeConfirmSwapStep1Ref.current?.close();
+  };
+
+  const onOpenConfirmSwapStep2Dialog = () => {
+    modalizeConfirmSwapStep2Ref.current?.open();
+  };
+
+  const onCloseConfirmSwapStep2Dialog = () => {
+    modalizeConfirmSwapStep2Ref.current?.close();
+  };
+
+  const onOpenFindOtherLpTokenDialog = () => {
+    modalizeFindOtherLpTokenRef.current?.open();
+  };
+
+  const onCloseFindOtherLpTokenDialog = () => {
+    modalizeFindOtherLpTokenRef.current?.close();
+  };
 
   useEffect(() => {
     EventBus.getInstance().addListener(EVENTS.OPEN_CREATE_AUDIO_ROOM_DIALOG, onOpenAudioRoomDialog)
@@ -93,6 +182,15 @@ const ApplicationNavigator = () => {
     EventBus.getInstance().addListener(EVENTS.OPEN_GROUP_CONVERSATION_EVENT_DIALOG, onOpenGroupConversationEventDialog)
     EventBus.getInstance().addListener(EVENTS.OPEN_GROUP_CONVERSATION_NOTIFICATION_DIALOG, onOpenGroupConversationNotificationDialog)
     EventBus.getInstance().addListener(EVENTS.OPEN_GROUP_CONVERSATION_LEAVE_GROUP_DIALOG, onOpenGroupConversationLeaveGroupDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_ADD_WALLET_DIALOG, onOpenAddWalletDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_RENAME_WALLET_DIALOG, onOpenRenameWalletDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_ASSET_TILE_WALLET_DIALOG, onOpenAssetTileWalletDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_HISTORY_TILE_WALLET_DIALOG, onOpenHistoryTileWalletDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_EXCHANGE_SETTING_DIALOG, onOpenExchangeSettingDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_SELECT_TOKEN_DIALOG, onOpenSelectTokenDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_CONFIRM_SWAP_STEP1_DIALOG, onOpenConfirmSwapStep1Dialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_CONFIRM_SWAP_STEP2_DIALOG, onOpenConfirmSwapStep2Dialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_FIND_OTHER_LP_TOKEN_DIALOG, onOpenFindOtherLpTokenDialog)
     return () => {
       EventBus.getInstance().removeListener(onOpenAudioRoomDialog)
       EventBus.getInstance().removeListener(onOpenGroupConversationOptionDialog)
@@ -100,6 +198,15 @@ const ApplicationNavigator = () => {
       EventBus.getInstance().removeListener(onOpenGroupConversationEventDialog)
       EventBus.getInstance().removeListener(onOpenGroupConversationNotificationDialog)
       EventBus.getInstance().removeListener(onOpenGroupConversationLeaveGroupDialog)
+      EventBus.getInstance().removeListener(onOpenAddWalletDialog)
+      EventBus.getInstance().removeListener(onOpenRenameWalletDialog)
+      EventBus.getInstance().removeListener(onOpenAssetTileWalletDialog)
+      EventBus.getInstance().removeListener(onOpenHistoryTileWalletDialog)
+      EventBus.getInstance().removeListener(onOpenExchangeSettingDialog)
+      EventBus.getInstance().removeListener(onOpenSelectTokenDialog)
+      EventBus.getInstance().removeListener(onOpenConfirmSwapStep1Dialog)
+      EventBus.getInstance().removeListener(onOpenConfirmSwapStep2Dialog)
+      EventBus.getInstance().removeListener(onOpenFindOtherLpTokenDialog)
     };
   });
 
@@ -160,6 +267,94 @@ const ApplicationNavigator = () => {
         handlePosition="inside"
         adjustToContentHeight={true}
         modalizeRef={modalizeGroupConversationLeaveGroupRef} />
+      <DialogAddWallet
+        withHandle={false}
+        handlePosition="inside"
+        adjustToContentHeight={true}
+        modalizeRef={modalizeAddWalletRef}
+        modalStyle={{ borderTopLeftRadius: Responsive.height(40), borderTopRightRadius: Responsive.height(40) }}
+        onPressCreate={() => {
+          onCloseAddWalletDialog();
+        }}
+        onPressImport={() => {
+          onCloseAddWalletDialog();
+        }}
+      />
+      <DialogRenameWallet
+        withHandle={false}
+        handlePosition="inside"
+        modalizeRef={modalizeRenameWalletRef}
+        modalStyle={{ borderRadius: Responsive.height(14) }}
+        onPressCreate={() => {
+          onCloseRenameWalletDialog();
+        }}
+        onPressImport={() => {
+          onCloseRenameWalletDialog();
+        }}
+      />
+      <DialogAssetTileWallet
+        handlePosition="inside"
+        modalizeRef={modalizeAssetTileWalletRef}
+        adjustToContentHeight={true}
+        modalStyle={{ borderRadius: Responsive.height(29) }}
+        onPressSend={() => {
+          onCloseAssetTileWalletDialog();
+        }}
+        onPressSwap={() => {
+          onCloseAssetTileWalletDialog();
+        }}
+      />
+      <DialogHistoryTileWallet
+        handlePosition="inside"
+        modalizeRef={modalizeHistoryTileWalletRef}
+        adjustToContentHeight={true}
+        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        onPressClose={() => {
+          onCloseHistoryTileWalletDialog();
+        }}
+      />
+      <DialogExchangeSetting
+        handlePosition="inside"
+        modalizeRef={modalizeExchangeSettingRef}
+        adjustToContentHeight={true}
+        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        onPressClose={() => {
+          onCloseExchangeSettingDialog();
+        }}
+      />
+      <DialogSelectToken
+        handlePosition="inside"
+        modalizeRef={modalizeSelectTokenRef}
+        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        onPressClose={() => {
+          onCloseSelectTokenDialog();
+        }}
+      />
+      <DialogConfirmSwapStep1
+        handlePosition="inside"
+        modalizeRef={modalizeConfirmSwapStep1Ref}
+        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        onPressClose={() => {
+          onCloseConfirmSwapStep1Dialog();
+        }}
+      />
+      <DialogConfirmSwapStep2
+        handlePosition="inside"
+        modalizeRef={modalizeConfirmSwapStep2Ref}
+        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        onPressClose={() => {
+          onCloseConfirmSwapStep2Dialog();
+        }}
+      />
+      <DialogFindOtherLpToken
+        handlePosition="inside"
+        modalizeRef={modalizeFindOtherLpTokenRef}
+        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        onPressClose={() => {
+          onCloseFindOtherLpTokenDialog();
+        }}
+      />
+
     </SafeAreaProvider>
   )
 }
