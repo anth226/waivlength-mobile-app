@@ -30,5 +30,9 @@ export { default as SettingOptionWalletContainer } from './SettingOptionWalletCo
 export { default as ListOfTokenToSendContainer } from './ListOfTokenToSendContainer'
 export { default as AddCustomTokenContainer } from './AddCustomTokenContainer'
 export { default as StakingDeFiContainer } from './StakingDeFiContainer'
+export { default as SettingOverviewContainer } from './SettingOverviewContainer'
+export { default as SettingModerationContainer } from './SettingModerationContainer'
+
+
 
 

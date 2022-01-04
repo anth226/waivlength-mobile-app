@@ -34,6 +34,8 @@ import {
   ListOfTokenToSendContainer,
   AddCustomTokenContainer,
   StakingDeFiContainer,
+  SettingOverviewContainer,
+  SettingModerationContainer
 } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
@@ -175,6 +177,9 @@ const MainNavigator = () => {
       <Stack.Screen name="ListOfTokenToSend" component={ListOfTokenToSendContainer} />
       <Stack.Screen name="AddCustomToken" component={AddCustomTokenContainer} />
       <Stack.Screen name="StakingDeFi" component={StakingDeFiContainer} />
+      <Stack.Screen name="SettingOverview" component={SettingOverviewContainer} />
+      <Stack.Screen name="SettingModeration" component={SettingModerationContainer} />
+      
       
     </Stack.Navigator>
   )

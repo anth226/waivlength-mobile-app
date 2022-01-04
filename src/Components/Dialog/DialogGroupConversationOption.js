@@ -39,7 +39,12 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
                 <View style={[Layout.fullWidth, styles.line]} />
 
                 <View style={[Layout.fullWidth, Layout.row, { paddingVertical: Responsive.height(10), paddingHorizontal: Responsive.width(30) }]}>
-                    <TouchableOpacity style={[Layout.fill, Layout.column, { justifyContent: 'center', alignItems: 'center' }]}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_INVITE_DIALOG, {})
+                        }}
+                        style={[Layout.fill, Layout.column, { justifyContent: 'center', alignItems: 'center' }]}>
                         <CustomImage width={Responsive.height(22)} height={Responsive.height(22)} source={Images.icAddProfile2} />
                         <Text style={styles.textAction}>Invite</Text>
                     </TouchableOpacity>
@@ -68,7 +73,12 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
 
                 <View style={[Layout.fill, Layout.column, styles.groupActionWrapper, { marginHorizontal: Responsive.width(20) }]}>
 
-                    <TouchableOpacity style={styles.itemAction}>
+                    <TouchableOpacity
+                        style={styles.itemAction}
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            navigate('CreateNewChannel')
+                        }}>
                         <Text style={styles.textGroupAction}>Create Channel</Text>
                     </TouchableOpacity>
                     <View style={[Layout.fullWidth, styles.lineAction]} />
@@ -81,7 +91,12 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
                         <Text style={styles.textGroupAction}>Create Category</Text>
                     </TouchableOpacity>
                     <View style={[Layout.fullWidth, styles.lineAction]} />
-                    <TouchableOpacity style={styles.itemAction}>
+                    <TouchableOpacity
+                        style={styles.itemAction}
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_EVENT_DIALOG, {})
+                        }}>
                         <Text style={styles.textGroupAction}>Create Event</Text>
                     </TouchableOpacity>
 
