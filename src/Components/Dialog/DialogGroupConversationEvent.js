@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     },
     textButtonInterest: {
         fontSize: Responsive.font(14),
-        fontFamily: 'Poppins-Mwdium',
+        fontFamily: 'Poppins-Medium',
         lineHeight: Responsive.width(22),
         color: '#5D5FEF',
     },
