@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         marginBottom: Responsive.height(36),
     },
     textButtonLetGo: {
-        fontFamily: 'Poppins-SemiBold',
+        fontFamily: 'Poppins-SenuBold',
         fontWeight: 'bold',
         fontSize: Responsive.font(16),
         lineHeight: Responsive.width(24),

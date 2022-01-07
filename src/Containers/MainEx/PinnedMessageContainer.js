@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Switch } from 'react-native-switch';
 import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
 
-import { ActionBar, GradientBackground, BackIcon, Avatar } from '@/Components'
+import { ActionBar, GradientBackgroundAngle, BackIcon, Avatar } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 
@@ -89,7 +89,7 @@ const PinnedMessageContainer = ({ navigation }) => {
 
 
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
-    <GradientBackground style={{ position: 'absolute' }} />
+    <GradientBackgroundAngle style={{ position: 'absolute' }} />
     <ActionBar
       left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
       right={<View style={{ height: Responsive.height(36), width: Responsive.height(36) }} />}

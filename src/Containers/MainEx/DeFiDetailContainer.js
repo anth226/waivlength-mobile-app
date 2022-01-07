@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { KeyboardAvoidingView, View, Text, FlatList, TextInput, StyleSheet, useWindowDimensions, TouchableOpacity, DrawerLayoutAndroidComponent, Modal } from 'react-native'
+import { KeyboardAvoidingView, View, Text, FlatList, SectionList, TextInput, StyleSheet, useWindowDimensions, TouchableOpacity, DrawerLayoutAndroidComponent, Modal } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
@@ -14,6 +14,7 @@ import { LineChart } from "react-native-chart-kit";
 import EventBus from 'react-native-event-bus';
 import { EVENTS } from '@/Constants'
 import { Layout } from '@/Theme';
+import { Circle, Line, Svg, Text as TextSVG } from "react-native-svg";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -24,12 +25,312 @@ const HEADER_HEIGHT = Responsive.height(300);
 
 const OVERLAY_VISIBILITY_OFFSET = 32;
 
+const LineChartDecorator = (props) => {
+    console.log(props)
+    //https://github.com/indiespirit/react-native-chart-kit/issues/407
+    return (
+        <View style={{ zIndex: 999 }}>
+            <Svg>
+                <Line
+                    x1={props.x}
+                    y1={props.y}
+                    x2={props.x}
+                    y2={Responsive.height(170)}
+                    //stroke={(darkMode() ? Colors.darkMode_basicTransparent : Colors.basicTransparent)}
+                    stroke={'green'}
+                    strokeWidth="1" />
+
+                <TextSVG
+                    x={props.x - 5}
+                    y={Responsive.height(200)}
+                    // fill={(darkMode() ? Colors.darkMode_basic : Colors.basic)}
+                    fill={'#000000'}
+                    fontSize="14"
+                    fontWeight="bold"
+                    textAnchor="middle">
+                    {Math.round((props.value + Number.EPSILON) * 100) / 100}
+                </TextSVG>
+            </Svg>
+        </View>
+    )
+}
+
+const AssetHistoryContainer = () => {
+    const { Layout, Gutters, Fonts, Common, Images } = useTheme()
+    const { t } = useTranslation()
+    const { width, height } = useWindowDimensions();
+    //const { top, bottom } = useSafeAreaInsets();
+    const [indexTab, setIndexTab] = useState(0);
+
+    const init = async () => {
+
+    }
+
+    useEffect(() => {
+        init()
+    })
+    const DATA = [
+        {
+            id: 1,
+            firstName: "Linnie",
+            lastName: "Summers",
+            url: "https://picsum.photos/200/200",
+            bio: "I am the sunshine",
+            unRead: 4,
+            time: "02:17",
+            type: 'top_post'
+        },
+        {
+            id: 2,
+            firstName: "Ruth",
+            lastName: "Hamptom",
+            url: "https://picsum.photos/200/200",
+            bio: "Live, Learn, Love",
+            unRead: 4,
+            time: "02:17"
+        },
+    ];
+
+    // https://stackoverflow.com/questions/53937700/fetch-and-group-json-data-for-flatlist-in-react-native
+    let A = [
+        { id: '1', name: 'Send', value: '-5.0123 ETH', currentUnit: 'ETH', type: 'send' },
+        { id: '2', name: 'Receive', value: '+30.4422 BNB', currentUnit: 'BNB', type: 'receive' },
+        { id: '3', name: 'Send', value: '-7.0123 ETH', currentUnit: 'ETH', type: 'send' },
+    ];
+
+    const renderAssetsItem = ({ item, index }) => {
+        return (
+            <TouchableOpacity activeOpacity={0.8} onPress={() => {
+                EventBus.getInstance().fireEvent(EVENTS.OPEN_ASSET_TILE_WALLET_DIALOG, {})
+            }}>
+                <View style={[Layout.fill, Layout.row, Layout.alignItemsCenter, styles.itemStyleWrapper]}>
+
+                    <View style={[styles.viewIconContainer, Layout.rowCenter]}>
+                        <CustomImage source={Images.icNiceEthereumLogo} width={Responsive.height(36)} height={Responsive.height(36)} />
+                    </View>
+
+                    <View style={[Layout.fill, { marginRight: Responsive.width(13) }]}>
+                        <View style={[Layout.rowHCenter, { justifyContent: 'space-between' }]}>
+                            <Text style={styles.textNameItem}>Ethereum</Text>
+                            <Text style={styles.textPriceItem}>$4.634</Text>
+                        </View>
+
+                        <View style={[Layout.rowHCenter, { justifyContent: 'space-between', marginTop: Responsive.height(7) }]}>
+                            <Text style={styles.textCountItem}>30.4422</Text>
+                            <Text style={styles.textPercentItem}>-2.25%</Text>
+                        </View>
+                    </View>
+
+                </View>
+
+            </TouchableOpacity >
+        );
+    };
+
+    //https://pretagteam.com/question/how-to-paginate-data-from-an-array-in-react
+    const renderHistoryItem = ({ item, index }) => {
+        const { value, name, type, currentUnit } = item
+        const isReceiveType = type == 'receive';
+        return (
+            <TouchableOpacity activeOpacity={0.8} onPress={() => {
+                EventBus.getInstance().fireEvent(EVENTS.OPEN_HISTORY_TILE_WALLET_DIALOG, {})
+            }}>
+                <View style={[Layout.fill, Layout.row, Layout.alignItemsCenter, styles.itemStyleWrapper]}>
+
+                    <View style={[styles.viewIconContainer, Layout.rowCenter]}>
+                        {
+                            isReceiveType ? <CustomImage source={Images.icBinanceCoin} width={Responsive.height(36)} height={Responsive.height(36)} style={{ marginRight: Responsive.width(5) }} />
+                                : <CustomImage source={Images.icNiceEthereumLogo} width={Responsive.height(24)} height={Responsive.height(38)} style={{ marginRight: Responsive.width(5) }} />
+                        }
+                    </View>
+
+                    <View style={[Layout.fill, { marginRight: Responsive.width(13) }]}>
+                        <View style={[Layout.rowHCenter, { justifyContent: 'space-between' }]}>
+                            <View style={Layout.rowHCenter}>
+                                {
+                                    isReceiveType ? <CustomImage source={Images.icReceivedHistory} width={Responsive.height(16)} height={Responsive.height(16)} style={{ marginRight: Responsive.width(5) }} />
+                                        : <CustomImage source={Images.icSendHistory} width={Responsive.height(16)} height={Responsive.height(16)} style={{ marginRight: Responsive.width(5) }} />
+                                }
+                                <Text style={[styles.text3B3F51Medium14, { lineHeight: Responsive.height(18) }]}>{name}</Text>
+                            </View>
+
+                            <Text style={[styles.textDA1E28SemiBold14Line18, isReceiveType ? { color: '#24A148' } : null]}>{value}</Text>
+                        </View>
+
+                        <View style={[Layout.rowHCenter, { justifyContent: 'space-between', marginTop: Responsive.height(7) }]}>
+                            <Text style={styles.text949BA6Medium14}>{currentUnit}</Text>
+
+                        </View>
+                    </View>
+
+                </View>
+
+            </TouchableOpacity >
+        );
+    };
+
+    const FlatListItemSeparator = () => {
+        return (
+            //Item Separator
+            <View style={{ height: Responsive.height(1) }} />
+        );
+    };
+
+    return (
+        <View style={Layout.fullWidth}>
+            <TabBar2Button style={
+                {
+                    height: Responsive.height(52),
+                    marginHorizontal: Responsive.width(20),
+                    marginTop: Responsive.height(20),
+                    marginBottom: Responsive.height(16),
+                }
+            }
+                indexSelected={indexTab}
+                onPressTab1={() => { setIndexTab(0) }}
+                onPressTab2={() => { setIndexTab(1) }}
+            />
+
+            {/* Body view assets*/}
+            {
+                indexTab == 0 && <View style={[Layout.fullWidth]}>
+                    <FlatList nestedScrollEnabled={true}
+                        style={[Layout.fullWidth]}
+                        data={DATA}
+                        renderItem={renderAssetsItem}
+                        showsHorizontalScrollIndicator={false}
+                        ListHeaderComponent={<View style={{ height: Responsive.height(18) }} />}
+                        keyExtractor={(item) => item.id} />
+                    <TouchableOpacity style={styles.viewMoreButton}>
+                        <Text style={styles.textMore}>More</Text>
+                    </TouchableOpacity>
+                </View>
+            }
+            {/* Body view History*/}
+            {
+                indexTab != 0 && <View style={[Layout.fullWidth]}>
+                    <SectionList
+                        ItemSeparatorComponent={FlatListItemSeparator}
+                        sections={[
+                            { index: 0, title: '30 Nov 2021', data: A },
+                        ]}
+                        renderSectionHeader={({ section: { index, title } }) => (
+
+                            <View style={[Layout.fullWidth, Layout.rowHCenter, {
+                                paddingHorizontal: Responsive.width(20), marginTop: index === 0 ? Responsive.height(4) : Responsive.height(20),
+                                marginBottom: Responsive.height(15)
+                            }]}>
+                                <Text style={[styles.text242A31SemiBold14]}>{title}{index}</Text>
+                            </View>
+                        )}
+                        renderItem={renderHistoryItem}
+                        keyExtractor={(item, index) => index}
+                    />
+                    <TouchableOpacity style={styles.viewMoreButton}>
+                        <Text style={styles.textMore}>More</Text>
+                    </TouchableOpacity>
+                </View>
+            }
+        </View>
+    )
+}
+
+const GraphCoinContainer = () => {
+    const { Layout, Gutters, Fonts, Common, Images } = useTheme()
+    const { t } = useTranslation()
+    const { width, height } = useWindowDimensions();
+
+    const init = async () => {
+
+    }
+
+    useEffect(() => {
+        init()
+    })
+
+    return (
+        <View style={Layout.fullWidth}>
+            <Text style={styles.textEthereumLabel}>Ethereum</Text>
+
+            <View style={[styles.viewRowCoin, Layout.rowHCenter]}>
+                <View style={[Layout.rowCenter, styles.viewRowCoinIcon]}>
+                    <CustomImage source={Images.icNiceEthereumLogo} width={Responsive.height(24)}
+                        height={Responsive.height(38)} style={{ alignSelf: 'center' }} />
+                </View>
+
+                <TouchableOpacity style={[Layout.row, Layout.fill]} onPress={() => {
+                    EventBus.getInstance().fireEvent(EVENTS.OPEN_SELECT_TOKEN_DIALOG, {})
+                }}>
+                    <Text style={styles.textSelectCoinLabel}>Select Coin</Text>
+                    <CustomImage source={Images.icArrowSelectCoin} width={Responsive.height(18)}
+                        height={Responsive.height(18)} style={{ alignSelf: 'center', marginLeft: Responsive.width(11) }} />
+                </TouchableOpacity>
+
+                <TouchableOpacity style={[Layout.row, styles.view24hButton]}>
+                    <Text style={styles.text24hLabel}>24H</Text>
+                    <CustomImage source={Images.icArrowTimeCoin} width={Responsive.height(10)}
+                        height={Responsive.height(10)} style={{ alignSelf: 'center', marginLeft: Responsive.width(5) }} />
+                </TouchableOpacity>
+
+                <View style={{
+                    position: 'absolute',
+                    right: 0,
+                    top: Responsive.height(54),
+                    width: Responsive.width(70),
+                    backgroundColor: '#F3F9FF',
+                    borderRadius: Responsive.height(16),
+                    shadowColor: '#1F2129',
+                    shadowOffset: {
+                        width: 0,
+                        height: 6
+                    },
+                    shadowRadius: 5,
+                    shadowOpacity: 1.0,
+                    paddingHorizontal: Responsive.width(6.22),
+                    paddingVertical: Responsive.height(11),
+                }}>
+                    <View style={[Layout.rowCenter, {
+                        height: Responsive.height(23.33),
+                        backgroundColor: 'rgba(229, 234, 251, 1.0)', borderRadius: Responsive.height(8)
+                    }]}>
+                        <Text style={styles.text5D5FEFMedium14}>24H</Text>
+                    </View>
+                    <View style={[Layout.rowCenter, { height: Responsive.height(23.33) }]}>
+                        <Text style={styles.text5D5FEFMedium14}>1W</Text>
+                    </View>
+                    <View style={[Layout.rowCenter, { height: Responsive.height(23.33) }]}>
+                        <Text style={styles.text5D5FEFMedium14}>1M</Text>
+                    </View>
+                    <View style={[Layout.rowCenter, { height: Responsive.height(23.33) }]}>
+                        <Text style={styles.text5D5FEFMedium14}>1Y</Text>
+                    </View>
+                    <View style={[Layout.rowCenter, { height: Responsive.height(23.33) }]}>
+                        <Text style={styles.text5D5FEFMedium14}>2Y</Text>
+                    </View>
+                </View>
+            </View>
+
+            <View style={[styles.fullWidth, { paddingHorizontal: Responsive.width(20) }]}>
+                <Text style={styles.textAmountTotal}>US $4340.20</Text>
+                <Text style={styles.textGreen}>+$38 (+2.422%) 24H</Text>
+                <View style={[Layout.row, { alignItems: 'flex-end' }]}>
+                    <Text style={styles.textTime}>2:00PM</Text>
+                    <Text style={styles.textDate}>29 Nov, 2021</Text>
+                </View>
+
+            </View>
+
+
+        </View>
+    )
+}
+
 const ExchangeLiquidityTabContainer = () => {
     const { Layout, Gutters, Fonts, Common, Images } = useTheme()
     const { t } = useTranslation()
     const { width, height } = useWindowDimensions();
     const [indexTab, setIndexTab] = useState(0);
-    const [visibleWalletOption, setVisibleWalletOption] = useState(false);
+    const [expandItemLiquidity, setExpandItemLiquidity] = useState(false);
 
 
     const init = async () => {
@@ -90,12 +391,13 @@ const ExchangeLiquidityTabContainer = () => {
                         </View>
                     </View>
 
-                    <TouchableOpacity style={styles.viewEnterAmount} onPress={() => {
+                    
+                </View>
+                <TouchableOpacity style={styles.viewEnterAmount} onPress={() => {
                         EventBus.getInstance().fireEvent(EVENTS.OPEN_CONFIRM_SWAP_STEP1_DIALOG, {})
                     }}>
                         <Text style={styles.textCornerTop}>Enter an amount</Text>
                     </TouchableOpacity>
-                </View>
             </View>}
 
             {/* Liquidity Tab */}
@@ -109,17 +411,49 @@ const ExchangeLiquidityTabContainer = () => {
                         }} />
                 </View>
                 <Text style={styles.textYourLiquidityBelow}>Remove liquidity to receive tokens back</Text>
-                <View style={[Layout.rowHCenter, styles.viewCakeBnbInfo]}>
-                    <View style={Layout.fill}>
-                        <View style={Layout.row}>
-                            <CustomImage source={Images.icCryptocurrencyBnb} width={Responsive.height(24)} height={Responsive.height(24)} />
-                            <CustomImage source={Images.icCryptocurrencyUsdt} width={Responsive.height(24)}
-                                height={Responsive.height(24)} style={{ marginLeft: Responsive.width(4), marginRight: Responsive.width(7) }} />
-                            <Text style={styles.textCakeBnbLabel}>CAKE/BNB</Text>
+                <View style={[styles.viewCakeBnbInfo, { paddingBottom: expandItemLiquidity ? 0 : 13 }]}>
+
+                    <TouchableOpacity activeOpacity={0.9} style={[Layout.rowHCenter, expandItemLiquidity ? { marginBottom: Responsive.height(11) } : {}]} onPress={() => {
+                        setExpandItemLiquidity(!expandItemLiquidity)
+                    }}>
+                        <View style={Layout.fill}>
+                            <View style={Layout.row}>
+                                <CustomImage source={Images.icCryptocurrencyBnb} width={Responsive.height(24)} height={Responsive.height(24)} />
+                                <CustomImage source={Images.icCryptocurrencyUsdt} width={Responsive.height(24)}
+                                    height={Responsive.height(24)} style={{ marginLeft: Responsive.width(4), marginRight: Responsive.width(7) }} />
+                                <Text style={styles.textCakeBnbLabel}>CAKE/BNB</Text>
+                            </View>
+                            <Text style={styles.textCakeBnbValue}>0.5574</Text>
                         </View>
-                        <Text style={styles.textCakeBnbValue}>0.5574</Text>
-                    </View>
-                    <CustomImage source={Images.icArrowDown2} width={Responsive.height(20)} height={Responsive.height(20)} />
+                        <CustomImage source={Images.icArrowDown2} width={Responsive.height(20)} height={Responsive.height(20)}
+                            styleImage={{ transform: [{ rotate: expandItemLiquidity ? '180deg' : '0deg' }] }} />
+                    </TouchableOpacity>
+                    {expandItemLiquidity && <View style={Layout.fullWidth}>
+                        <View style={[Layout.row, { justifyContent: 'space-between' }]}>
+                            <Text style={styles.text3B454EMedium13}>Pooled BNB</Text>
+                            <View style={Layout.rowHCenter}>
+                                <CustomImage source={Images.icCryptocurrencyBnb} width={Responsive.height(24)} height={Responsive.height(24)} style={{ marginRight: Responsive.width(7) }} />
+                                <Text style={styles.text3B454EMedium13}>0.08737312</Text>
+                            </View>
+                        </View>
+                        <View style={[Layout.row, { justifyContent: 'space-between', marginTop: Responsive.height(12) }]}>
+                            <Text style={styles.text3B454EMedium13}>Pooled CAKE</Text>
+                            <View style={Layout.rowHCenter}>
+                                <CustomImage source={Images.icCryptocurrencyUsdt} width={Responsive.height(24)} height={Responsive.height(24)} style={{ marginRight: Responsive.width(7) }} />
+                                <Text style={styles.text3B454EMedium13}>3.2847</Text>
+                            </View>
+                        </View>
+                        <View style={[Layout.row, { justifyContent: 'space-between', marginTop: Responsive.height(14) }]}>
+                            <Text style={styles.text3B454EMedium13}>Share of Pool</Text>
+                            <Text style={styles.text3B454EMedium13}>0.01%</Text>
+                        </View>
+                        <TouchableOpacity style={[Layout.rowCenter, styles.viewAddLiquidity, { marginTop: Responsive.height(20), marginBottom: 0, }]} onPress={() => { EventBus.getInstance().fireEvent(EVENTS.OPEN_REMOVE_LIQUIDITY_DIALOG, {}) }}>
+                            <Text style={styles.textAddLiquidity}>Remove</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[Layout.rowCenter, styles.viewAddMoreLiquidity]} onPress={() => { EventBus.getInstance().fireEvent(EVENTS.OPEN_ADD_LIQUIDITY_DIALOG, {}) }}>
+                            <Text style={styles.textAddMoreLiquidity}>+ Add more liquidity</Text>
+                        </TouchableOpacity>
+                    </View>}
                 </View>
                 <Text style={styles.textDontSee}>Don’t see a pool you joined?</Text>
                 <TouchableOpacity style={[Layout.rowCenter, styles.viewFindOtherToken]} onPress={() => {
@@ -127,7 +461,7 @@ const ExchangeLiquidityTabContainer = () => {
                 }}>
                     <Text style={styles.textFindOtherToken}>Find other LP tokens</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[Layout.rowCenter, styles.viewAddLiquidity]} onPress={() => { }}>
+                <TouchableOpacity style={[Layout.rowCenter, styles.viewAddLiquidity]} onPress={() => { EventBus.getInstance().fireEvent(EVENTS.OPEN_ADD_LIQUIDITY_DIALOG, {}) }}>
                     <Text style={styles.textAddLiquidity}>Add Liquidity</Text>
                 </TouchableOpacity>
             </View>
@@ -142,66 +476,36 @@ const DeFiDetailContainer = () => {
     const { width, height } = useWindowDimensions();
     const [visibleNetworkDropdown, setVisibleNetworkDropdown] = useState(false);
     const [visibleWalletOption, setVisibleWalletOption] = useState(false);
+    const [dataPointChart, setDataPointChart] = useState(null);
 
     //const { top, bottom } = useSafeAreaInsets();
 
+    const decorator = () => {
+        return dataPointChart != null ?
+            <LineChartDecorator
+                x={dataPointChart.x}
+                y={dataPointChart.y}
+                value={dataPointChart.value}
+            /> : null
+    }
 
     const init = async () => {
         await setDefaultTheme({ theme: 'default', darkMode: false })
     }
 
+    const DATA_CHART = [
+        10,
+        100,
+        98,
+        300,
+        34,
+        98.7,
+        250.0,
+    ]
+
     useEffect(() => {
         init()
     })
-
-    const DATA = [
-        {
-            id: 1,
-            firstName: "Linnie",
-            lastName: "Summers",
-            url: "https://picsum.photos/200/200",
-            bio: "I am the sunshine",
-            unRead: 4,
-            time: "02:17",
-            type: 'top_post'
-        },
-        {
-            id: 2,
-            firstName: "Ruth",
-            lastName: "Hamptom",
-            url: "https://picsum.photos/200/200",
-            bio: "Live, Learn, Love",
-            unRead: 4,
-            time: "02:17"
-        },
-    ];
-
-    const renderItem = ({ item, index }) => {
-        return (
-            <TouchableOpacity disabled={true}>
-                <View style={[Layout.fill, Layout.row, Layout.alignItemsCenter, styles.itemStyleWrapper]}>
-
-                    <View style={[styles.viewIconContainer, Layout.rowCenter]}>
-                        <CustomImage source={Images.icAddWalletDefiDetail} width={Responsive.height(36)} height={Responsive.height(36)} />
-                    </View>
-
-                    <View style={[Layout.fill, { marginRight: Responsive.width(13) }]}>
-                        <View style={[Layout.rowHCenter, { justifyContent: 'space-between' }]}>
-                            <Text style={styles.textNameItem}>Ethereum</Text>
-                            <Text style={styles.textPriceItem}>$4.634</Text>
-                        </View>
-
-                        <View style={[Layout.rowHCenter, { justifyContent: 'space-between', marginTop: Responsive.height(7) }]}>
-                            <Text style={styles.textCountItem}>30.4422</Text>
-                            <Text style={styles.textPercentItem}>-2.25%</Text>
-                        </View>
-                    </View>
-
-                </View>
-
-            </TouchableOpacity >
-        );
-    };
 
     return (<SafeAreaView style={[Layout.fill]} >
         {/* <GradientBackground style={{ position: 'absolute' }} colors={['#E4EBF3', '#edf1f5']} /> */}
@@ -221,7 +525,7 @@ const DeFiDetailContainer = () => {
                         />
                     </View>
                     <View style={styles.circleUnread}>
-                        <Text style={styles.textUnread}>12</Text>
+                        <CustomImage source={Images.icVerifyGreen} width={Responsive.width(20)} height={Responsive.width(20)} />
                     </View>
                 </View>
             </TouchableOpacity>}
@@ -462,33 +766,8 @@ const DeFiDetailContainer = () => {
                     </View>
                 </View>
 
-
-                <TabBar2Button style={{
-                    height: Responsive.height(52), marginHorizontal: Responsive.width(20),
-                    marginTop: Responsive.height(20), marginBottom: Responsive.height(16)
-                }}
-                    indexSelected={0}
-                    onPressTab1={() => {
-                        EventBus.getInstance().fireEvent(EVENTS.OPEN_ASSET_TILE_WALLET_DIALOG, {})
-                    }}
-                    onPressTab2={() => {
-                        EventBus.getInstance().fireEvent(EVENTS.OPEN_HISTORY_TILE_WALLET_DIALOG, {})
-                    }}
-                />
-
-                {/* Body view assets & history */}
-                <View style={[Layout.fullWidth]}>
-                    <FlatList nestedScrollEnabled={true}
-                        style={[Layout.fullWidth]}
-                        data={DATA}
-                        renderItem={renderItem}
-                        showsHorizontalScrollIndicator={false}
-                        ListHeaderComponent={<View style={{ height: Responsive.height(18) }} />}
-                        keyExtractor={(item) => item.id} />
-                    <TouchableOpacity style={styles.viewMoreButton}>
-                        <Text style={styles.textMore}>More</Text>
-                    </TouchableOpacity>
-                </View>
+                {/* Assets & history TAB */}
+                <AssetHistoryContainer />
 
                 <View style={styles.viewDivider} />
 
@@ -534,12 +813,7 @@ const DeFiDetailContainer = () => {
 
                 <Text style={styles.textRewardsLabel}>Exchange</Text>
 
-                {/* <TabBar2Button style={{
-                    height: Responsive.height(52), marginHorizontal: Responsive.width(20),
-                    marginTop: Responsive.height(2), marginBottom: Responsive.height(16)
-                }} indexSelected={0} />*/}
-
-                {/* Exchange Tab */}
+                {/* Exchange + Liquidity Tab */}
 
                 <ExchangeLiquidityTabContainer />
 
@@ -547,90 +821,58 @@ const DeFiDetailContainer = () => {
 
                 <Text style={styles.textRewardsLabel}>Graph</Text>
 
-                <Text style={styles.textEthereumLabel}>Ethereum</Text>
+                <GraphCoinContainer />
 
-                <View style={[styles.viewRowCoin, Layout.rowHCenter]}>
-                    <View style={[Layout.rowCenter, styles.viewRowCoinIcon]}>
-                        <CustomImage source={Images.icNiceEthereumLogo} width={Responsive.height(24)}
-                            height={Responsive.height(38)} style={{ alignSelf: 'center' }} />
-                    </View>
-
-                    <TouchableOpacity style={[Layout.row, Layout.fill]} onPress={() => {
-                        EventBus.getInstance().fireEvent(EVENTS.OPEN_SELECT_TOKEN_DIALOG, {})
-                    }}>
-                        <Text style={styles.textSelectCoinLabel}>Select Coin</Text>
-                        <CustomImage source={Images.icArrowSelectCoin} width={Responsive.height(18)}
-                            height={Responsive.height(18)} style={{ alignSelf: 'center', marginLeft: Responsive.width(11) }} />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={[Layout.row, styles.view24hButton]}>
-                        <Text style={styles.text24hLabel}>24H</Text>
-                        <CustomImage source={Images.icArrowTimeCoin} width={Responsive.height(10)}
-                            height={Responsive.height(10)} style={{ alignSelf: 'center', marginLeft: Responsive.width(5) }} />
-                    </TouchableOpacity>
-                </View>
-
-                <View style={[styles.fullWidth, { paddingHorizontal: Responsive.width(20) }]}>
-                    <Text style={styles.textAmountTotal}>US $4340.20</Text>
-                    <Text style={styles.textGreen}>+$38 (+2.422%) 24H</Text>
-                    <View style={[Layout.row, { alignItems: 'flex-end' }]}>
-                        <Text style={styles.textTime}>2:00PM</Text>
-                        <Text style={styles.textDate}>29 Nov, 2021</Text>
-                    </View>
-
-                </View>
-
-                <View style={styles.viewLineChartContainer}>
+                <View style={[Layout.fill, styles.viewLineChartContainer]}>
                     <LineChart
                         data={{
-                            labels: ["January", "February", "March", "April", "May", "June"],
+                            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "jul"],
                             datasets: [
                                 {
-                                    data: [
-                                        Math.random() * 100,
-                                        Math.random() * 100,
-                                        Math.random() * 100,
-                                        Math.random() * 100,
-                                        Math.random() * 100,
-                                        Math.random() * 100,
-                                        Math.random() * 100,
-                                    ]
+                                    data: DATA_CHART
                                 }
                             ]
                         }}
-                        width={width}
-                        height={Responsive.height(231)}
-                        yAxisInterval={1} // optional, defaults to 1
-
-                        xLabelsOffset={0}
+                        width={width + Responsive.width(50)}
+                        height={Responsive.height(230)}
                         withInnerLines={false}
                         withOuterLines={false}
+                        //formatYLabel={()=> ''}
                         withVerticalLines={false}
                         withHorizontalLines={false}
                         withHorizontalLabels={false}
                         withVerticalLabels={false}
+                        decorator={decorator}
+                        fromZero={true}
+                        onDataPointClick={(data) => {
+                            setDataPointChart(data);
+                        }}
                         chartConfig={{
-                            backgroundColor: "#edf1f5",
+                            backgroundColor: "transparent",
                             backgroundGradientFrom: "#edf1f5",
                             backgroundGradientTo: "#edf1f5",
                             decimalPlaces: 2, // optional, defaults to 2dp
                             color: (opacity = 1) => `rgba(91, 99, 230, 1.0)`,
                             labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                             style: {
-                                paddingHorizontal: 0,
+                                paddingRight: 0,
                             },
                             propsForDots: {
                                 r: "6",
                                 strokeWidth: "2",
                                 stroke: "#ffffff"
                             },
-                            horizontalOffset: 0,
                         }}
                         bezier
                         style={{
                             marginVertical: 8,
+                            // https://github.com/indiespirit/react-native-chart-kit/issues/90
+                            paddingRight: Responsive.height(8),
+                            paddingTop: Responsive.height(8),
                         }}
                     />
+
+
                 </View>
 
             </View>
@@ -883,7 +1125,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: Responsive.height(16),
         position: 'absolute',
-        bottom: Responsive.height(-40),
+        bottom: Responsive.height(25),
         zIndex: 1000,
     },
     textYourLiquidity: {
@@ -901,11 +1143,11 @@ const styles = StyleSheet.create({
     },
     viewCakeBnbInfo: {
         backgroundColor: 'rgba(242, 245, 249, 1.0)',
-        height: Responsive.height(73),
+        minHeight: Responsive.height(73),
         borderRadius: Responsive.height(16),
         marginHorizontal: Responsive.width(20),
         marginBottom: Responsive.width(20),
-        paddingVertical: Responsive.height(13),
+        paddingTop: Responsive.height(13),
         paddingHorizontal: Responsive.width(18),
     },
     textCakeBnbLabel: {
@@ -951,11 +1193,22 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: Responsive.height(20),
     },
+    viewAddMoreLiquidity: {
+        width: Responsive.width(236),
+        height: Responsive.height(55),
+        alignSelf: 'center',
+    },
     textAddLiquidity: {
         fontSize: Responsive.font(16),
         fontFamily: 'Poppins-Medium',
         color: 'white',
         lineHeight: Responsive.height(24),
+    },
+    textAddMoreLiquidity: {
+        fontSize: Responsive.font(14),
+        fontFamily: 'Poppins-Medium',
+        color: '#5D5FEF',
+        lineHeight: Responsive.height(21),
     },
     textEthereumLabel: {
         marginHorizontal: Responsive.width(20),
@@ -1019,11 +1272,9 @@ const styles = StyleSheet.create({
         marginLeft: Responsive.width(7),
     },
     viewLineChartContainer: {
-        height: Responsive.height(231),
+        minHeight: Responsive.height(100),
         marginBottom: Responsive.height(10)
     },
-
-
     line: {
         height: Responsive.height(1),
         backgroundColor: '#BFCBD6'
@@ -1046,7 +1297,7 @@ const styles = StyleSheet.create({
         marginRight: Responsive.width(10)
     },
     circleUnread: {
-        backgroundColor: '#FA4D56', width: Responsive.width(20), height: Responsive.width(20), position: 'absolute',
+        width: Responsive.width(20), height: Responsive.width(20), position: 'absolute',
         right: 0, bottom: -5, zIndex: 2,
         borderRadius: Responsive.width(10), alignItems: 'center',
         justifyContent: 'center',
@@ -1137,5 +1388,41 @@ const styles = StyleSheet.create({
         fontSize: Responsive.font(16),
         color: '#525563',
     },
+    text3B454EMedium13: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(13),
+        color: '#3B454E',
+        lineHeight: Responsive.height(19.5),
+    },
+    text5D5FEFMedium14: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(14),
+        color: '#5D5FEF',
+        lineHeight: Responsive.height(21),
+    },
+    text242A31SemiBold14: {
+        fontFamily: 'Poppins-SemiBold',
+        fontSize: Responsive.font(14),
+        color: '#242A31',
+        lineHeight: Responsive.height(21),
+    },
+    text949BA6Medium14: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(14),
+        color: '#949BA6',
+        lineHeight: Responsive.height(21),
+    },
+    text3B3F51Medium14: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(14),
+        color: '#3B3F51',
+        lineHeight: Responsive.height(21),
+    },
+    textDA1E28SemiBold14Line18: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(14),
+        color: '#DA1E28',
+        lineHeight: Responsive.height(18),
+    }
 
 });

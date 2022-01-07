@@ -120,12 +120,6 @@ const ReportServerContainer = ({ navigation }) => {
 
         <View style={Layout.fill} />
 
-        <TouchableOpacity
-          style={[Layout.fullWidth, Common.button.rounded, styles.buttonCancel]}
-          onPress={goBack}>
-          <Text style={styles.textButtonCancel}>Cancel</Text>
-        </TouchableOpacity>
-        <View style={{ height: Responsive.height(42) }} />
       </ScrollView>
     </KeyboardAvoidingView>
   </SafeAreaView>)

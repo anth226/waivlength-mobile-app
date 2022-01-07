@@ -109,8 +109,6 @@ const RewardContainer = ({ goBack }) => {
                                 </View>
 
                                 <View>
-
-
                                     <TouchableOpacity style={{
                                         width: Responsive.width(56),
                                         height: Responsive.height(27),
@@ -152,13 +150,13 @@ const RewardContainer = ({ goBack }) => {
         return (
             <TouchableOpacity disabled={true}>
                 <View style={[Layout.fill, Layout.column, Layout.alignItemsCenter, styles.itemStyleWrapper, {
-                    marginLeft: index == 0 ? Responsive.width(19) : 0
+                    marginLeft: index == 0 ? Responsive.width(16) : 0
                 }]}>
                     <View style={styles.viewBoundItem}>
                         <View style={styles.viewBoundCircle}>
-                            <CustomImage source={Images.icChallengeItemPurple} width={Responsive.height(81)} height={Responsive.height(87)} style={{
+                            <CustomImage source={Images.icChallengeItemPurple} width={Responsive.height(60)} height={Responsive.height(60)} style={{
                                 position: 'absolute',
-                                left: 0, bottom: Responsive.height(5)
+                                left: Responsive.height(15), bottom: Responsive.height(12)
                             }} />
                         </View>
 
@@ -174,6 +172,10 @@ const RewardContainer = ({ goBack }) => {
                                     borderBottomLeftRadius: Responsive.height(8),
                                     borderBottomRightRadius: Responsive.height(8),
                                 }]} />
+
+                            <CustomImage source={Images.icIntersectSeasonPass} style={[{
+                                position: 'absolute', left: 0, top: Responsive.height(-10), right: 0, bottom: 0
+                            }]} />
 
                             <View style={[Layout.fill, { marginHorizontal: Responsive.width(12) }]}>
 
@@ -289,8 +291,6 @@ const styles = StyleSheet.create({
     },
     viewBoundCircle: {
         width: Responsive.height(85), height: Responsive.height(85),
-        backgroundColor: '#969ee9',
-        borderRadius: Responsive.height(85 / 2),
         alignItems: 'flex-start',
         position: 'absolute',
         top: 0,

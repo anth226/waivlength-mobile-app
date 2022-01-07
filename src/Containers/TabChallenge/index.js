@@ -57,7 +57,7 @@ const TabChallengeContainer = () => {
                         />
                     </View>
                     <View style={styles.circleUnread}>
-                        <Text style={styles.textUnread}>12</Text>
+                        <CustomImage source={Images.icVerifyGreen} width={Responsive.width(20)} height={Responsive.width(20)}/>
                     </View>
                 </View>
             </TouchableOpacity>}
@@ -224,25 +224,20 @@ const styles = StyleSheet.create({
         borderColor: '#C665F0',
     },
     avatarImage: {
-        width: Responsive.height(40),
-        height: Responsive.height(40),
-        borderRadius: Responsive.height(20),
+        width: Responsive.height(47),
+        height: Responsive.height(47),
+        borderRadius: Responsive.height(47/2),
         backgroundColor: '#BBBEDD',
     },
     wrapperAvatarTopBar: {
         marginTop: Responsive.height(5),
-        marginRight: Responsive.width(10)
+        marginRight: Responsive.width(2)
     },
     circleUnread: {
-        backgroundColor: '#FA4D56', width: Responsive.width(20), height: Responsive.width(20), position: 'absolute',
-        right: 0, bottom: -5, zIndex: 2,
+        width: Responsive.width(20), height: Responsive.width(20), position: 'absolute',
+        right: 0, bottom: Responsive.height(-8), zIndex: 2,
         borderRadius: Responsive.width(10), alignItems: 'center',
         justifyContent: 'center',
-    },
-    textUnread: {
-        color: '#ffffff',
-        fontFamily: 'Poppins-SemiBold',
-        fontSize: Responsive.font(12),
     },
     textNameUser: {
         fontFamily: 'Poppins-Bold',

@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Switch } from 'react-native-switch';
 import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
 
-import { ActionBar, GradientBackground, CustomImage, RadioButton } from '@/Components'
+import { ActionBar, GradientBackground, CustomImage, RadioButton, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 import _ from 'lodash'
@@ -34,11 +34,7 @@ const CreateNewChannelContainer = ({ navigation }) => {
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
     <GradientBackground style={{ position: 'absolute' }} />
     <ActionBar
-      left={
-        <TouchableOpacity style={styles.buttonTextActionBar} onPress={goBack} >
-          <Text style={styles.textCancel}>Cancel</Text>
-        </TouchableOpacity>
-      }
+      left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
       center={<Text style={styles.textTitle}>Create Channel</Text>}
       right={
         <TouchableOpacity style={styles.buttonTextActionBar} onPress={goBack} >

@@ -30,6 +30,13 @@ import {
   DialogConfirmSwapStep1,
   DialogConfirmSwapStep2,
   DialogFindOtherLpToken,
+  DialogAddLiquidity,
+  DialogConfirmAddLiquidity,
+  DialogRemoveLiquidity,
+  DialogAddMemberRole,
+  DialogManageChannelAccess,
+  DialogPickRoleColour,
+  DialogDeleteRole,
 } from '@/Components'
 import Responsive from 'react-native-lightweight-responsive';
 
@@ -54,6 +61,13 @@ const ApplicationNavigator = () => {
   const modalizeConfirmSwapStep1Ref = useRef(null);
   const modalizeConfirmSwapStep2Ref = useRef(null);
   const modalizeFindOtherLpTokenRef = useRef(null);
+  const modalizeAddLiquidityRef = useRef(null);
+  const modalizeConfirmAddLiquidityRef = useRef(null);
+  const modalizeRemoveLiquidityRef = useRef(null);
+  const modalizeAddMemberRoleRef = useRef(null);
+  const modalizeManageChannelAccessRef = useRef(null);
+  const modalizePickRoleColourRef = useRef(null);
+  const modalizeDeleteRoleRef = useRef(null);
 
   const onOpenAudioRoomDialog = () => {
     modalizeCreateAudioRoomRef.current?.open();
@@ -175,6 +189,67 @@ const ApplicationNavigator = () => {
     modalizeFindOtherLpTokenRef.current?.close();
   };
 
+  const onOpenAddLiquidityDialog = () => {
+    modalizeAddLiquidityRef.current?.open();
+  };
+
+  const onCloseAddLiquidityDialog = () => {
+    modalizeAddLiquidityRef.current?.close();
+  };
+
+  const onOpenConfirmAddLiquidityDialog = () => {
+    modalizeConfirmAddLiquidityRef.current?.open();
+  };
+
+  const onCloseConfirmAddLiquidityDialog = () => {
+    modalizeConfirmAddLiquidityRef.current?.close();
+  };
+
+  const onOpenRemoveLiquidityDialog = () => {
+    modalizeRemoveLiquidityRef.current?.open();
+  };
+
+  const onCloseRemoveLiquidityDialog = () => {
+    modalizeRemoveLiquidityRef.current?.close();
+  };
+
+  const onOpenAddMemberRoleDialog = () => {
+    modalizeAddMemberRoleRef.current?.open();
+  };
+
+  const onCloseAddMemberRoleDialog = () => {
+    modalizeAddMemberRoleRef.current?.close();
+  };
+
+  const onOpenManageChannelAccessDialog = () => {
+    modalizeManageChannelAccessRef.current?.open();
+  };
+
+  const onCloseManageChannelAccessDialog = () => {
+    modalizeManageChannelAccessRef.current?.close();
+  };
+
+  const onOpenPickRoleColourDialog = () => {
+    modalizePickRoleColourRef.current?.open();
+  };
+
+  const onClosePickRoleColourDialog = () => {
+    modalizePickRoleColourRef.current?.close();
+  };
+
+  const onOpenDeleteRoleDialog = () => {
+    modalizeDeleteRoleRef.current?.open();
+  };
+
+  const onCloseDeleteRoleDialog = () => {
+    modalizeDeleteRoleRef.current?.close();
+  };
+
+  const modalStyle = {
+    borderTopLeftRadius: Responsive.height(29), 
+    borderTopRightRadius: Responsive.height(29)
+  }
+
   useEffect(() => {
     EventBus.getInstance().addListener(EVENTS.OPEN_CREATE_AUDIO_ROOM_DIALOG, onOpenAudioRoomDialog)
     EventBus.getInstance().addListener(EVENTS.OPEN_GROUP_CONVERSATION_OPTION_DIALOG, onOpenGroupConversationOptionDialog)
@@ -191,6 +266,13 @@ const ApplicationNavigator = () => {
     EventBus.getInstance().addListener(EVENTS.OPEN_CONFIRM_SWAP_STEP1_DIALOG, onOpenConfirmSwapStep1Dialog)
     EventBus.getInstance().addListener(EVENTS.OPEN_CONFIRM_SWAP_STEP2_DIALOG, onOpenConfirmSwapStep2Dialog)
     EventBus.getInstance().addListener(EVENTS.OPEN_FIND_OTHER_LP_TOKEN_DIALOG, onOpenFindOtherLpTokenDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_ADD_LIQUIDITY_DIALOG, onOpenAddLiquidityDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_CONFIRM_ADD_LIQUIDITY_DIALOG, onOpenConfirmAddLiquidityDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_REMOVE_LIQUIDITY_DIALOG, onOpenRemoveLiquidityDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_ADD_MEMBER_ROLE_DIALOG, onOpenAddMemberRoleDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_MANAGE_CHANNEL_ACCESS_DIALOG, onOpenManageChannelAccessDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_PICK_ROLE_COLOUR_DIALOG, onOpenPickRoleColourDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_DELETE_ROLE_DIALOG, onOpenDeleteRoleDialog)
     return () => {
       EventBus.getInstance().removeListener(onOpenAudioRoomDialog)
       EventBus.getInstance().removeListener(onOpenGroupConversationOptionDialog)
@@ -207,6 +289,13 @@ const ApplicationNavigator = () => {
       EventBus.getInstance().removeListener(onOpenConfirmSwapStep1Dialog)
       EventBus.getInstance().removeListener(onOpenConfirmSwapStep2Dialog)
       EventBus.getInstance().removeListener(onOpenFindOtherLpTokenDialog)
+      EventBus.getInstance().removeListener(onOpenAddLiquidityDialog)
+      EventBus.getInstance().removeListener(onOpenConfirmAddLiquidityDialog)
+      EventBus.getInstance().removeListener(onOpenRemoveLiquidityDialog)
+      EventBus.getInstance().removeListener(onOpenAddMemberRoleDialog)
+      EventBus.getInstance().removeListener(onOpenManageChannelAccessDialog)
+      EventBus.getInstance().removeListener(onOpenPickRoleColourDialog)
+      EventBus.getInstance().removeListener(onOpenDeleteRoleDialog)
     };
   });
 
@@ -250,7 +339,7 @@ const ApplicationNavigator = () => {
       <DialogGroupConversationOption
         handlePosition="inside"
         modalizeRef={modalizeGroupConversationOptionRef}
-        modalTopOffset={Responsive.height(35)} />
+        adjustToContentHeight={true} />
       <DialogGroupConversationInvite
         handlePosition="inside"
         modalTopOffset={Responsive.height(35)}
@@ -262,10 +351,12 @@ const ApplicationNavigator = () => {
       <DialogGroupConversationNotification
         handlePosition="inside"
         adjustToContentHeight={true}
+        modalStyle={[modalStyle, {backgroundColor: '#F5F6FB'}]}
         modalizeRef={modalizeGroupConversationNotificationRef} />
       <DialogGroupConversationLeaveGroup
         handlePosition="inside"
         adjustToContentHeight={true}
+        modalStyle={modalStyle}
         modalizeRef={modalizeGroupConversationLeaveGroupRef} />
       <DialogAddWallet
         withHandle={false}
@@ -296,7 +387,7 @@ const ApplicationNavigator = () => {
         handlePosition="inside"
         modalizeRef={modalizeAssetTileWalletRef}
         adjustToContentHeight={true}
-        modalStyle={{ borderRadius: Responsive.height(29) }}
+        modalStyle={modalStyle}
         onPressSend={() => {
           onCloseAssetTileWalletDialog();
         }}
@@ -308,7 +399,7 @@ const ApplicationNavigator = () => {
         handlePosition="inside"
         modalizeRef={modalizeHistoryTileWalletRef}
         adjustToContentHeight={true}
-        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        modalStyle={modalStyle}
         onPressClose={() => {
           onCloseHistoryTileWalletDialog();
         }}
@@ -317,7 +408,7 @@ const ApplicationNavigator = () => {
         handlePosition="inside"
         modalizeRef={modalizeExchangeSettingRef}
         adjustToContentHeight={true}
-        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        modalStyle={modalStyle}
         onPressClose={() => {
           onCloseExchangeSettingDialog();
         }}
@@ -325,7 +416,7 @@ const ApplicationNavigator = () => {
       <DialogSelectToken
         handlePosition="inside"
         modalizeRef={modalizeSelectTokenRef}
-        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        modalStyle={modalStyle}
         onPressClose={() => {
           onCloseSelectTokenDialog();
         }}
@@ -333,7 +424,7 @@ const ApplicationNavigator = () => {
       <DialogConfirmSwapStep1
         handlePosition="inside"
         modalizeRef={modalizeConfirmSwapStep1Ref}
-        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        modalStyle={modalStyle}
         onPressClose={() => {
           onCloseConfirmSwapStep1Dialog();
         }}
@@ -341,7 +432,7 @@ const ApplicationNavigator = () => {
       <DialogConfirmSwapStep2
         handlePosition="inside"
         modalizeRef={modalizeConfirmSwapStep2Ref}
-        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        modalStyle={modalStyle}
         onPressClose={() => {
           onCloseConfirmSwapStep2Dialog();
         }}
@@ -349,11 +440,70 @@ const ApplicationNavigator = () => {
       <DialogFindOtherLpToken
         handlePosition="inside"
         modalizeRef={modalizeFindOtherLpTokenRef}
-        modalStyle={{ borderTopLeftRadius: Responsive.height(29), borderTopRightRadius: Responsive.height(29)}}
+        modalStyle={modalStyle}
         onPressClose={() => {
           onCloseFindOtherLpTokenDialog();
         }}
       />
+      <DialogAddLiquidity
+        handlePosition="inside"
+        modalizeRef={modalizeAddLiquidityRef}
+        modalStyle={modalStyle}
+        onPressClose={() => {
+          onCloseAddLiquidityDialog();
+        }}
+      />
+      <DialogConfirmAddLiquidity
+        handlePosition="inside"
+        modalizeRef={modalizeConfirmAddLiquidityRef}
+        modalStyle={modalStyle}
+        onPressClose={() => {
+          onCloseConfirmAddLiquidityDialog();
+        }}
+      />
+      <DialogRemoveLiquidity
+        handlePosition="inside"
+        modalizeRef={modalizeRemoveLiquidityRef}
+        modalStyle={modalStyle}
+        onPressClose={() => {
+          onCloseRemoveLiquidityDialog();
+        }}
+      />
+      <DialogAddMemberRole
+        handlePosition="inside"
+        modalizeRef={modalizeAddMemberRoleRef}
+        modalStyle={[modalStyle, {backgroundColor: '#F5F6FB'}]}
+        onPressClose={() => {
+          onCloseAddMemberRoleDialog();
+        }}
+      />
+      <DialogManageChannelAccess
+        handlePosition="inside"
+        modalizeRef={modalizeManageChannelAccessRef}
+        modalStyle={[modalStyle, {backgroundColor: '#F5F6FB'}]}
+        onPressClose={() => {
+          onCloseManageChannelAccessDialog();
+        }}
+      />
+      <DialogPickRoleColour
+        handlePosition="inside"
+        modalizeRef={modalizePickRoleColourRef}
+        adjustToContentHeight={true}
+        modalStyle={[modalStyle, {backgroundColor: '#F5F6FB'}]}
+        onPressClose={() => {
+          onClosePickRoleColourDialog();
+        }}
+      />
+      <DialogDeleteRole
+        handlePosition="inside"
+        modalizeRef={modalizeDeleteRoleRef}
+        adjustToContentHeight={true}
+        modalStyle={[modalStyle, {backgroundColor: '#F5F6FB'}]}
+        onPressClose={() => {
+          onCloseDeleteRoleDialog();
+        }}
+      />
+      
 
     </SafeAreaProvider>
   )

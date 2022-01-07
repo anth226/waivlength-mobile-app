@@ -124,7 +124,7 @@ const SettingModerationContainer = ({ navigation }) => {
             style={{ height: Responsive.height(59), alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ width: Responsive.width(10) }} />
             <View style={[Layout.fill, Layout.column]}>
-              <Text style={[styles.textHeader]}>Don’t scan any media content</Text>
+              <Text style={[styles.textHeader]}>Don't scan any media content</Text>
               <Text style={[styles.textDescription, { fontSize: Responsive.font(12), paddingHorizontal: 0 }]}>My friends are nice most of the time.</Text>
             </View>
             <View style={{ width: Responsive.width(5) }} />
@@ -163,7 +163,7 @@ const SettingModerationContainer = ({ navigation }) => {
             <View style={{ width: Responsive.width(10) }} />
             <View style={[Layout.fill, Layout.column]}>
               <Text style={[styles.textHeader]}>Scan media content from all members</Text>
-              <Text style={[styles.textDescription, { fontSize: Responsive.font(12), paddingHorizontal: 0 }]}>Recommended option for when you want that squeaky clean shine.</Text>
+              <Text style={[styles.textDescription, { fontSize: Responsive.font(12), paddingHorizontal: 0 }]}>Recommended option for when you want that squeaky clean shine.</Text>
             </View>
             <View style={{ width: Responsive.width(5) }} />
             <RadioButton

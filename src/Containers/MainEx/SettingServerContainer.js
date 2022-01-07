@@ -68,11 +68,11 @@ const SettingServerContainer = ({ navigation }) => {
 
         <Text style={[styles.textSubHeader]}>Settings</Text>
         <View style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
-          <TouchableOpacity 
-          onPress={() => {
-            navigate('SettingOverview')
-          }}
-          style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigate('SettingOverview')
+            }}
+            style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ width: Responsive.width(10) }} />
             <CustomImage
               width={Responsive.height(18)}
@@ -88,11 +88,11 @@ const SettingServerContainer = ({ navigation }) => {
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
           </TouchableOpacity>
           <View style={styles.line} />
-          <TouchableOpacity 
-          onPress={() => {
-            navigate('SettingModeration')
-          }}
-          style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigate('SettingModeration')
+            }}
+            style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ width: Responsive.width(10) }} />
             <CustomImage
               width={Responsive.height(18)}
@@ -143,7 +143,7 @@ const SettingServerContainer = ({ navigation }) => {
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
           </TouchableOpacity>
           <View style={styles.line} />
-          <TouchableOpacity style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
+          <TouchableOpacity style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }} onPress={() => navigate('RolesSettingServer')}>
             <View style={{ width: Responsive.width(10) }} />
             <CustomImage
               width={Responsive.height(18)}
@@ -159,7 +159,7 @@ const SettingServerContainer = ({ navigation }) => {
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
           </TouchableOpacity>
           <View style={styles.line} />
-          <TouchableOpacity style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
+          <TouchableOpacity style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }} onPress={() => navigate('BansSettingServer')}>
             <View style={{ width: Responsive.width(10) }} />
             <CustomImage
               width={Responsive.height(18)}

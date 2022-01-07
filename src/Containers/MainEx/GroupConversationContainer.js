@@ -12,7 +12,7 @@ import { ExampleContainer } from '@/Containers'
 
 import { CustomImage, ActionBar, DrawerLeftChatRoom, GradientBackground, BackIcon, Avatar, TypingAnimation, DrawerRightChatRoom } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
-import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
+import { navigateAndSimpleReset, goBack, navigate } from '@/Navigators/utils'
 import Animated from 'react-native-reanimated';
 
 
@@ -230,18 +230,12 @@ const GroupConversationContainer = ({ route, navigation }) => {
                                 <View style={Layout.fill} />
                             </View>
                             <View style={{ width: Responsive.width(49) }} />
-                            <View style={Layout.column}>
-                                <View style={Layout.fill} />
-                                <Text style={styles.textItemTime}>{item['time']}</Text>
-                            </View>
+                            <Text style={styles.textItemTime}>{item['time']}</Text>
 
                         </View>
                     ) : (
                         <View style={[Layout.row, styles.itemStyleWrapper, { width }]}>
-                            <View style={Layout.column}>
-                                <View style={Layout.fill} />
-                                <Text style={styles.textItemTime}>{item['time']}</Text>
-                            </View>
+                            <Text style={styles.textItemTime}>{item['time']}</Text>
                             <View style={{ width: Responsive.width(49) }} />
                             <View style={[Layout.fill, Layout.row]}>
                                 <View style={Layout.fill} />
@@ -291,7 +285,8 @@ const GroupConversationContainer = ({ route, navigation }) => {
                     <TouchableOpacity
                         style={styles.actionRight}
                         onPress={() => {
-                            leftNavigation.openDrawer();
+                            //leftNavigation.openDrawer();
+                            navigate('GroupMessagingOverview')
                         }}>
                         <CustomImage width={Responsive.height(20)} height={Responsive.height(14)} source={Images.icHamburger} />
                         <View style={styles.viewBadgetActionWrapper}>
@@ -303,7 +298,9 @@ const GroupConversationContainer = ({ route, navigation }) => {
                     <TouchableOpacity
                         style={[Layout.fullWidth, Layout.column, styles.actionCenterWrapper]}
                         onPress={() => {
-                            navigation.openDrawer();
+                            //navigation.openDrawer();
+                            //navigate('UserChannelOverview')
+                            navigate('AdminChannelOverview')
                         }}
                     >
                         <View style={[Layout.rowCenter]}>

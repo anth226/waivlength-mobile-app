@@ -9,13 +9,16 @@ import LinearGradient from 'react-native-linear-gradient';
 import { CustomImage, ActionBar, AvatarGroup, GradientBackground, BackIcon, Avatar, TypingAnimation, HorizontalProgressBar } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, navigate, goBack } from '@/Navigators/utils'
+import { EVENTS } from '@/Constants';
+import EventBus from 'react-native-event-bus';
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
-const TabHomeContainer = () => {
+const TabHomeContainer = ({route}) => {
     const { Layout, Gutters, Fonts, Common, Images } = useTheme()
     const { t } = useTranslation()
     const { width } = useWindowDimensions();
+    const { leftNavigation } = route.params;
 
     const init = async () => {
         await setDefaultTheme({ theme: 'default', darkMode: false })
@@ -200,7 +203,10 @@ const TabHomeContainer = () => {
                                 imageStyle={[styles.avatarImage, item['isOnline'] ? {} : { width: Responsive.height(50), height: Responsive.height(50), borderRadius: Responsive.height(25) }]}
                                 url={item['url']}
                                 firstName={item['firstName']}
-                                lastName={item['lastName']} />
+                                lastName={item['lastName']} 
+                                onPress={() => {
+                                    navigate('OtherProfile')
+                                }}/>
                             <View style={[Layout.fill, Layout.column, { marginLeft: Responsive.width(16) }]}>
                                 <View style={[Layout.row, { alignItems: 'center' }]}>
                                     <Text style={styles.textNameUser}>{`${item['firstName']} ${item['lastName']}`}</Text>
@@ -471,13 +477,16 @@ const TabHomeContainer = () => {
             style={[Layout.fill, { position: 'absolute', left: 0, top: 0, right: 0, bottom: 0 }]}>
         </LinearGradient>
         <ActionBar
-            left={<TouchableOpacity style={styles.buttonCancel} onPress={goBack} >
+            left={<TouchableOpacity style={styles.buttonCancel} onPress={()=> {
+                leftNavigation.openDrawer()
+            }} >
                 <View>
                     <View style={styles.wrapperAvatarTopBar}>
                         <Avatar
                             isShowDot={false}
                             imageStyle={[styles.avatarImage,]}
                             url={'https://picsum.photos/200/200'}
+                            onPress={()=> leftNavigation.openDrawer()}
                         />
                     </View>
                     <View style={styles.circleUnread}>
@@ -506,6 +515,12 @@ const TabHomeContainer = () => {
 
 
         </KeyboardAvoidingView>
+
+        <TouchableOpacity style={[Layout.rowCenter, styles.buttonNewPost]} onPress={()=> {
+            navigate('NewPost')
+        }}>
+            <CustomImage source={Images.icFeather} width={Responsive.height(34)} height={Responsive.height(34)}/>
+        </TouchableOpacity>
     </SafeAreaView>)
 }
 
@@ -685,5 +700,14 @@ const styles = StyleSheet.create({
         fontSize: Responsive.font(12),
         lineHeight: Responsive.width(22),
     },
+    buttonNewPost: {
+        width: Responsive.height(56),
+        height: Responsive.height(56),
+        backgroundColor: '#5D5FEF',
+        borderRadius: Responsive.height(56/2),
+        position: 'absolute',
+        bottom: Responsive.height(23),
+        right: Responsive.width(9),
+    }
 
 });

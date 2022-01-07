@@ -34,9 +34,24 @@ import {
   ListOfTokenToSendContainer,
   AddCustomTokenContainer,
   StakingDeFiContainer,
+  ScanQRContainer,
+  OtherProfileContainer,
+  NewPostContainer,
+  InviteFriendsContainer,
+  SettingsContainer,
+  GroupMessagingOverviewContainer,
+  UserChannelOverviewContainer,
+  AdminChannelOverviewContainer,
+  ChannelPermissionContainer,
+  ChangeCategoryContainer,
+  ChannelNotificationSettingsContainer,
+  BansSettingServerContainer,
+  RolesSettingServerContainer,
+  RolesDetailSettingServerContainer,
   SettingOverviewContainer,
   SettingModerationContainer
 } from '@/Containers'
+import { DrawerLeftProfile } from '@/Components'
 import { useTheme } from '@/Hooks'
 import { CustomImage } from '@/Components'
 import Responsive from 'react-native-lightweight-responsive'
@@ -45,15 +60,45 @@ import TabHomeNavigator from './TabHomeNavigator'
 import TabMessageNavigator from './TabMessageNavigator'
 import TabNotificationNavigator from './TabNotificationNavigator'
 import TabChallengeNavigator from './TabChallengeNavigator'
+import { createDrawerNavigator } from "@react-navigation/drawer"
 
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
+const Drawer = createDrawerNavigator()
+
+const DrawerMainNavigator = () => {
+  const drawerContent = (props) => {
+    return (
+      <View style={{backgroundColor: 'rgba(231, 235, 243, 1.0)', flex: 1}}>
+         <DrawerLeftProfile {...props} />
+      </View> 
+    )
+}
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+        drawerType: 'front',
+        drawerPosition: 'left',
+        drawerStyle: {
+          backgroundColor: 'rgba(231, 235, 243, 1.0)',
+          width: Responsive.width(291),
+        },
+        lazy: true
+      }}
+      drawerContent={drawerContent} 
+      initialRouteName="MainTab" >
+      <Drawer.Screen name="MainTab" component={MainTabNavigator} />
+    </Drawer.Navigator>
+  );
+}
+
 
 // @refresh reset
-const MainTabNavigator = () => {
+const MainTabNavigator = ({ navigation }) => {
   const { Layout, Gutters, Fonts, Common, Images } = useTheme()
-
+  
   return (
     <Tab.Navigator
       initialRouteName='Home'
@@ -72,6 +117,7 @@ const MainTabNavigator = () => {
     >
       <Tab.Screen
         name="Home"
+        initialParams={{ leftNavigation: navigation }}
         component={TabHomeNavigator}
         options={{
           tabBarShowLabel: false,
@@ -144,8 +190,8 @@ const MainNavigator = () => {
   const { Layout, Gutters, Fonts, Common, Images } = useTheme()
 
   return (
-    <Stack.Navigator initialRouteName="MainTab" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="MainTab" component={MainTabNavigator} />
+    <Stack.Navigator initialRouteName="DrawerMainTab" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="DrawerMainTab" component={DrawerMainNavigator} />
       <Stack.Screen name="CalendarEvent" component={CalendarEventContainer} />
       <Stack.Screen name="Conversation" component={ConversationContainer} />
       <Stack.Screen name="NewMessage" component={NewMessageContainer} />
@@ -177,10 +223,25 @@ const MainNavigator = () => {
       <Stack.Screen name="ListOfTokenToSend" component={ListOfTokenToSendContainer} />
       <Stack.Screen name="AddCustomToken" component={AddCustomTokenContainer} />
       <Stack.Screen name="StakingDeFi" component={StakingDeFiContainer} />
+      <Stack.Screen name="ScanQR" component={ScanQRContainer} />
+      <Stack.Screen name="OtherProfile" component={OtherProfileContainer} />
+      <Stack.Screen name="NewPost" component={NewPostContainer} />
+      <Stack.Screen name="InviteFriends" component={InviteFriendsContainer} />
+      <Stack.Screen name="Settings" component={SettingsContainer} />
+      <Stack.Screen name="GroupMessagingOverview" component={GroupMessagingOverviewContainer} />
+      <Stack.Screen name="UserChannelOverview" component={UserChannelOverviewContainer} />
+      <Stack.Screen name="AdminChannelOverview" component={AdminChannelOverviewContainer} />
+      <Stack.Screen name="ChannelPermission" component={ChannelPermissionContainer} />
+      <Stack.Screen name="ChangeCategory" component={ChangeCategoryContainer} />
+      <Stack.Screen name="ChannelNotificationSettings" component={ChannelNotificationSettingsContainer} />
+      <Stack.Screen name="BansSettingServer" component={BansSettingServerContainer} />
+      <Stack.Screen name="RolesSettingServer" component={RolesSettingServerContainer} />
+      <Stack.Screen name="RolesDetailSettingServer" component={RolesDetailSettingServerContainer} />
+
       <Stack.Screen name="SettingOverview" component={SettingOverviewContainer} />
       <Stack.Screen name="SettingModeration" component={SettingModerationContainer} />
-      
-      
+
+
     </Stack.Navigator>
   )
 }

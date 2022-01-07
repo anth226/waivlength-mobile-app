@@ -27,34 +27,34 @@ const DialogGroupConversationNotification = ({ height, width, style, modalizeRef
                     <Text style={styles.textSubHeader}>admin-only</Text>
                     <View style={Layout.fill} />
                 </View>
-                <View style={{ height: Responsive.height(20) }} />
+                <View style={{ height: Responsive.height(25) }} />
                 <View style={[Layout.fullWidth, styles.line]} />
 
-                <View style={{ height: Responsive.height(20) }} />
+                <View style={{ height: Responsive.height(24) }} />
                 <View style={[Layout.fill, Layout.column, styles.actionWrapper]}>
 
                     <View style={{ height: Responsive.height(52), justifyContent: 'center' }}>
                         <Text style={styles.textItemAction}>For 15 Minutes</Text>
                     </View>
-                    <View style={[Layout.fullWidth, styles.line]} />
+                    <View style={[Layout.fullWidth, styles.lineAction]} />
                     <View style={{ height: Responsive.height(52), justifyContent: 'center' }}>
                         <Text style={styles.textItemAction}>For 1 Hour</Text>
                     </View>
-                    <View style={[Layout.fullWidth, styles.line]} />
+                    <View style={[Layout.fullWidth, styles.lineAction]} />
                     <View style={{ height: Responsive.height(52), justifyContent: 'center' }}>
                         <Text style={styles.textItemAction}>For 8 Hours</Text>
                     </View>
-                    <View style={[Layout.fullWidth, styles.line]} />
+                    <View style={[Layout.fullWidth, styles.lineAction]} />
                     <View style={{ height: Responsive.height(52), justifyContent: 'center' }}>
                         <Text style={styles.textItemAction}>For 24 Hours</Text>
                     </View>
-                    <View style={[Layout.fullWidth, styles.line]} />
+                    <View style={[Layout.fullWidth, styles.lineAction]} />
                     <View style={{ height: Responsive.height(52), justifyContent: 'center' }}>
                         <Text style={styles.textItemAction}>Until I turn it back on</Text>
                     </View>
 
                 </View>
-                <View style={{ height: Responsive.height(20) }} />
+                <View style={{ height: Responsive.height(15) }} />
                 <View style={[Layout.fill, Layout.column, styles.actionWrapper]}>
 
                     <View style={{ height: Responsive.height(54), alignItems: 'center', flexDirection: 'row' }}>
@@ -67,7 +67,7 @@ const DialogGroupConversationNotification = ({ height, width, style, modalizeRef
                             style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
                     </View>
                 </View>
-                <View style={{ height: Responsive.height(14) }} />
+                <View style={{ height: Responsive.height(6) }} />
                 <Text style={[Layout.fill, styles.textDescription]}>You are receiving notifications from only mentions{'\n'}in this server, but you can override it here</Text>
                 <View style={{ height: Responsive.height(30) }} />
             </View>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-Bold',
         lineHeight: Responsive.width(22),
         color: '#242A31',
-        marginTop: Responsive.height(23),
+        marginTop: Responsive.height(40),
     },
     textSubHeader: {
         fontSize: Responsive.font(14),
@@ -109,12 +109,16 @@ const styles = StyleSheet.create({
         color: '#242A31',
     },
     line: {
-        backgroundColor: '#BFCBD6',
+        backgroundColor: 'rgba(194, 199, 204, 1.0)',
+        height: Responsive.height(1)
+    },
+    lineAction: {
+        backgroundColor: 'rgba(220, 221, 224, 1.0)',
         height: Responsive.height(1)
     },
     actionWrapper: {
-        backgroundColor: '#B8E4EBF3',
-        marginHorizontal: Responsive.width(20),
+        backgroundColor: 'rgba(252, 252, 254, 1.0)',
+        marginHorizontal: Responsive.width(16),
         borderRadius: Responsive.height(10)
     },
     textItemAction: {
@@ -125,11 +129,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: Responsive.width(20),
     },
     textDescription: {
-        fontSize: Responsive.font(13),
+        fontSize: Responsive.font(10),
         fontFamily: 'Poppins-Regular',
-        lineHeight: Responsive.width(22),
-        color: '#44486F',
-        paddingHorizontal: Responsive.width(20),
+        lineHeight: Responsive.width(15),
+        color: '#242A31',
+        paddingHorizontal: Responsive.width(33),
     }
 
 

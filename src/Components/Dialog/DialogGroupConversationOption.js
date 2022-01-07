@@ -19,10 +19,27 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
     return (<Modalize ref={modalizeRef} {...props}>
         <ScrollView
             nestedScrollEnabled={true}>
-            <View style={[Layout.fullWidth, Layout.column]}>
+            <View style={[Layout.fullWidth, Layout.column, styles.container]}>
                 <View style={[Layout.fullWidth, Layout.row, { marginTop: Responsive.height(30), paddingHorizontal: Responsive.width(20) }]}>
                     <CustomImage width={Responsive.height(56)} height={Responsive.height(56)} source={Images.icLogoDark} />
                     <View style={Layout.fill} />
+                    <CustomImage
+                        width={Responsive.height(40)}
+                        height={Responsive.height(40)}
+                        source={Images.icActionNotification}
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            navigate('SettingNotification')
+                        }} />
+                    <View style={{ width: Responsive.width(6) }} />
+                    <CustomImage
+                        width={Responsive.height(40)}
+                        height={Responsive.height(40)}
+                        source={Images.icActionSetting}
+                        onPress={() => {
+                            modalizeRef.current?.close();
+                            navigate('SettingServer')
+                        }} />
                 </View>
                 <Text style={styles.textGroupName}>Waivlength</Text>
                 <View style={[Layout.fullWidth, Layout.row, { alignItems: 'center', marginTop: Responsive.height(15), paddingHorizontal: Responsive.width(20) }]}>
@@ -35,41 +52,7 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
                     <View style={{ width: Responsive.width(6) }} />
                     <Text style={styles.textCount}>95 Members</Text>
                 </View>
-                <View style={{ height: Responsive.height(17) }} />
-                <View style={[Layout.fullWidth, styles.line]} />
-
-                <View style={[Layout.fullWidth, Layout.row, { paddingVertical: Responsive.height(10), paddingHorizontal: Responsive.width(30) }]}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            modalizeRef.current?.close();
-                            EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_INVITE_DIALOG, {})
-                        }}
-                        style={[Layout.fill, Layout.column, { justifyContent: 'center', alignItems: 'center' }]}>
-                        <CustomImage width={Responsive.height(22)} height={Responsive.height(22)} source={Images.icAddProfile2} />
-                        <Text style={styles.textAction}>Invite</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[Layout.fill, Layout.column, { justifyContent: 'center', alignItems: 'center' }]}
-                        onPress={() => {
-                            modalizeRef.current?.close();
-                            navigate('SettingNotification')
-                        }}>
-                        <CustomImage width={Responsive.height(22)} height={Responsive.height(22)} source={Images.icNotification} />
-                        <Text style={styles.textAction}>Notifications</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[Layout.fill, Layout.column, { justifyContent: 'center', alignItems: 'center' }]}
-                        onPress={() => {
-                            modalizeRef.current?.close();
-                            navigate('SettingServer')
-                        }}>
-                        <CustomImage width={Responsive.height(22)} height={Responsive.height(22)} source={Images.icSetting} />
-                        <Text style={styles.textAction}>Settings</Text>
-                    </TouchableOpacity>
-                </View>
-
-
-                <View style={[Layout.fullWidth, styles.line]} />
+            
 
                 <View style={[Layout.fill, Layout.column, styles.groupActionWrapper, { marginHorizontal: Responsive.width(20) }]}>
 
@@ -90,16 +73,6 @@ const DialogGroupConversationOption = ({ height, width, style, modalizeRef, onPr
                         style={styles.itemAction}>
                         <Text style={styles.textGroupAction}>Create Category</Text>
                     </TouchableOpacity>
-                    <View style={[Layout.fullWidth, styles.lineAction]} />
-                    <TouchableOpacity
-                        style={styles.itemAction}
-                        onPress={() => {
-                            modalizeRef.current?.close();
-                            EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_EVENT_DIALOG, {})
-                        }}>
-                        <Text style={styles.textGroupAction}>Create Event</Text>
-                    </TouchableOpacity>
-
                 </View>
 
 
@@ -181,7 +154,8 @@ export default DialogGroupConversationOption
 
 const styles = StyleSheet.create({
     container: {
-        flexGrow: 1
+        flexGrow: 1,
+        backgroundColor: '#F5F6FB'
     },
     textGroupName: {
         fontSize: Responsive.font(20),
@@ -214,7 +188,7 @@ const styles = StyleSheet.create({
     },
     groupActionWrapper: {
         marginTop: Responsive.height(20),
-        backgroundColor: '#F0F3F8',
+        backgroundColor: '#FFFFFF',
         borderRadius: Responsive.height(24)
     },
     itemAction: {

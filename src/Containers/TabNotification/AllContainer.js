@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { KeyboardAvoidingView, View, Text, FlatList, TextInput, StyleSheet, useWindowDimensions, TouchableOpacity, DrawerLayoutAndroidComponent } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { ScrollView } from 'react-native-gesture-handler'
@@ -20,18 +20,13 @@ const AllContainer = ({ goBack }) => {
     const { Layout, Gutters, Fonts, Common, Images } = useTheme()
     const { t } = useTranslation()
     const { width } = useWindowDimensions();
+    const [data, setData] = useState([]);
+
 
     const onOpen = () => {
         EventBus.getInstance().fireEvent(EVENTS.OPEN_CREATE_AUDIO_ROOM_DIALOG, {})
     };
 
-    const init = async () => {
-        await setDefaultTheme({ theme: 'default', darkMode: false })
-    }
-
-    useEffect(() => {
-        init()
-    })
     const DATA = [
         {
             id: 1,
@@ -41,7 +36,8 @@ const AllContainer = ({ goBack }) => {
             bio: "I am the sunshine",
             unRead: 4,
             time: "02:17",
-            type: 'top_post'
+            type: 'top_post',
+            showContextPopup: false
         },
         {
             id: 2,
@@ -50,7 +46,8 @@ const AllContainer = ({ goBack }) => {
             url: "https://picsum.photos/200/200",
             bio: "Live, Learn, Love",
             unRead: 4,
-            time: "02:17"
+            time: "02:17",
+            showContextPopup: false
         },
         {
             id: 3,
@@ -59,7 +56,8 @@ const AllContainer = ({ goBack }) => {
             url: "",
             bio: "Change ain't easy",
             unRead: 4,
-            time: "02:17"
+            time: "02:17",
+            showContextPopup: false
         },
         {
             id: 4,
@@ -68,7 +66,8 @@ const AllContainer = ({ goBack }) => {
             url: "https://picsum.photos/200/200",
             bio: "Try new things",
             unRead: 1,
-            time: "02:17"
+            time: "02:17",
+            showContextPopup: false
         },
         {
             id: 5,
@@ -77,7 +76,8 @@ const AllContainer = ({ goBack }) => {
             url: "https://picsum.photos/200/200",
             bio: "Try new things",
             unRead: 1,
-            time: "02:17"
+            time: "02:17",
+            showContextPopup: false
         },
         {
             id: 6,
@@ -86,10 +86,19 @@ const AllContainer = ({ goBack }) => {
             url: "https://picsum.photos/200/200",
             bio: "Try new things",
             unRead: 1,
-            time: "02:17"
+            time: "02:17",
+            showContextPopup: false
         },
     ];
 
+    const init = async () => {
+        await setDefaultTheme({ theme: 'default', darkMode: false })
+        setData(DATA)
+    }
+
+    useEffect(() => {
+        init()
+    }, [])
 
     const renderItem = ({ item, index }) => {
         if (item.type === 'top_post') {
@@ -122,20 +131,40 @@ const AllContainer = ({ goBack }) => {
                         <View style={[Layout.fill, { alignItems: 'flex-start' }]}>
                             <View style={[Layout.fill, Layout.rowHCenter]}>
                                 <AvatarGroup height={Responsive.height(32)} text={''} textStyle={styles.textMediumMessage} />
-                                <View style={{flex: 1}}></View>
-                                <CustomImage source={Images.icHorizontalThreeDot} width={Responsive.height(20)} height={Responsive.height(20)} onPress={() => { }} />
+                                <View style={{ flex: 1 }}></View>
+                                <CustomImage source={Images.icHorizontalThreeDot} width={Responsive.height(20)} height={Responsive.height(20)}
+                                    style={{ marginRight: Responsive.height(16) }} onPress={() => {
+                                        for (let i = 0; i < data.length; i++) {
+                                            if (i != index) {
+                                                data[i].showContextPopup = false;
+                                            }
+                                        }
+                                        data[index].showContextPopup = !data[index].showContextPopup;
+                                        setData([...data]);
+                                    }} />
+
+                                {/* view context menu */}
                             </View>
 
                             <Text style={styles.textHightLightMessage} >Waivlength and 2 others followed a16z</Text>
+
+                            {
+                                item.showContextPopup && <View style={{ position: 'absolute', right: Responsive.height(20), top: Responsive.height(25) }}>
+                                    <TouchableOpacity style={[Layout.rowCenter, styles.viewContextMenu]}>
+
+                                        <Text style={styles.textContextMenu}>See less often</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            }
                         </View>
 
                     </View>
 
-                    <View style={{
+                    <View style={[Layout.fill, {
                         borderColor: '#DBE2EB', borderWidth: Responsive.width(1),
-                        borderRadius: Responsive.width(17), minHeight: 100, width: '100%', marginRight: Responsive.width(20),
-                        marginLeft: Responsive.width(25)
-                    }}>
+                        borderRadius: Responsive.width(17), minHeight: 100, marginRight: Responsive.width(10),
+
+                    }]}>
                         <View style={[Layout.fill, Layout.rowHCenter, {
                             paddingLeft: Responsive.width(13),
                             height: Responsive.height(58), marginTop: Responsive.width(10)
@@ -166,7 +195,6 @@ const AllContainer = ({ goBack }) => {
         );
     };
 
-
     return (<View style={[Layout.fill, styles.parentContainer]} >
         <LinearGradient
             colors={['#ebeff5', '#DED8F3']}
@@ -178,9 +206,9 @@ const AllContainer = ({ goBack }) => {
             {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}
             style={[Layout.fill]}
         >
-            <FlatList nestedScrollEnabled={false}
+            <FlatList nestedScrollEnabled={true}
                 style={[Layout.fullWidth]}
-                data={DATA}
+                data={data}
                 renderItem={renderItem}
                 ListHeaderComponent={<View style={{ height: Responsive.height(18) }} />}
                 ListFooterComponent={<View style={{ height: Responsive.height(65) }} />}
@@ -332,4 +360,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: Responsive.width(18),
         backgroundColor: '#5D5FEF'
     },
+    viewContextMenu: {
+        backgroundColor: 'rgba(242,248,252,1.0)',
+        borderRadius: Responsive.height(12),
+        height: Responsive.height(33),
+        minWidth: Responsive.width(135),
+        paddingHorizontal: Responsive.width(2)
+    },
+    textContextMenu: {
+        fontFamily: 'Poppins-Medium',
+        fontSize: Responsive.font(16),
+        lineHeight: Responsive.width(22),
+        color: '#525563',
+    }
 });

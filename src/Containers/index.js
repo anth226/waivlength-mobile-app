@@ -23,6 +23,10 @@ export { default as SettingMessageContainer } from './TabMessage/SettingMessageC
 
 //Tab Home
 export { default as TabHomeContainer } from './TabHome'
+export { default as PostsContainer } from './TabHome/PostsContainer'
+export { default as BookmarksContainer } from './TabHome/BookmarksContainer'
+export { default as MonetizationContainer } from './TabHome/MonetizationContainer'
+export { default as PrivacySafetyContainer } from './TabHome/PrivacySafetyContainer'
 
 // Tab notification
 export { default as TabNotificationContainer } from './TabNotification'
@@ -35,6 +39,12 @@ export { default as ChallengeNotificationContainer } from './TabChallenge/Challe
 export { default as RewardContainer } from './TabChallenge/RewardContainer'
 export { default as EducationContainer } from './TabChallenge/EducationContainer'
 export { default as DeFiContainer } from './TabChallenge/DeFiContainer'
+
+// Role Detail Setting
+export { default as DisplayRolesContainer } from './MainEx/RolesDetailSettingServer/DisplayRolesContainer'
+export { default as PermissionRolesContainer } from './MainEx/RolesDetailSettingServer/PermissionRolesContainer'
+export { default as MemberRolesContainer } from './MainEx/RolesDetailSettingServer/MemberRolesContainer'
+
 
 //MainEx
 export * from './MainEx'

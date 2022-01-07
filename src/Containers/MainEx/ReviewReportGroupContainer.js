@@ -74,14 +74,18 @@ const ReviewReportGroupContainer = ({ navigation }) => {
           <Text style={styles.textDecsriptionHeightLight}> Community Guidelines </Text>
           and fo not submit failse or duplicate reports.</Text>
         <View style={{ height: Responsive.height(20) }} />
-        <TouchableOpacity
-          style={[Layout.fullWidth, Common.button.rounded, styles.buttonSubmit]}
-          onPress={() =>{
-            navigate('GroupConversation')
-            EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_OPTION_DIALOG, {})
-          }}>
-          <Text style={styles.textButtonSubmit}>Submit Report</Text>
-        </TouchableOpacity>
+        <View style={[Layout.rowHCenter, { height: Responsive.height(46) }]}>
+          <View style={{ width: Responsive.width(50) }} />
+          <TouchableOpacity
+            style={[Layout.fill, Common.button.rounded, styles.buttonSubmit]}
+            onPress={() => {
+              navigate('GroupConversation')
+              EventBus.getInstance().fireEvent(EVENTS.OPEN_GROUP_CONVERSATION_OPTION_DIALOG, {})
+            }}>
+            <Text style={styles.textButtonSubmit}>Submit Report</Text>
+          </TouchableOpacity>
+          <View style={{ width: Responsive.width(50) }} />
+        </View>
         <View style={{ height: Responsive.height(42) }} />
       </ScrollView>
     </KeyboardAvoidingView>
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
   textDecsription: {
     fontFamily: 'Poppins-Regular',
     fontSize: Responsive.font(12),
-    color: '#3B454E',
+    color: '#242A31',
     textAlign: 'center'
   },
   textDecsriptionHeightLight: {
@@ -134,11 +138,10 @@ const styles = StyleSheet.create({
     height: Responsive.height(46),
     borderRadius: Responsive.height(23),
     backgroundColor: 'transparent',
-    backgroundColor: '#DA1E28',
-    height: Responsive.height(46)
+    backgroundColor: '#DA1E28'
   },
   textButtonSubmit: {
-    fontFamily: 'Poppins-Medium',
+    fontFamily: 'Poppins-SemiBold',
     fontSize: Responsive.font(14),
     lineHeight: Responsive.width(22),
     color: '#FFFFFF',

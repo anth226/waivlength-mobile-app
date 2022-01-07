@@ -11,6 +11,18 @@ export { default as ReportServerContainer } from './ReportServerContainer'
 export { default as CreateNewEventStep1Container } from './CreateNewEventStep1Container'
 export { default as CreateNewEventStep2Container } from './CreateNewEventStep2Container'
 export { default as CreateNewEventStep3Container } from './CreateNewEventStep3Container'
+export { default as GroupMessagingOverviewContainer } from './GroupMessagingOverviewContainer'
+export { default as UserChannelOverviewContainer } from './UserChannelOverviewContainer'
+export { default as AdminChannelOverviewContainer } from './AdminChannelOverviewContainer'
+export { default as ChannelPermissionContainer } from './ChannelPermissionContainer'
+export { default as ChangeCategoryContainer } from './ChangeCategoryContainer'
+export { default as ChannelNotificationSettingsContainer } from './ChannelNotificationSettingsContainer'
+export { default as BansSettingServerContainer } from './BansSettingServerContainer'
+export { default as RolesSettingServerContainer } from './RolesSettingServerContainer'
+export { default as RolesDetailSettingServerContainer } from './RolesDetailSettingServer/RolesDetailSettingServerContainer'
+
+export { default as SettingOverviewContainer } from './SettingOverviewContainer'
+export { default as SettingModerationContainer } from './SettingModerationContainer'
 
 export { default as SettingServerContainer } from './SettingServerContainer'
 export { default as SettingNotificationContainer } from './SettingNotificationContainer'
@@ -30,9 +42,10 @@ export { default as SettingOptionWalletContainer } from './SettingOptionWalletCo
 export { default as ListOfTokenToSendContainer } from './ListOfTokenToSendContainer'
 export { default as AddCustomTokenContainer } from './AddCustomTokenContainer'
 export { default as StakingDeFiContainer } from './StakingDeFiContainer'
-export { default as SettingOverviewContainer } from './SettingOverviewContainer'
-export { default as SettingModerationContainer } from './SettingModerationContainer'
-
-
+export { default as ScanQRContainer } from './ScanQRContainer'
+export { default as OtherProfileContainer } from './OtherProfileContainer'
+export { default as NewPostContainer } from './NewPostContainer'
+export { default as InviteFriendsContainer } from './InviteFriendsContainer'
+export { default as SettingsContainer } from './SettingsContainer'
 
 

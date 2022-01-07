@@ -1,16 +1,21 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import {
-  TabHomeContainer
+  TabHomeContainer,
+  MonetizationContainer,
+  PrivacySafetyContainer
 } from '@/Containers'
 
 const Stack = createStackNavigator()
 
 // @refresh reset
-const TabHomeNavigator = () => {
+const TabHomeNavigator = ({route}) => {
+  const { leftNavigation } = route.params;
   return (
-    <Stack.Navigator initialRouteName="TabMessage" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="TabMessage" component={TabHomeContainer} />
+    <Stack.Navigator initialRouteName="TabHome" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="TabHome" component={TabHomeContainer} initialParams={{leftNavigation}}/>
+      <Stack.Screen name="Monetization" component={MonetizationContainer} />
+      <Stack.Screen name="PrivacySafety" component={PrivacySafetyContainer} />
     </Stack.Navigator>
   )
 }

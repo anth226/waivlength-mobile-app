@@ -7,13 +7,14 @@ import Responsive from 'react-native-lightweight-responsive';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Switch } from 'react-native-switch';
 import Slider from '@react-native-community/slider';
-import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
+import { ExampleContainer } from '@/Containers'
 
-import { ActionBar, GradientBackground, CustomImage, RadioButton, BackIcon } from '@/Components'
+import { ActionBar, GradientBackgroundAngle, CustomImage, RadioButton, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
-import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
+import { navigateAndSimpleReset, goBack, navigate } from '@/Navigators/utils'
 import _ from 'lodash'
-
+import EventBus from 'react-native-event-bus';
+import { EVENTS } from '@/Constants';
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
@@ -22,6 +23,10 @@ const SettingChannelContainer = ({ navigation }) => {
   const [channelName, setChannelName] = useState("Chat Room");
   const { t } = useTranslation()
   const { width } = useWindowDimensions();
+
+  const onOpenAddMemberRole = () => {
+    EventBus.getInstance().fireEvent(EVENTS.OPEN_ADD_MEMBER_ROLE_DIALOG, {})
+};
 
   const init = async () => {
     await setDefaultTheme({ theme: 'default', darkMode: false })
@@ -33,7 +38,7 @@ const SettingChannelContainer = ({ navigation }) => {
   })
 
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
-    <GradientBackground style={{ position: 'absolute' }} />
+    <GradientBackgroundAngle style={{ position: 'absolute' }} />
     <ActionBar
       left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
       right={<View style={{ height: Responsive.height(36), width: Responsive.height(36) }} />}
@@ -50,8 +55,8 @@ const SettingChannelContainer = ({ navigation }) => {
 
         <View style={{ height: Responsive.height(20) }} />
         <Text style={[Layout.fullWidth, styles.textHeader]}>Channel Name</Text>
-        <View style={{ height: Responsive.height(5) }} />
-        <View style={Layout.fullWidth, styles.searchWrapper}>
+        <View style={{ height: Responsive.height(10) }} />
+        <View style={[Layout.fullWidth, styles.searchWrapper, {paddingLeft: Responsive.width(16), paddingRight: Responsive.width(14)}]}>
           <TextInput
             onChangeText={text => setChannelName(text)}
             editable={true}
@@ -70,8 +75,9 @@ const SettingChannelContainer = ({ navigation }) => {
           }
         </View>
 
-        <View style={{ height: Responsive.height(20) }} />
+        <View style={{ height: Responsive.height(15) }} />
         <Text style={[Layout.fullWidth, styles.textHeader]}>Description</Text>
+        <View style={{ height: Responsive.height(10) }} />
         <View style={Layout.fullWidth}>
           <TextInput
             onChangeText={text => { }}
@@ -85,12 +91,12 @@ const SettingChannelContainer = ({ navigation }) => {
           <Text style={[styles.textDescription, { position: 'absolute', right: Responsive.width(5), bottom: Responsive.height(5), color: '#ADAEC4' }]}>1024</Text>
         </View>
 
-        <View style={{ height: Responsive.height(20) }} />
+        <View style={{ height: Responsive.height(15) }} />
 
         <View style={[Layout.fullWidth, styles.searchWrapper, Layout.column]}>
           <TouchableOpacity
-            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }} onPress={onOpenAddMemberRole}>
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>Add Members or Roles</Text>
             <CustomImage
               width={Responsive.height(12)}
@@ -101,12 +107,13 @@ const SettingChannelContainer = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: Responsive.height(20) }} />
+        <View style={{ height: Responsive.height(15) }} />
 
         <View style={[Layout.fullWidth, styles.searchWrapper, Layout.column]}>
           <TouchableOpacity
-            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}
+            onPress={()=> navigate('ChangeCategory')}>
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>Category</Text>
             <CustomImage
               width={Responsive.height(12)}
@@ -117,12 +124,12 @@ const SettingChannelContainer = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: Responsive.height(20) }} />
+        <View style={{ height: Responsive.height(15) }} />
 
         <View style={[Layout.fullWidth, styles.searchWrapper, Layout.column]}>
           <TouchableOpacity
-            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }} onPress={()=> navigate('ChannelPermission')}>
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>Channel Permission</Text>
             <CustomImage
               width={Responsive.height(12)}
@@ -138,8 +145,9 @@ const SettingChannelContainer = ({ navigation }) => {
         <View style={{ height: Responsive.height(20) }} />
         <View style={[Layout.fullWidth, styles.searchWrapper, Layout.column]}>
           <TouchableOpacity
-            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}
+            onPress={()=> navigate('ChannelNotificationSettings')}>
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>Notification Settings</Text>
             <CustomImage
               width={Responsive.height(12)}
@@ -150,8 +158,9 @@ const SettingChannelContainer = ({ navigation }) => {
           </TouchableOpacity>
           <View style={[Layout.fullWidth, styles.line]} />
           <TouchableOpacity
-            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}
+            onPress={()=> navigate('PinnedMessage')}>
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>Pinned Messages</Text>
             <CustomImage
               width={Responsive.height(12)}
@@ -167,8 +176,8 @@ const SettingChannelContainer = ({ navigation }) => {
 
 
 
-        <View style={[Layout.fullWidth, Layout.row, { marginTop: Responsive.height(15), backgroundColor: '#ffffff', height: Responsive.height(52), alignItems: 'center', borderRadius: Responsive.height(12), paddingHorizontal: Responsive.width(10) }]}>
-          <View style={{ width: Responsive.width(10) }} />
+        <View style={[Layout.fullWidth, Layout.row, { marginTop: Responsive.height(15), backgroundColor: 'rgba(252, 252, 254, 1.0)', height: Responsive.height(52), alignItems: 'center', borderRadius: Responsive.height(12) }]}>
+          <View style={{ width: Responsive.width(16) }} />
           <Text style={[Layout.fill, styles.textHeader]}>Announcement Channel</Text>
           <Switch
             style={styles.switch}
@@ -183,27 +192,28 @@ const SettingChannelContainer = ({ navigation }) => {
             value={false}
             circleSize={30}
           />
+          <View style={{ width: Responsive.width(14) }} />
         </View>
 
         <View style={{ height: Responsive.height(5) }} />
         <Text style={styles.textDescription}>Post messages that reach servers outside your own. Users can opt into “Following” this channel, so select posts you “Publish” from here will appear directly in their own servers. Announcement channels will not receive messages from other Announcement channels.</Text>
 
-        <View style={{ height: Responsive.height(20) }} />
+        <View style={{ height: Responsive.height(13) }} />
 
-        <View tyle={[Layout.fullWidth, styles.searchWrapper, Layout.column]}>
-          <View style={[Layout.fullWidth, Layout.row, { paddingHorizontal: Responsive.width(10) }]}>
+        <View style={[Layout.fullWidth, styles.searchWrapper, Layout.column, {paddingTop: Responsive.height(15)}]}>
+          <View style={[Layout.fullWidth, Layout.row, { paddingHorizontal: Responsive.width(16) }]}>
             <Text style={[styles.textHeader]}>Slowmode Cooldown</Text>
             <View style={Layout.fill} />
-            <Text style={[styles.textHeader]}>Slowmode is off.</Text>
+            <Text style={[styles.textSlowmodeOff]}>Slowmode is off.</Text>
           </View>
           <View style={{ height: Responsive.height(15) }} />
-          <View style={[Layout.fullWidth, Layout.row]}>
+          <View style={[Layout.fullWidth, Layout.row, {marginBottom: Responsive.height(10)}]}>
             <Slider
               style={[Layout.fullWidth, { height: Responsive.height(21) }]}
               minimumValue={0}
               maximumValue={1}
-              minimumTrackTintColor="#FFFFFF"
-              maximumTrackTintColor="#000000"
+              minimumTrackTintColor="#5D5FEF"
+              maximumTrackTintColor="#E1E2EF"
             />
           </View>
         </View>
@@ -216,7 +226,7 @@ const SettingChannelContainer = ({ navigation }) => {
         <View style={[Layout.fullWidth, styles.searchWrapper, Layout.column]}>
           <TouchableOpacity
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>1 Hour</Text>
             <View style={{ width: Responsive.width(5) }} />
             <RadioButton
@@ -228,11 +238,12 @@ const SettingChannelContainer = ({ navigation }) => {
               textStyle={styles.textRadioButton}
               style={{}}
             />
+            <View style={{ width: Responsive.width(5) }} />
           </TouchableOpacity>
           <View style={[Layout.fullWidth, styles.line]} />
           <TouchableOpacity
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>24 Hours</Text>
             <View style={{ width: Responsive.width(5) }} />
             <RadioButton
@@ -244,11 +255,12 @@ const SettingChannelContainer = ({ navigation }) => {
               textStyle={styles.textRadioButton}
               style={{}}
             />
+            <View style={{ width: Responsive.width(5) }} />
           </TouchableOpacity>
           <View style={[Layout.fullWidth, styles.line]} />
           <TouchableOpacity
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>3 Days</Text>
             <View style={{ width: Responsive.width(5) }} />
             <RadioButton
@@ -260,11 +272,12 @@ const SettingChannelContainer = ({ navigation }) => {
               textStyle={styles.textRadioButton}
               style={{}}
             />
+            <View style={{ width: Responsive.width(5) }} />
           </TouchableOpacity>
           <View style={[Layout.fullWidth, styles.line]} />
           <TouchableOpacity
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>1 Week</Text>
             <View style={{ width: Responsive.width(5) }} />
             <RadioButton
@@ -276,6 +289,7 @@ const SettingChannelContainer = ({ navigation }) => {
               textStyle={styles.textRadioButton}
               style={{}}
             />
+            <View style={{ width: Responsive.width(5) }} />
           </TouchableOpacity>
         </View>
 
@@ -304,8 +318,8 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     fontSize: Responsive.font(16),
-    fontFamily: 'Poppins-Medium',
-    color: '#242332',
+    fontFamily: 'Poppins-SemiBold',
+    color: '#272D37',
   },
   buttonTextActionBar: {
     height: Responsive.height(36),
@@ -324,22 +338,26 @@ const styles = StyleSheet.create({
   },
   line: {
     height: Responsive.height(1),
-    backgroundColor: '#BFCBD6'
+    backgroundColor: 'rgba(220, 221, 224, 1.0)',
   },
   textHeader: {
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: 'Poppins-Medium',
     fontSize: Responsive.font(14),
-    color: '#30333E',
+    color: '#242A31',
+  },
+  textSlowmodeOff: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: Responsive.font(12),
+    color: '#242A31',
   },
   searchWrapper: {
     flexDirection: 'row',
     width: '100%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'rgba(252, 252, 254, 1.0)',
     borderRadius: Responsive.height(12),
     borderColor: '#E1E2EF',
     borderWidth: Responsive.height(1),
     alignItems: 'center',
-    paddingHorizontal: Responsive.width(10)
   },
   inputText: {
     borderBottomWidth: 0,
@@ -348,7 +366,7 @@ const styles = StyleSheet.create({
   },
   inputTextMultiline: {
     height: Responsive.height(155),
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'rgba(252, 252, 254, 1.0)',
     borderBottomWidth: 0,
     fontSize: Responsive.font(14),
     fontFamily: 'Poppins-Regular',

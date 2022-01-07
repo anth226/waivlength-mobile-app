@@ -111,12 +111,8 @@ const NewMessageContainer = () => {
     return (<SafeAreaView style={[Layout.fill, styles.parentContainer]} >
         <GradientBackground style={{ position: 'absolute' }} />
         <ActionBar
-            left={<TouchableOpacity style={styles.buttonCancel} onPress={goBack} >
-                <Text style={styles.textCancel}>Cancel</Text>
-            </TouchableOpacity>}
-            right={<TouchableOpacity style={[styles.buttonCancel, { opacity: 0 }]} disabled={true} >
-                <Text style={styles.textCancel}>Cancel</Text>
-            </TouchableOpacity>}
+            left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
+            right={<View style={{ height: Responsive.height(36), width: Responsive.height(36) }} />}
             center={<Text style={styles.textTitle}>New Message</Text>}
         />
         <View style={styles.line} />
@@ -160,16 +156,6 @@ const styles = StyleSheet.create({
         fontSize: Responsive.font(14),
         fontFamily: 'Poppins-SemiBold',
         color: '#15172A',
-    },
-    buttonCancel: {
-        height: Responsive.height(36),
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    textCancel: {
-        fontSize: Responsive.font(14),
-        fontFamily: 'Poppins-Medium',
-        color: '#272D37',
     },
     textTo: {
         fontSize: Responsive.font(14),

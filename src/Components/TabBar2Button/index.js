@@ -9,11 +9,11 @@ const TabBar2Button = ({ style, width, indexSelected = 0, tab1Title, tab2Title, 
 
     return (
         <View style={[Layout.row, styles.viewContainer, { height, width, }, style]}>
-            <TouchableOpacity style={[styles.viewProgress, {backgroundColor: indexSelected == 0 ? '#5D5FEF' : 'transparent'}]} onPress={onPressTab1}>
+            <TouchableOpacity activeOpacity={0.5} style={[styles.viewProgress, {backgroundColor: indexSelected == 0 ? '#5D5FEF' : 'transparent'}]} onPress={onPressTab1}>
                <Text style={[styles.textProgress, {color: indexSelected == 0 ? '#ffffff' : '#4F5A6C'}]}>{tab1Title ?? 'Assets'}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.viewProgress, {backgroundColor: indexSelected == 1 ? '#5D5FEF' : 'transparent'}]} onPress={onPressTab2}>
+            <TouchableOpacity activeOpacity={0.5} style={[styles.viewProgress, {backgroundColor: indexSelected == 1 ? '#5D5FEF' : 'transparent'}]} onPress={onPressTab2}>
                <Text style={[styles.textProgress, {color: indexSelected == 1 ? '#ffffff' : '#4F5A6C'}]}>{tab2Title ?? 'History'}</Text>
             </TouchableOpacity>
         </View>

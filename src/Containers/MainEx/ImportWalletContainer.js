@@ -99,7 +99,7 @@ const ImportWalletContainer = ({ }) => {
 
             <TouchableOpacity
                 onPress={() => {
-                    // navigate('CreateNewEventStep2')
+                    navigate('ScanQR')
                 }}
                 style={[Common.button.rounded, styles.buttonNext]}
             >
