@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Switch } from 'react-native-switch';
 import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
 
-import { ActionBar, GradientBackground, CustomImage, BackIcon } from '@/Components'
+import { ActionBar, GradientBackgroundAngle, CustomImage, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 import _ from 'lodash'
@@ -32,13 +32,12 @@ const EditServerProfileContainer = ({ navigation }) => {
   })
 
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
-    <GradientBackground style={{ position: 'absolute' }} />
+    <GradientBackgroundAngle style={{ position: 'absolute' }} />
     <ActionBar
       left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
       right={<View style={{ height: Responsive.height(36), width: Responsive.height(36) }} />}
       center={<Text style={styles.textTitle}>Edit Server Profile</Text>}
     />
-    <Text style={[Layout.fullWidth, styles.textChatRoom]}>Chat Room</Text>
     <KeyboardAvoidingView
       {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}
       style={[Layout.fill]}
@@ -48,7 +47,7 @@ const EditServerProfileContainer = ({ navigation }) => {
         contentContainerStyle={[Layout.alignItemsStart, styles.container]}
         style={[Layout.fill]}>
 
-        <View style={{ height: Responsive.height(20) }} />
+        <View style={{ height: Responsive.height(23) }} />
         <Text style={[Layout.fullWidth, styles.textSubHeader]}>You can change how others see you inside this server by setting a server nickname and avatar.</Text>
         <View style={{ height: Responsive.height(20) }} />
         <Text style={[Layout.fullWidth, styles.textHeader]}>Nickname</Text>
@@ -72,12 +71,12 @@ const EditServerProfileContainer = ({ navigation }) => {
           }
         </View>
 
-        <View style={{ height: Responsive.height(40) }} />
+        <View style={{ height: Responsive.height(20) }} />
         <Text style={[Layout.fullWidth, styles.textHeader]}>Server Avatar</Text>
         <View style={{ height: Responsive.height(12) }} />
         <View>
           <CustomImage height={Responsive.height(84)} width={Responsive.height(84)} source={{ uri: 'https://picsum.photos/200/200' }} styleImage={{ borderRadius: Responsive.height(42)}}/>
-          <CustomImage height={Responsive.height(24)} width={Responsive.height(24)} source={Images.icEdit2} style={{ position: 'absolute', top: 0, right: 0 }} onPress={() => {}}/>
+          <CustomImage height={Responsive.height(24)} width={Responsive.height(24)} source={Images.icEdit2} style={{ position: 'absolute', bottom: 0, right: Responsive.width(-2) }} onPress={() => {}}/>
         </View>
 
 
@@ -95,15 +94,8 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     fontSize: Responsive.font(16),
-    fontFamily: 'Poppins-Medium',
-    color: '#242332',
-  },
-  textChatRoom: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: Responsive.font(12),
-    textAlign: 'center',
-    marginTop: -Responsive.height(12),
-    color: '#787C92'
+    fontFamily: 'Poppins-SemiBold',
+    color: '#272D37',
   },
   line: {
     height: Responsive.height(1),
@@ -118,12 +110,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: Responsive.height(52),
     width: '100%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'rgba(249, 250, 252, 1.0)',
     borderRadius: Responsive.height(12),
     borderColor: '#E1E2EF',
     borderWidth: Responsive.height(1),
     alignItems: 'center',
-    paddingHorizontal: Responsive.width(10)
+    paddingHorizontal: Responsive.width(15)
   },
   inputText: {
     borderBottomWidth: 0,
@@ -134,9 +126,9 @@ const styles = StyleSheet.create({
     height: Responsive.height(30),
   },
   textSubHeader: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: Responsive.font(14),
-    color: '#242A31',
+    fontFamily: 'Poppins-Medium',
+    fontSize: Responsive.font(12),
+    color: '#525563',
   },
   textDescription: {
     fontFamily: 'Poppins-Regular',

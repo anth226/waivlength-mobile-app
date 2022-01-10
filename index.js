@@ -8,5 +8,6 @@ import { name as appName } from './app.json'
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler'
 
 LogBox.ignoreAllLogs();
+console.reportErrorsAsExceptions = false;
 
 AppRegistry.registerComponent(appName, () => gestureHandlerRootHOC(App))

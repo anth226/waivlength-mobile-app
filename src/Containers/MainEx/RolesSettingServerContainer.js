@@ -46,7 +46,7 @@ const RolesSettingServerContainer = ({ navigation }) => {
         <GradientBackgroundAngle style={{ position: 'absolute' }} />
         <ActionBar
             left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
-            right={<TouchableOpacity style={{ height: Responsive.height(36), minWidth: Responsive.height(36) }} >
+            right={<TouchableOpacity style={{ height: Responsive.height(36), minWidth: Responsive.height(36) }} onPress={()=> navigate('AddRoleStep1')}>
                 <Text style={styles.textAddRole}>Add Role</Text>
             </TouchableOpacity>}
             center={<Text style={styles.textTitle}>Server Roles</Text>}

@@ -6,7 +6,7 @@ import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { ActionBar, GradientBackgroundAngle, CustomImage, BackIcon } from '@/Components'
+import { ActionBar, GradientBackgroundAngle, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { goBack, navigate } from '@/Navigators/utils'
 import _ from 'lodash'
@@ -16,7 +16,7 @@ import { EVENTS } from '@/Constants'
 
 
 Responsive.setOptions({ width: 375, height: 812, enableOnlySmallSize: true });
-const ReviewReportGroupContainer = ({ navigation }) => {
+const ReviewReportGroupSomethingElseContainer = ({ navigation }) => {
   const { Layout, Gutters, Fonts, Common, Images } = useTheme()
   const [channelName, setChannelName] = useState("");
   const { t } = useTranslation()
@@ -51,16 +51,23 @@ const ReviewReportGroupContainer = ({ navigation }) => {
         <View style={{ height: Responsive.height(12) }} />
         <View style={Layout.fullWidth}>
 
-          <Text style={[Layout.fullWidth, styles.textSubHeader]}>Review your report before submitting.</Text>
+          <Text style={[Layout.fullWidth, styles.textSubHeader, {marginHorizontal: Responsive.width(8)}]}>Review your report before submitting.</Text>
         </View>
         <View style={{ height: Responsive.height(20) }} />
 
-        <Text style={styles.textTitle}>Report Category</Text>
+        <Text style={[styles.textTitle, {marginHorizontal: Responsive.width(8)}]}>Description</Text>
         <View style={{ height: Responsive.height(10) }} />
-        <View style={[Layout.fullWidth, Layout.rowHCenter]}>
-          <View style={{ height: Responsive.height(4), width: Responsive.height(4), borderRadius: Responsive.height(2), backgroundColor: '#5D5FEF' }} />
-          <View style={{ width: Responsive.width(10) }} />
-          <Text style={styles.textItem}>Promoting or encouraging spam</Text>
+        <View style={Layout.fullWidth}>
+          <TextInput
+            onChangeText={text => { }}
+            editable={true}
+            placeholder={'Please describe the problem...'}
+            placeholderTextColor={'#ADAEC4'}
+            selectTextOnFocus
+            multiline
+            style={[Layout.fullWidth, Common.textInput, styles.inputTextMultiline]}
+          />
+          <Text style={[styles.textCountInputLength, { position: 'absolute', right: Responsive.width(5), bottom: Responsive.height(5), color: '#ADAEC4' }]}>1024</Text>
         </View>
 
 
@@ -70,7 +77,7 @@ const ReviewReportGroupContainer = ({ navigation }) => {
         <Text style={styles.textDecsription}>
           By submitting this report you confirm that it is truthful and made in good faith. Please follow your
           <Text style={styles.textDecsriptionHeightLight}> Community Guidelines </Text>
-          and fo not submit failse or duplicate reports.</Text>
+          and fo not submit false or duplicate reports.</Text>
         <View style={{ height: Responsive.height(20) }} />
         <View style={[Layout.rowHCenter, { height: Responsive.height(46) }]}>
           <View style={{ width: Responsive.width(50) }} />
@@ -90,12 +97,12 @@ const ReviewReportGroupContainer = ({ navigation }) => {
   </SafeAreaView>)
 }
 
-export default ReviewReportGroupContainer
+export default ReviewReportGroupSomethingElseContainer
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingHorizontal: Responsive.width(24)
+    paddingHorizontal: Responsive.width(16)
   },
   textTitleAppBar: {
     fontFamily: 'Poppins-SemiBold',
@@ -114,10 +121,9 @@ const styles = StyleSheet.create({
     color: '#525563',
   },
   textTitle: {
-    fontFamily: 'Poppins-SemiBold',
-    fontSize: Responsive.font(16),
-    color: '#272D37',
-    textTransform: 'uppercase',
+    fontFamily: 'Poppins-Medium',
+    fontSize: Responsive.font(14),
+    color: '#242A31',
   },
   textItem: {
     fontFamily: 'Poppins-Medium',
@@ -148,4 +154,21 @@ const styles = StyleSheet.create({
     lineHeight: Responsive.width(22),
     color: '#FFFFFF',
   },
+  inputTextMultiline: {
+    height: Responsive.height(155),
+    backgroundColor: 'rgba(252, 252, 254, 1.0)',
+    borderBottomWidth: 0,
+    fontSize: Responsive.font(14),
+    fontFamily: 'Poppins-Regular',
+    textAlignVertical: 'top',
+    borderRadius: Responsive.height(12),
+    paddingVertical: Responsive.height(15),
+    paddingHorizontal: Responsive.width(15)
+  },
+  textCountInputLength: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: Responsive.font(10),
+    color: '#242A31',
+    paddingHorizontal: Responsive.width(10)
+  }
 });

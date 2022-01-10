@@ -21,6 +21,7 @@ import {
   CreateNewCategoryContainer,
   EditServerProfileContainer,
   ReviewReportGroupContainer,
+  ReviewReportGroupSomethingElseContainer,
   SettingChannelContainer,
   ListOfDailyChallengeContainer,
   ListOfActiveChallengeContainer,
@@ -49,7 +50,16 @@ import {
   RolesSettingServerContainer,
   RolesDetailSettingServerContainer,
   SettingOverviewContainer,
-  SettingModerationContainer
+  SettingModerationContainer,
+  LanguageContainer,
+  MembersContainer,
+  MemberDetailsContainer,
+  BanMembersContainer,
+  KickMembersContainer,
+  EditRolesContainer,
+  AddRoleStep1Container,
+  AddRoleStep2Container,
+  AddRoleStep3Container,
 } from '@/Containers'
 import { DrawerLeftProfile } from '@/Components'
 import { useTheme } from '@/Hooks'
@@ -210,6 +220,7 @@ const MainNavigator = () => {
       <Stack.Screen name="CreateNewCategory" component={CreateNewCategoryContainer} />
       <Stack.Screen name="EditServerProfile" component={EditServerProfileContainer} />
       <Stack.Screen name="ReviewReportGroup" component={ReviewReportGroupContainer} />
+      <Stack.Screen name="ReviewReportGroupSomethingElse" component={ReviewReportGroupSomethingElseContainer} />
       <Stack.Screen name="SettingChannel" component={SettingChannelContainer} />
       <Stack.Screen name="ListOfDailyChallenge" component={ListOfDailyChallengeContainer} />
       <Stack.Screen name="ListOfActiveChallenge" component={ListOfActiveChallengeContainer} />
@@ -237,6 +248,15 @@ const MainNavigator = () => {
       <Stack.Screen name="BansSettingServer" component={BansSettingServerContainer} />
       <Stack.Screen name="RolesSettingServer" component={RolesSettingServerContainer} />
       <Stack.Screen name="RolesDetailSettingServer" component={RolesDetailSettingServerContainer} />
+      <Stack.Screen name="Language" component={LanguageContainer} />
+      <Stack.Screen name="Members" component={MembersContainer} />
+      <Stack.Screen name="MemberDetails" component={MemberDetailsContainer} />
+      <Stack.Screen name="BanMembers" component={BanMembersContainer} />
+      <Stack.Screen name="KickMembers" component={KickMembersContainer} />
+      <Stack.Screen name="EditRoles" component={EditRolesContainer} />
+      <Stack.Screen name="AddRoleStep1" component={AddRoleStep1Container} />
+      <Stack.Screen name="AddRoleStep2" component={AddRoleStep2Container} />
+      <Stack.Screen name="AddRoleStep3" component={AddRoleStep3Container} />
 
       <Stack.Screen name="SettingOverview" component={SettingOverviewContainer} />
       <Stack.Screen name="SettingModeration" component={SettingModerationContainer} />

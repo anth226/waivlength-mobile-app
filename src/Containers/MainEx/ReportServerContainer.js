@@ -5,10 +5,8 @@ import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Switch } from 'react-native-switch';
-import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
 
-import { ActionBar, GradientBackground, CustomImage, RadioButton, BackIcon } from '@/Components'
+import { ActionBar, GradientBackgroundAngle, CustomImage, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, goBack, navigate } from '@/Navigators/utils'
 import _ from 'lodash'
@@ -32,10 +30,11 @@ const ReportServerContainer = ({ navigation }) => {
   })
 
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
-    <GradientBackground style={{ position: 'absolute' }} />
+    <GradientBackgroundAngle style={{ position: 'absolute' }} />
     <ActionBar
       left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
       right={<View style={{ height: Responsive.height(36), width: Responsive.height(36) }} />}
+      center={<Text style={styles.textTitle}>Report Server</Text>}
     />
     <KeyboardAvoidingView
       {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}
@@ -47,12 +46,8 @@ const ReportServerContainer = ({ navigation }) => {
         style={[Layout.fill]}>
 
 
-        <View style={{ height: Responsive.height(5) }} />
-        <View style={Layout.fullWidth}>
-          <Text style={[Layout.fullWidth, styles.textHeader]}>Report Server</Text>
-
-          <Text style={[Layout.fullWidth, styles.textSubHeader]}>Report this server to Waivlength Trust & Safety. Please select the option that best describes the problem.</Text>
-        </View>
+        <View style={{ height: Responsive.height(23) }} />
+        <Text style={[Layout.fullWidth, styles.textSubHeader]}>Report this server to Waivlength Trust & Safety. Please select the option that best describes the problem.</Text>
         <View style={{ height: Responsive.height(20) }} />
         <TouchableOpacity
           onPress={() => {
@@ -69,7 +64,7 @@ const ReportServerContainer = ({ navigation }) => {
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
           </View>
         </TouchableOpacity>
-        <View style={{ height: Responsive.height(18) }} />
+        <View style={{ height: Responsive.height(15) }} />
         <TouchableOpacity
           onPress={() => {
             navigate('ReviewReportGroup')
@@ -85,7 +80,7 @@ const ReportServerContainer = ({ navigation }) => {
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
           </View>
         </TouchableOpacity>
-        <View style={{ height: Responsive.height(18) }} />
+        <View style={{ height: Responsive.height(15) }} />
         <TouchableOpacity
           onPress={() => {
             navigate('ReviewReportGroup')
@@ -101,10 +96,10 @@ const ReportServerContainer = ({ navigation }) => {
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
           </View>
         </TouchableOpacity>
-        <View style={{ height: Responsive.height(18) }} />
+        <View style={{ height: Responsive.height(15) }} />
         <TouchableOpacity
           onPress={() => {
-            navigate('ReviewReportGroup')
+            navigate('ReviewReportGroupSomethingElse')
           }}
           style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
           <View style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
@@ -130,7 +125,12 @@ export default ReportServerContainer
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingHorizontal: Responsive.width((32))
+    paddingHorizontal: Responsive.width(16)
+  },
+  textTitle: {
+    fontSize: Responsive.font(16),
+    fontFamily: 'Poppins-SemiBold',
+    color: '#272D37',
   },
   textHeader: {
     fontFamily: 'Poppins-SemiBold',
@@ -139,33 +139,20 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   textSubHeader: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: Responsive.font(13),
-    color: '#30333E',
+    fontFamily: 'Poppins-Medium',
+    fontSize: Responsive.font(12),
+    color: '#525563',
+    paddingHorizontal: Responsive.width(8)
   },
   actionWrapper: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Responsive.height(10)
+    backgroundColor: 'rgba(249, 250, 252, 1.0)',
+    borderRadius: Responsive.height(12)
   },
   textItemAction: {
     fontSize: Responsive.font(14),
     fontFamily: 'Poppins-SemiBold',
     lineHeight: Responsive.width(22),
-    color: '#30333E',
-    paddingHorizontal: Responsive.width(20),
-  },
-  buttonCancel: {
-    height: Responsive.height(46),
-    borderRadius: Responsive.height(23),
-    backgroundColor: 'transparent',
-    borderWidth: Responsive.height(1),
-    borderColor: '#B7C2CD',
-    height: Responsive.height(46)
-  },
-  textButtonCancel: {
-    fontFamily: 'Poppins-SemiBold',
-    fontSize: Responsive.font(14),
-    lineHeight: Responsive.width(22),
-    color: '#55606B',
+    color: '#242A31',
+    paddingHorizontal: Responsive.width(16),
   },
 });

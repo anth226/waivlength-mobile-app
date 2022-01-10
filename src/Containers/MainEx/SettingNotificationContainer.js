@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Switch } from 'react-native-switch';
 import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
 
-import { ActionBar, GradientBackground, CustomImage, RadioButton, BackIcon } from '@/Components'
+import { ActionBar, GradientBackgroundAngle, CustomImage, RadioButton, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 import _ from 'lodash'
@@ -32,7 +32,7 @@ const SettingNotificationContainer = ({ navigation }) => {
   })
 
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
-    <GradientBackground style={{ position: 'absolute' }} />
+    <GradientBackgroundAngle style={{ position: 'absolute' }} />
     <ActionBar
       left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
       center={<Text style={styles.textTitle}>Notification Settings</Text>}
@@ -53,7 +53,7 @@ const SettingNotificationContainer = ({ navigation }) => {
         <View style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
           <TouchableOpacity
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textItemAction]}>Mute Chat Room</Text>
             <CustomImage
               width={Responsive.height(12)}
@@ -63,7 +63,7 @@ const SettingNotificationContainer = ({ navigation }) => {
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
           </TouchableOpacity>
         </View>
-        <View style={{ height: Responsive.height(10) }} />
+        <View style={{ height: Responsive.height(5) }} />
         <Text style={[styles.textDescription]}>Mute a server prevents unread indicators and notifications from appearing unless you are mentioned.</Text>
 
         <View style={{ height: Responsive.height(20) }} />
@@ -72,16 +72,16 @@ const SettingNotificationContainer = ({ navigation }) => {
           <TouchableOpacity
             onPress={() => setNotificationType(0)}
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textItemAction]}>All Messages</Text>
             {
               notificationType === 0 && (
                 <CustomImage
-                  width={Responsive.height(16)}
-                  height={Responsive.height(16)}
+                  width={Responsive.height(24)}
+                  height={Responsive.height(24)}
                   source={Images.icCheck2}
                   tintColor={'#5D5FEF'}
-                  style={{ paddingHorizontal: Responsive.width(20) }} />
+                  style={{ marginRight: Responsive.width(16) }} />
               )
             }
           </TouchableOpacity>
@@ -89,16 +89,16 @@ const SettingNotificationContainer = ({ navigation }) => {
           <TouchableOpacity
             onPress={() => setNotificationType(1)}
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textItemAction]}>Only @mentions</Text>
             {
               notificationType === 1 && (
                 <CustomImage
-                  width={Responsive.height(16)}
-                  height={Responsive.height(16)}
+                  width={Responsive.height(24)}
+                  height={Responsive.height(24)}
                   source={Images.icCheck2}
                   tintColor={'#5D5FEF'}
-                  style={{ paddingHorizontal: Responsive.width(20) }} />
+                  style={{ marginRight: Responsive.width(16) }} />
               )
             }
           </TouchableOpacity>
@@ -106,25 +106,25 @@ const SettingNotificationContainer = ({ navigation }) => {
           <TouchableOpacity
             onPress={() => setNotificationType(2)}
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textItemAction]}>Nothing</Text>
             {
               notificationType === 2 && (
                 <CustomImage
-                  width={Responsive.height(16)}
-                  height={Responsive.height(16)}
+                  width={Responsive.height(24)}
+                  height={Responsive.height(24)}
                   source={Images.icCheck2}
                   tintColor={'#5D5FEF'}
-                  style={{ paddingHorizontal: Responsive.width(20) }} />
+                  style={{ marginRight: Responsive.width(16) }} />
               )
             }
           </TouchableOpacity>
         </View>
-        <View style={{ height: Responsive.height(20) }} />
+        <View style={{ height: Responsive.height(15) }} />
 
         <View style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
           <TouchableOpacity style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textItemAction]}>Suppress @everyone and @here</Text>
             <Switch
               renderActiveText={false}
@@ -138,11 +138,11 @@ const SettingNotificationContainer = ({ navigation }) => {
               value={false}
               circleSize={30}
             />
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
           </TouchableOpacity>
           <View style={styles.line} />
           <TouchableOpacity style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textItemAction]}>Suppress All Role @mentions</Text>
             <Switch
               renderActiveText={false}
@@ -156,11 +156,11 @@ const SettingNotificationContainer = ({ navigation }) => {
               value={false}
               circleSize={30}
             />
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
           </TouchableOpacity>
           <View style={styles.line} />
           <TouchableOpacity style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textItemAction]}>Mobile Push Notifications</Text>
             <Switch
               renderActiveText={false}
@@ -174,7 +174,7 @@ const SettingNotificationContainer = ({ navigation }) => {
               value={true}
               circleSize={30}
             />
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
           </TouchableOpacity>
         </View>
 
@@ -188,7 +188,7 @@ export default SettingNotificationContainer
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingHorizontal: Responsive.width((32))
+    paddingHorizontal: Responsive.width(16)
   },
   textTitle: {
     fontFamily: 'Poppins-SemiBold',
@@ -200,18 +200,17 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     fontSize: Responsive.font(14),
     color: '#272D37',
-    marginBottom: Responsive.height(12)
+    marginBottom: Responsive.height(10)
   },
   actionWrapper: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Responsive.height(10)
+    backgroundColor: 'rgba(249, 251, 252, 1.0)',
+    borderRadius: Responsive.height(16)
   },
   textItemAction: {
     fontSize: Responsive.font(14),
     fontFamily: 'Poppins-Medium',
     lineHeight: Responsive.width(22),
-    color: '#30333E',
-    paddingHorizontal: Responsive.width(10),
+    color: '#242A31',
   },
   line: {
     backgroundColor: '#292D36',

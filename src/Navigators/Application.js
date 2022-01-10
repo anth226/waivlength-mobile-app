@@ -37,6 +37,7 @@ import {
   DialogManageChannelAccess,
   DialogPickRoleColour,
   DialogDeleteRole,
+  DialogAddMembers,
 } from '@/Components'
 import Responsive from 'react-native-lightweight-responsive';
 
@@ -68,6 +69,7 @@ const ApplicationNavigator = () => {
   const modalizeManageChannelAccessRef = useRef(null);
   const modalizePickRoleColourRef = useRef(null);
   const modalizeDeleteRoleRef = useRef(null);
+  const modalizeAddMembersRef = useRef(null);
 
   const onOpenAudioRoomDialog = () => {
     modalizeCreateAudioRoomRef.current?.open();
@@ -245,6 +247,14 @@ const ApplicationNavigator = () => {
     modalizeDeleteRoleRef.current?.close();
   };
 
+  const onOpenAddMembersDialog = () => {
+    modalizeAddMembersRef.current?.open();
+  };
+
+  const onCloseAddMembersDialog = () => {
+    modalizeAddMembersRef.current?.close();
+  };
+
   const modalStyle = {
     borderTopLeftRadius: Responsive.height(29), 
     borderTopRightRadius: Responsive.height(29)
@@ -273,6 +283,7 @@ const ApplicationNavigator = () => {
     EventBus.getInstance().addListener(EVENTS.OPEN_MANAGE_CHANNEL_ACCESS_DIALOG, onOpenManageChannelAccessDialog)
     EventBus.getInstance().addListener(EVENTS.OPEN_PICK_ROLE_COLOUR_DIALOG, onOpenPickRoleColourDialog)
     EventBus.getInstance().addListener(EVENTS.OPEN_DELETE_ROLE_DIALOG, onOpenDeleteRoleDialog)
+    EventBus.getInstance().addListener(EVENTS.OPEN_ADD_MEMBERS_DIALOG, onOpenAddMembersDialog)
     return () => {
       EventBus.getInstance().removeListener(onOpenAudioRoomDialog)
       EventBus.getInstance().removeListener(onOpenGroupConversationOptionDialog)
@@ -296,6 +307,7 @@ const ApplicationNavigator = () => {
       EventBus.getInstance().removeListener(onOpenManageChannelAccessDialog)
       EventBus.getInstance().removeListener(onOpenPickRoleColourDialog)
       EventBus.getInstance().removeListener(onOpenDeleteRoleDialog)
+      EventBus.getInstance().removeListener(onOpenAddMembersDialog)
     };
   });
 
@@ -339,6 +351,7 @@ const ApplicationNavigator = () => {
       <DialogGroupConversationOption
         handlePosition="inside"
         modalizeRef={modalizeGroupConversationOptionRef}
+        modalStyle={[modalStyle, {backgroundColor: '#F5F6FB'}]}
         adjustToContentHeight={true} />
       <DialogGroupConversationInvite
         handlePosition="inside"
@@ -501,6 +514,14 @@ const ApplicationNavigator = () => {
         modalStyle={[modalStyle, {backgroundColor: '#F5F6FB'}]}
         onPressClose={() => {
           onCloseDeleteRoleDialog();
+        }}
+      />
+      <DialogAddMembers
+        handlePosition="inside"
+        modalizeRef={modalizeAddMembersRef}
+        modalStyle={[modalStyle, {backgroundColor: '#F5F6FB'}]}
+        onPressClose={() => {
+          onCloseAddMembersDialog();
         }}
       />
       

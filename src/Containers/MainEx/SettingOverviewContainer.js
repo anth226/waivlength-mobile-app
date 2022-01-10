@@ -7,9 +7,9 @@ import Responsive from 'react-native-lightweight-responsive';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Switch } from 'react-native-switch';
 import Slider from '@react-native-community/slider';
-import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
+import { ExampleContainer } from '@/Containers'
 
-import { ActionBar, GradientBackground, CustomImage, RadioButton, BackIcon } from '@/Components'
+import { ActionBar, GradientBackgroundAngle, CustomImage, RadioButton, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 import _ from 'lodash'
@@ -33,7 +33,7 @@ const SettingOverviewContainer = ({ navigation }) => {
   })
 
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
-    <GradientBackground style={{ position: 'absolute' }} />
+    <GradientBackgroundAngle style={{ position: 'absolute' }} />
     <ActionBar
       left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
       right={<View style={{ height: Responsive.height(36), width: Responsive.height(36) }} />}
@@ -48,114 +48,60 @@ const SettingOverviewContainer = ({ navigation }) => {
         contentContainerStyle={[Layout.alignItemsStart, styles.container]}
         style={[Layout.fill]}>
 
-        <View style={{ height: Responsive.height(20) }} />
-        <Text style={[Layout.fullWidth, styles.textHeader]}>Server Name</Text>
-        <View style={{ height: Responsive.height(5) }} />
+        <View style={{ height: Responsive.height(23) }} />
+        <Text style={[Layout.fullWidth, styles.textHeader, {marginLeft: Responsive.width(8)}]}>Server Name</Text>
+        <View style={{ height: Responsive.height(10) }} />
         <View style={Layout.fullWidth, styles.searchWrapper}>
           <TextInput
             onChangeText={text => setChannelName(text)}
             editable={true}
             value={channelName}
-            editable={false}
             placeholder={'Enter channel name'}
             placeholderTextColor={'#7C8093'}
             selectTextOnFocus
             style={[Layout.fill, Common.textInput, styles.inputText]}
           />
+          {
+            _.isEmpty(channelName) ? (
+              null
+            ) : (
+              <CustomImage width={Responsive.height(25)} height={Responsive.height(25)} source={Images.icClose} onPress={() => setChannelName('')} />
+            )
+          }
         </View>
-
-        <View style={{ height: Responsive.height(20) }} />
-        <Text style={[Layout.fullWidth, styles.textHeader]}>System message settings</Text>
-
-
-
-
-        <View style={[Layout.fullWidth, Layout.column, { marginTop: Responsive.height(5), backgroundColor: '#ffffff', alignItems: 'center', borderRadius: Responsive.height(12), paddingHorizontal: Responsive.width(10) }]}>
-          <View style={[Layout.fullWidth, Layout.row, { alignItems: 'center', height: Responsive.height(64) }]}>
-            <View style={{ width: Responsive.width(10) }} />
-            <Text style={[Layout.fill, styles.textHeader]}>Send a random welcome message when someone joins this server.</Text>
-            <Switch
-              style={styles.switch}
-              renderActiveText={false}
-              renderInActiveText={false}
-              backgroundInactive='#A2A9B0'
-              backgroundActive='#5E60EB'
-              circleBorderInactiveColor='#A2A9B0'
-              circleBorderActiveColor='#5E60EB'
-              circleBorderWidth={2}
-              onValueChange={(val) => console.log(val)}
-              value={true}
-              circleSize={30}
-            />
-          </View>
-          <View style={[Layout.fullWidth, styles.line]} />
-          <View style={[Layout.fullWidth, Layout.row, { alignItems: 'center', height: Responsive.height(64) }]}>
-            <View style={{ width: Responsive.width(10) }} />
-            <Text style={[Layout.fill, styles.textHeader]}>Prompt members to reply to welcome messages with a sticker.</Text>
-            <Switch
-              style={styles.switch}
-              renderActiveText={false}
-              renderInActiveText={false}
-              backgroundInactive='#A2A9B0'
-              backgroundActive='#5E60EB'
-              circleBorderInactiveColor='#A2A9B0'
-              circleBorderActiveColor='#5E60EB'
-              circleBorderWidth={2}
-              onValueChange={(val) => console.log(val)}
-              value={true}
-              circleSize={30}
-            />
-          </View>
-
-          <View style={[Layout.fullWidth, styles.line]} />
-          <View style={[Layout.fullWidth, Layout.row, { alignItems: 'center', height: Responsive.height(64) }]}>
-            <View style={{ width: Responsive.width(10) }} />
-            <Text style={[Layout.fill, styles.textHeader]}>Send a message when someone boosts this server.</Text>
-            <Switch
-              style={styles.switch}
-              renderActiveText={false}
-              renderInActiveText={false}
-              backgroundInactive='#A2A9B0'
-              backgroundActive='#5E60EB'
-              circleBorderInactiveColor='#A2A9B0'
-              circleBorderActiveColor='#5E60EB'
-              circleBorderWidth={2}
-              onValueChange={(val) => console.log(val)}
-              value={true}
-              circleSize={30}
-            />
-          </View>
-
-          <View style={[Layout.fullWidth, styles.line]} />
-          <View style={[Layout.fullWidth, Layout.row, { alignItems: 'center', height: Responsive.height(52) }]}>
-            <View style={{ width: Responsive.width(10) }} />
-            <Text style={[Layout.fill, styles.textHeader]}>Send helpful tips for server setup.</Text>
-            <Switch
-              style={styles.switch}
-              renderActiveText={false}
-              renderInActiveText={false}
-              backgroundInactive='#A2A9B0'
-              backgroundActive='#5E60EB'
-              circleBorderInactiveColor='#A2A9B0'
-              circleBorderActiveColor='#5E60EB'
-              circleBorderWidth={2}
-              onValueChange={(val) => console.log(val)}
-              value={false}
-              circleSize={30}
-            />
-          </View>
-
-        </View>
-        <View style={{ height: Responsive.height(5) }} />
-        <Text style={styles.textDescription}>This is the channel we send system event messages to. These can be turned off at any time.</Text>
 
         <View style={{ height: Responsive.height(15) }} />
-        <Text style={[Layout.fullWidth, styles.textHeader]}>Default notification settings</Text>
+        <Text style={[Layout.fullWidth, styles.textHeader, {marginLeft: Responsive.width(8)}]}>System message settings</Text>
+
+
+        <View style={[Layout.fullWidth, Layout.column, { marginTop: Responsive.height(5), backgroundColor: 'rgba(249,250,252,1.0)', alignItems: 'center', borderRadius: Responsive.height(16) }]}>
+          <View style={[Layout.fullWidth, Layout.row, { alignItems: 'center', height: Responsive.height(78) }]}>
+            <View style={{ width: Responsive.width(16) }} />
+            <Text style={[Layout.fill, styles.textSwitch]}>Send a random welcome message when someone joins this server.</Text>
+            <Switch
+              style={styles.switch}
+              renderActiveText={false}
+              renderInActiveText={false}
+              backgroundInactive='#A2A9B0'
+              backgroundActive='#5E60EB'
+              circleBorderInactiveColor='#A2A9B0'
+              circleBorderActiveColor='#5E60EB'
+              circleBorderWidth={2}
+              onValueChange={(val) => console.log(val)}
+              value={true}
+              circleSize={30}
+            />
+            <View style={{ width: Responsive.width(16) }} />
+          </View>
+        </View>
+
+        <View style={{ height: Responsive.height(15) }} />
+        <Text style={[Layout.fullWidth, styles.textHeader, {marginLeft: Responsive.width(8)}]}>Default notification settings</Text>
         <View style={{ height: Responsive.height(5) }} />
-        <View style={[Layout.fullWidth, styles.searchWrapper, Layout.column]}>
+        <View style={[Layout.fullWidth, styles.searchWrapper, Layout.column, {paddingHorizontal: 0, borderRadius: Responsive.height(16)}]}>
           <TouchableOpacity
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>All messages</Text>
             <View style={{ width: Responsive.width(5) }} />
             <RadioButton
@@ -167,11 +113,12 @@ const SettingOverviewContainer = ({ navigation }) => {
               textStyle={styles.textRadioButton}
               style={{}}
             />
+            <View style={{ width: Responsive.width(8) }} />
           </TouchableOpacity>
           <View style={[Layout.fullWidth, styles.line]} />
           <TouchableOpacity
             style={{ height: Responsive.height(52), alignItems: 'center', flexDirection: 'row' }}>
-            <View style={{ width: Responsive.width(10) }} />
+            <View style={{ width: Responsive.width(16) }} />
             <Text style={[Layout.fill, styles.textHeader]}>Only @mentions</Text>
             <View style={{ width: Responsive.width(5) }} />
             <RadioButton
@@ -183,6 +130,7 @@ const SettingOverviewContainer = ({ navigation }) => {
               textStyle={styles.textRadioButton}
               style={{}}
             />
+            <View style={{ width: Responsive.width(8) }} />
           </TouchableOpacity>
         </View>
 
@@ -200,7 +148,7 @@ export default SettingOverviewContainer
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingHorizontal: Responsive.width((24))
+    paddingHorizontal: Responsive.width(16)
   },
   textTitle: {
     fontSize: Responsive.font(16),
@@ -212,25 +160,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#BFCBD6'
   },
   textHeader: {
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: 'Poppins-Medium',
     fontSize: Responsive.font(14),
-    color: '#30333E',
+    color: '#272D37',
   },
   searchWrapper: {
     flexDirection: 'row',
     width: '100%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'rgba(249,250,252,1.0)',
     borderRadius: Responsive.height(12),
-    borderColor: '#E1E2EF',
-    borderWidth: Responsive.height(1),
     alignItems: 'center',
-    paddingHorizontal: Responsive.width(10)
+    paddingHorizontal: Responsive.width(16)
   },
   inputText: {
     borderBottomWidth: 0,
     fontSize: Responsive.font(14),
     height: Responsive.height(52),
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: 'Poppins-Regular',
+    color: '#242A31',
+  },
+  textSwitch: {
+    fontFamily: 'Poppins-Medium',
+    fontSize: Responsive.font(14),
+    color: '#242A31',
   },
   switch: {
     width: Responsive.width(51),

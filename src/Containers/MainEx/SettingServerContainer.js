@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Switch } from 'react-native-switch';
 import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
 
-import { ActionBar, GradientBackground, CustomImage, RadioButton, BackIcon } from '@/Components'
+import { ActionBar, GradientBackgroundAngle, CustomImage, RadioButton, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, goBack, navigate } from '@/Navigators/utils'
 import _ from 'lodash'
@@ -32,7 +32,7 @@ const SettingServerContainer = ({ navigation }) => {
   })
 
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
-    <GradientBackground style={{ position: 'absolute' }} />
+    <GradientBackgroundAngle style={{ position: 'absolute' }} />
     <ActionBar
       left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
       center={<Text style={styles.textTitle}>Server Settings</Text>}
@@ -64,9 +64,9 @@ const SettingServerContainer = ({ navigation }) => {
           <View style={{ height: Responsive.height(10) }} />
           <Text style={[styles.textSubHeader]}>Waivlength</Text>
         </View>
-        <View style={{ height: Responsive.height(20) }} />
+        <View style={{ height: Responsive.height(18) }} />
 
-        <Text style={[styles.textSubHeader]}>Settings</Text>
+        <Text style={[styles.textSubHeader, { marginLeft: Responsive.width(8) }]}>Settings</Text>
         <View style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
           <TouchableOpacity
             onPress={() => {
@@ -107,7 +107,7 @@ const SettingServerContainer = ({ navigation }) => {
               tintColor={'#8F95A6'}
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
           </TouchableOpacity>
-          <View style={styles.line} />
+          {/* <View style={styles.line} />
           <TouchableOpacity style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ width: Responsive.width(10) }} />
             <CustomImage
@@ -122,12 +122,12 @@ const SettingServerContainer = ({ navigation }) => {
               source={Images.icArrowDown2}
               tintColor={'#8F95A6'}
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
-        <View style={{ height: Responsive.height(20) }} />
-        <Text style={[styles.textSubHeader]}>User management</Text>
+        <View style={{ height: Responsive.height(15) }} />
+        <Text style={[styles.textSubHeader, { marginLeft: Responsive.width(8) }]}>User management</Text>
         <View style={[Layout.fullWidth, Layout.column, styles.actionWrapper]}>
-          <TouchableOpacity style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
+          <TouchableOpacity style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }} onPress={()=> navigate("Members")}>
             <View style={{ width: Responsive.width(10) }} />
             <CustomImage
               width={Responsive.height(18)}
@@ -175,7 +175,7 @@ const SettingServerContainer = ({ navigation }) => {
               style={{ transform: [{ rotate: '-90deg' }], paddingHorizontal: Responsive.width(20) }} />
           </TouchableOpacity>
           <View style={styles.line} />
-          <TouchableOpacity style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }}>
+          <TouchableOpacity style={{ height: Responsive.height(61), alignItems: 'center', flexDirection: 'row' }} onPress={()=> navigate('Language')}>
             <View style={{ width: Responsive.width(10) }} />
             <CustomImage
               width={Responsive.height(18)}
@@ -204,7 +204,7 @@ export default SettingServerContainer
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingHorizontal: Responsive.width((32))
+    paddingHorizontal: Responsive.width(16)
   },
   textTitle: {
     fontFamily: 'Poppins-SemiBold',
@@ -216,11 +216,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     fontSize: Responsive.font(14),
     color: '#272D37',
-    marginBottom: Responsive.height(12)
+    marginBottom: Responsive.height(10)
   },
   actionWrapper: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: Responsive.height(10)
+    backgroundColor: 'rgba(249,251,252,1.0)',
+    borderRadius: Responsive.height(16)
   },
   textItemAction: {
     fontSize: Responsive.font(14),

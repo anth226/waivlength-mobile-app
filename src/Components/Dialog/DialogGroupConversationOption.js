@@ -155,7 +155,6 @@ export default DialogGroupConversationOption
 const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
-        backgroundColor: '#F5F6FB'
     },
     textGroupName: {
         fontSize: Responsive.font(20),

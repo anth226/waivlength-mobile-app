@@ -6,9 +6,8 @@ import { useTheme } from '@/Hooks'
 import Responsive from 'react-native-lightweight-responsive';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Switch } from 'react-native-switch';
-import { ExampleContainer, MessageContainer, AudioContainer } from '@/Containers'
 
-import { ActionBar, GradientBackground, CustomImage, RadioButton, BackIcon } from '@/Components'
+import { ActionBar, GradientBackgroundAngle, CustomImage, RadioButton, BackIcon } from '@/Components'
 import { setDefaultTheme } from '@/Store/Theme'
 import { navigateAndSimpleReset, goBack } from '@/Navigators/utils'
 import _ from 'lodash'
@@ -32,7 +31,7 @@ const CreateNewChannelContainer = ({ navigation }) => {
   })
 
   return (<SafeAreaView edges={['top']} style={[Layout.fill, styles.parentContainer]} >
-    <GradientBackground style={{ position: 'absolute' }} />
+    <GradientBackgroundAngle style={{ position: 'absolute' }} />
     <ActionBar
       left={<BackIcon width={Responsive.height(36)} height={Responsive.height(36)} onPress={goBack} />}
       center={<Text style={styles.textTitle}>Create Channel</Text>}
@@ -42,7 +41,7 @@ const CreateNewChannelContainer = ({ navigation }) => {
         </TouchableOpacity>
       }
     />
-    <View style={styles.line} />
+    <View style={[styles.line, {marginTop: Responsive.height(13)}]} />
     <KeyboardAvoidingView
       {...(Platform.OS === 'ios' ? { behavior: 'padding' } : {})}
       style={[Layout.fill]}
@@ -52,7 +51,7 @@ const CreateNewChannelContainer = ({ navigation }) => {
         contentContainerStyle={[Layout.alignItemsStart, styles.container]}
         style={[Layout.fill]}>
 
-        <View style={{ height: Responsive.height(20) }} />
+        <View style={{ height: Responsive.height(18) }} />
         <Text style={[Layout.fullWidth, styles.textHeader]}>Channel Name</Text>
         <View style={{ height: Responsive.height(5) }} />
         <View style={Layout.fullWidth, styles.searchWrapper}>
@@ -165,7 +164,7 @@ const CreateNewChannelContainer = ({ navigation }) => {
             circleSize={30}
           />
         </View>
-        <View style={{ height: Responsive.height(10) }} />
+        <View style={{ height: Responsive.height(5) }} />
         <Text style={styles.textDescription}>By making a channel private, only members and roles will be able to view this channel.</Text>
 
 
@@ -185,8 +184,8 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     fontSize: Responsive.font(16),
-    fontFamily: 'Poppins-Medium',
-    color: '#242332',
+    fontFamily: 'Poppins-SemiBold',
+    color: '#272D37',
   },
   buttonTextActionBar: {
     height: Responsive.height(36),
@@ -199,7 +198,7 @@ const styles = StyleSheet.create({
     color: '#272D37',
   },
   textCreate: {
-    fontSize: Responsive.font(14),
+    fontSize: Responsive.font(16),
     fontFamily: 'Poppins-Medium',
     color: '#5D5FEF',
   },
@@ -208,9 +207,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#BFCBD6'
   },
   textHeader: {
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: 'Poppins-Medium',
     fontSize: Responsive.font(14),
-    color: '#30333E',
+    color: '#242A31',
   },
   searchWrapper: {
     flexDirection: 'row',
@@ -221,7 +220,7 @@ const styles = StyleSheet.create({
     borderColor: '#E1E2EF',
     borderWidth: Responsive.height(1),
     alignItems: 'center',
-    paddingHorizontal: Responsive.width(10)
+    paddingHorizontal: Responsive.width(16)
   },
   inputText: {
     borderBottomWidth: 0,
@@ -234,7 +233,7 @@ const styles = StyleSheet.create({
   textSubHeader: {
     fontFamily: 'Poppins-Regular',
     fontSize: Responsive.font(12),
-    color: '#30333E',
+    color: '#3B454E',
   },
   textDescription: {
     fontFamily: 'Poppins-Regular',
